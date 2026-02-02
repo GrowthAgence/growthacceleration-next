@@ -13,6 +13,7 @@ import {
   CTAButton,
 } from "../claude-code/client";
 import { AutomationsTerminal } from "./client";
+import { Instructor } from "@/components/Instructor";
 
 export const metadata: Metadata = {
   title: "Formation Automations - Fini de galerer avec N8N",
@@ -265,6 +266,9 @@ export default function AutomationsPage() {
           </ProgramList>
         </div>
       </section>
+
+      {/* FORMATEUR */}
+      <Instructor accentColor="#E5C07B" />
 
       {/* CTA */}
       <section id="reservation" className="py-16 px-4 bg-[#E07A5F]/10 border-y border-[#E07A5F]/20">

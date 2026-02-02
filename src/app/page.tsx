@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Terminal, Cpu, Search, Zap, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Instructor } from "@/components/Instructor";
 
 // Les 4 formations
 const formations = [
@@ -209,6 +210,9 @@ export default function HomePage() {
           </Button>
         </div>
       </section>
+
+      {/* FORMATEUR */}
+      <Instructor />
     </>
   );
 }

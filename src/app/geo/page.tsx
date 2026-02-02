@@ -13,6 +13,7 @@ import {
   CTAButton,
 } from "../claude-code/client";
 import { GeoTerminal } from "./client";
+import { Instructor } from "@/components/Instructor";
 
 export const metadata: Metadata = {
   title: "Formation GEO - Le nouvel eldorado SEO",
@@ -264,6 +265,9 @@ export default function GeoPage() {
           </ProgramList>
         </div>
       </section>
+
+      {/* FORMATEUR */}
+      <Instructor accentColor="#98C379" />
 
       {/* CTA */}
       <section id="reservation" className="py-16 px-4 bg-[#E07A5F]/10 border-y border-[#E07A5F]/20">

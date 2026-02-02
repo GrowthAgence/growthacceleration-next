@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { FileText, Download } from "lucide-react";
 import { ResourcesGrid } from "./client";
+import { Instructor } from "@/components/Instructor";
 
 export const metadata: Metadata = {
   title: "Ressources gratuites IA",
@@ -62,6 +63,9 @@ export default function RessourcesPage() {
           </p>
         </div>
       </section>
+
+      {/* FORMATEUR */}
+      <Instructor />
     </>
   );
 }

@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Terminal, Cpu, Search, Zap, CheckCircle, Users, MapPin, Clock, Euro } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Instructor } from "@/components/Instructor";
 
 export const metadata: Metadata = {
   title: "Formation Intelligence Artificielle a Paris",
@@ -377,6 +378,9 @@ export default function FormationIAPage() {
           </div>
         </div>
       </section>
+
+      {/* FORMATEUR */}
+      <Instructor />
 
       {/* CTA */}
       <section className="py-16 px-4 bg-[#2D2A2E]/30">
