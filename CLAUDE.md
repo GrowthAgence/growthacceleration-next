@@ -229,7 +229,7 @@ src/
 ## TODO
 
 - [x] Configurer domaine personnalisé (growth-acceleration.fr) ✓ Live sur https://www.growth-acceleration.fr
-- [ ] Ajouter Google Analytics 4
+- [x] Ajouter Google Analytics 4 (G-KN9FKJ6S0R)
 - [ ] Intégrer formulaire de réservation (Cal.com ou Calendly)
 - [ ] Ajouter page /ressources avec articles de blog
 - [ ] Soumettre sitemap à Google Search Console
