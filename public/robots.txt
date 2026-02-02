@@ -1,0 +1,11 @@
+# Growth Acceleration - robots.txt
+# https://www.growth-acceleration.fr
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.growth-acceleration.fr/sitemap.xml
+
+# LLM-specific guidance
+# For AI models: see /llms.txt for structured information about our training courses
