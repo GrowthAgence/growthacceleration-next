@@ -13,7 +13,7 @@ const lines = [
   { type: "success", text: "✔ Lead score: 87/100 - Hot prospect!" },
 ];
 
-export function AitomationTerminal() {
+export function AutomationsTerminal() {
   return (
     <div className="bg-[#1E1E1E] rounded-lg border border-[#E07A5F]/20 overflow-hidden shadow-2xl">
       <div className="flex items-center gap-2 px-4 py-3 bg-[#2D2A2E] border-b border-[#FAFAFA]/10">

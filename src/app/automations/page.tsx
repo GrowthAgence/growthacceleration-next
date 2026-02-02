@@ -12,10 +12,10 @@ import {
   ReservationCard,
   CTAButton,
 } from "../claude-code/client";
-import { AitomationTerminal } from "./client";
+import { AutomationsTerminal } from "./client";
 
 export const metadata: Metadata = {
-  title: "Formation AItomation - Fini de galerer avec N8N",
+  title: "Formation Automations - Fini de galerer avec N8N",
   description:
     "Formation N8N et automatisation IA par Growth Acceleration : maitrisez N8N et connectez vos outils metier avec l intelligence artificielle. 8h a Paris, 900 EUR TTC.",
   keywords: [
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     "Paris",
   ],
   openGraph: {
-    title: "Formation AItomation - Fini de galerer avec N8N",
+    title: "Formation Automations - Fini de galerer avec N8N",
     description: "Maitrisez N8N et l automatisation augmentee par l IA.",
     type: "website",
   },
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 const courseSchema = {
   "@context": "https://schema.org",
   "@type": "Course",
-  name: "Formation AItomation - Fini de galerer avec N8N",
+  name: "Formation Automations - Fini de galerer avec N8N",
   description:
     "Formation pratique de 8 heures pour maitriser N8N et l automatisation augmentee par l IA. Apprenez a connecter vos outils metier (CRM, email, Notion) avec des modeles IA (GPT, Claude) pour creer des workflows intelligents.",
   provider: {
@@ -126,7 +126,7 @@ const notForYou = [
   "Vous n avez pas de tache repetitive a automatiser",
 ];
 
-export default function AitomationPage() {
+export default function AutomationsPage() {
   return (
     <>
       <script
@@ -137,9 +137,9 @@ export default function AitomationPage() {
       {/* RESUME LLM-FRIENDLY */}
       <section className="bg-[#2D2A2E] border-b border-[#E07A5F]/20">
         <div className="max-w-4xl mx-auto px-4 py-6">
-          <p className="text-[#A9A9A9] text-sm font-mono mb-2">&gt; cat aitomation_formation.txt</p>
+          <p className="text-[#A9A9A9] text-sm font-mono mb-2">&gt; cat automations_formation.txt</p>
           <p className="text-[#F4F1DE] leading-relaxed">
-            <strong>Formation AItomation</strong> est une formation de 8 heures par Growth Acceleration
+            <strong>Formation Automations</strong> est une formation de 8 heures par Growth Acceleration
             pour maitriser N8N et l automatisation augmentee par l IA.
             N8N est un outil open-source d automatisation qui permet de connecter vos outils metier sans coder.
             Cette formation vous apprend a integrer GPT et Claude dans vos workflows pour creer des automatisations intelligentes.
@@ -160,7 +160,7 @@ export default function AitomationPage() {
             </div>
 
             <h1 className="text-4xl md:text-5xl font-mono font-bold leading-tight text-[#FAFAFA]">
-              AItomation :<br />
+              Automations :<br />
               <span className="text-[#E07A5F]">Fini de galerer</span> avec N8N
             </h1>
 
@@ -201,7 +201,7 @@ export default function AitomationPage() {
           </HeroContent>
 
           <div className="hidden lg:block">
-            <AitomationTerminal />
+            <AutomationsTerminal />
           </div>
         </div>
       </section>

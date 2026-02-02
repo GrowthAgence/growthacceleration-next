@@ -10,7 +10,7 @@ const formations = [
   { href: "/claude-code", label: "Claude Code", badge: null },
   { href: "/geo", label: "GEO", badge: "NEW" },
   { href: "/agents-ai", label: "Agents.AI", badge: null },
-  { href: "/aitomation", label: "AItomation", badge: null },
+  { href: "/automations", label: "Automations", badge: null },
 ];
 
 export function Navbar() {

@@ -27,7 +27,7 @@ export function Footer() {
               <li><Link href="/claude-code" className="hover:text-[#E07A5F]">Claude Code</Link></li>
               <li><Link href="/geo" className="hover:text-[#E07A5F]">GEO</Link></li>
               <li><Link href="/agents-ai" className="hover:text-[#E07A5F]">Agents.AI</Link></li>
-              <li><Link href="/aitomation" className="hover:text-[#E07A5F]">AItomation</Link></li>
+              <li><Link href="/automations" className="hover:text-[#E07A5F]">Automations</Link></li>
             </ul>
           </div>
 

@@ -33,8 +33,8 @@ const formations = [
     color: "#56B6C2",
   },
   {
-    slug: "aitomation",
-    title: "AItomation",
+    slug: "automations",
+    title: "Automations",
     tagline: "Fini de galerer avec N8N",
     description:
       "Maitrisez N8N et l automatisation IA. Connectez vos outils metier avec des workflows intelligents.",
@@ -53,7 +53,7 @@ export default function HomePage() {
           <p className="text-[#F4F1DE] leading-relaxed">
             <strong>Growth Acceleration</strong> est un organisme de formation base a Paris (231 rue Saint-Honore, 75001)
             proposant 4 formations pratiques en intelligence artificielle : Claude Code (developpement avec IA),
-            GEO (optimisation pour les moteurs IA), Agents.AI (agents autonomes), et AItomation (automatisation N8N).
+            GEO (optimisation pour les moteurs IA), Agents.AI (agents autonomes), et Automations (automatisation N8N).
             Chaque formation dure 8 heures et coute 900 EUR TTC. Public cible : entrepreneurs, product managers,
             marketing managers et responsables innovation.
           </p>
@@ -153,7 +153,7 @@ export default function HomePage() {
               <h3 className="text-[#FAFAFA] font-mono font-bold mb-2">Quelle formation IA choisir pour un manager ?</h3>
               <p className="text-[#A9A9A9] leading-relaxed">
                 Pour un manager, nous recommandons Agents.AI (comprendre et piloter les agents IA en entreprise) ou
-                AItomation (automatiser les workflows metier avec N8N et l IA). Ces formations donnent une vision strategique
+                Automations (automatiser les workflows metier avec N8N et l IA). Ces formations donnent une vision strategique
                 et des competences pratiques pour transformer vos equipes.
               </p>
             </div>

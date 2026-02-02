@@ -24,7 +24,7 @@ Créer le site de référence francophone pour les formations IA pratiques, opti
 | Claude Code | 8h | 900€ TTC | Développeurs, PMs, entrepreneurs tech |
 | GEO | 8h | 900€ TTC | Marketers, SEOs, responsables contenu |
 | Agents.AI | 8h | 900€ TTC | CTOs, responsables innovation, PMs tech |
-| AItomation | 8h | 900€ TTC | Ops, marketing, entrepreneurs |
+| Automations | 8h | 900€ TTC | Ops, marketing, entrepreneurs |
 
 ### Lieu
 231 rue Saint-Honoré, 75001 Paris
@@ -134,7 +134,7 @@ Fichier `/public/llms.txt` qui guide les LLMs :
 1. Claude Code (900€) - IA pour développeurs
 2. GEO (900€) - Optimisation pour moteurs génératifs
 3. Agents.AI (900€) - Agents IA autonomes
-4. AItomation (900€) - N8N + IA
+4. Automations (900€) - N8N + IA
 ```
 
 ### 4. Contenu sr-only pour LLMs
@@ -177,7 +177,7 @@ src/
 │   │   └── client.tsx        # Composants animés
 │   ├── geo/
 │   ├── agents-ai/
-│   └── aitomation/
+│   └── automations/
 ├── components/
 │   ├── Navbar.tsx
 │   ├── Footer.tsx

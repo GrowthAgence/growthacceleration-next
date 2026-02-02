@@ -125,8 +125,8 @@ const formations = [
     benefits: ["Comprendre les agents IA", "Deployer des agents en entreprise", "Piloter l IA strategiquement"],
   },
   {
-    slug: "aitomation",
-    title: "AItomation",
+    slug: "automations",
+    title: "Automations",
     subtitle: "Automatisation intelligente",
     description: "Maitrisez N8N et connectez vos outils metier avec des workflows IA intelligents.",
     icon: Zap,
