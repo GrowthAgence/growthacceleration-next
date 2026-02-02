@@ -268,7 +268,7 @@ export default function AutomationsPage() {
       </section>
 
       {/* FORMATEUR */}
-      <Instructor accentColor="#E5C07B" />
+      <Instructor />
 
       {/* CTA */}
       <section id="reservation" className="py-16 px-4 bg-[#E07A5F]/10 border-y border-[#E07A5F]/20">
