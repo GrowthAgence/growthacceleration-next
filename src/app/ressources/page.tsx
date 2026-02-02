@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { FileText, Download, Sparkles, Bot, Search, Zap } from "lucide-react";
-import { ResourceCard } from "./client";
+import { FileText, Download } from "lucide-react";
+import { ResourcesGrid } from "./client";
 
 export const metadata: Metadata = {
   title: "Ressources gratuites IA",
@@ -14,45 +14,6 @@ export const metadata: Metadata = {
     "formation IA",
   ],
 };
-
-const resources = [
-  {
-    id: "50-prompts-chatgpt",
-    title: "50 Prompts ChatGPT pour entrepreneurs",
-    description:
-      "Les meilleurs prompts pour generer des idees, rediger du contenu, analyser des donnees et automatiser vos taches quotidiennes.",
-    icon: Sparkles,
-    category: "Prompts",
-    downloadUrl: "/ressources/50-prompts-chatgpt.pdf",
-  },
-  {
-    id: "guide-geo-2024",
-    title: "Guide GEO : Etre cite par les IA",
-    description:
-      "Comment optimiser votre site pour apparaitre dans les reponses de ChatGPT, Perplexity et Claude. Schema.org, llms.txt et plus.",
-    icon: Search,
-    category: "Guide",
-    downloadUrl: "/ressources/guide-geo-2024.pdf",
-  },
-  {
-    id: "templates-n8n",
-    title: "10 Templates N8N prets a l emploi",
-    description:
-      "Workflows d automatisation pour CRM, email marketing, lead enrichment, notifications Slack et plus. Importez et adaptez.",
-    icon: Zap,
-    category: "Templates",
-    downloadUrl: "/ressources/templates-n8n.json",
-  },
-  {
-    id: "checklist-agents-ia",
-    title: "Checklist : Deployer un agent IA",
-    description:
-      "Les 20 questions a se poser avant de deployer un agent IA en entreprise. Securite, couts, maintenance, ROI.",
-    icon: Bot,
-    category: "Checklist",
-    downloadUrl: "/ressources/checklist-agents-ia.pdf",
-  },
-];
 
 export default function RessourcesPage() {
   return (
@@ -82,11 +43,7 @@ export default function RessourcesPage() {
       {/* RESSOURCES GRID */}
       <section className="py-12 px-4">
         <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-6">
-            {resources.map((resource) => (
-              <ResourceCard key={resource.id} resource={resource} />
-            ))}
-          </div>
+          <ResourcesGrid />
         </div>
       </section>
 
