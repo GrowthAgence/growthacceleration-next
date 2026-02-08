@@ -4,6 +4,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { SmoothScroll } from "@/components/SmoothScroll";
+import { ClickTracker } from "@/components/ClickTracker";
 import "./globals.css";
 
 const inter = Inter({
@@ -97,6 +98,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-[#1E1E1E] text-[#F4F1DE] antialiased font-sans">
         <SmoothScroll />
+        <ClickTracker />
         <Navbar />
         <main className="pt-16">{children}</main>
         <Footer />
