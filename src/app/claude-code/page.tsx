@@ -138,14 +138,14 @@ const programItems = [
 
 // Pour qui / Pas pour qui - contenu exact du Figma
 const forYou = [
-  "Entrepreneurs et indie hackers voulant shipper vite",
+  "Entrepreneurs voulant shipper leur produit vite",
   "Product Managers techniques ou builders",
+  "Debutants motives qui veulent creer leur premiere app avec l IA",
   "Utilisateurs de ChatGPT/Claude qui veulent passer au niveau superieur",
-  "Ceux qui veulent automatiser le setup, debug et refactoring",
 ];
 
 const notForYou = [
-  "Debutants complets (jamais ecrit une ligne de code)",
+  "Allergiques a la technologie et au numerique",
   "Chercheurs de theorie pure sur l'IA",
   "Ceux qui veulent devenir dev senior sans comprendre les bases",
   "Personnes sans ordinateur (tablettes non supportees)",
