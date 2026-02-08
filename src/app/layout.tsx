@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -15,6 +16,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.growth-acceleration.fr"),
   title: {
     default: "Formation Intelligence Artificielle Paris | Growth Acceleration",
     template: "%s | Growth Acceleration",
@@ -34,12 +36,24 @@ export const metadata: Metadata = {
     "automatisation IA",
   ],
   authors: [{ name: "Growth Acceleration" }],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "fr_FR",
+    url: "https://www.growth-acceleration.fr",
     siteName: "Growth Acceleration",
     title: "Formation Intelligence Artificielle Paris | Growth Acceleration",
     description: "Formation IA pour entrepreneurs et managers. Maitrisez l IA generative en 1 journee a Paris. 900 EUR TTC.",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Growth Acceleration - Formations IA Paris",
+      },
+    ],
   },
 };
 
@@ -48,8 +62,8 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "EducationalOrganization",
   name: "Growth Acceleration",
-  url: "https://growthacceleration.fr",
-  logo: "https://growthacceleration.fr/logo.png",
+  url: "https://www.growth-acceleration.fr",
+  logo: "https://www.growth-acceleration.fr/logo.png",
   description:
     "Organisme de formation specialise en intelligence artificielle pour entrepreneurs et managers. Formations Claude Code, GEO, Agents IA et N8N a Paris.",
   address: {
@@ -74,18 +88,6 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <head>
-        {/* Google Analytics */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-KN9FKJ6S0R" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-KN9FKJ6S0R');
-            `,
-          }}
-        />
         {/* Schema.org */}
         <script
           type="application/ld+json"
@@ -96,6 +98,20 @@ export default function RootLayout({
         <Navbar />
         <main className="pt-16">{children}</main>
         <Footer />
+
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-KN9FKJ6S0R"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-KN9FKJ6S0R');
+          `}
+        </Script>
 
         {/* Background Grid Effect - meme design que Figma */}
         <div

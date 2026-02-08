@@ -28,6 +28,9 @@ export const metadata: Metadata = {
     "integration IA",
     "Paris",
   ],
+  alternates: {
+    canonical: "/automations",
+  },
   openGraph: {
     title: "Formation Automations - Fini de galerer avec N8N",
     description: "Maitrisez N8N et l automatisation augmentee par l IA.",
@@ -44,7 +47,7 @@ const courseSchema = {
   provider: {
     "@type": "EducationalOrganization",
     name: "Growth Acceleration",
-    url: "https://growthacceleration.fr",
+    url: "https://www.growth-acceleration.fr",
   },
   courseCode: "AITOMATION-01",
   educationalLevel: "Debutant a Intermediaire",

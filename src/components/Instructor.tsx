@@ -26,8 +26,7 @@ export function Instructor({ accentColor = "#E07A5F" }: InstructorProps) {
             >
               <Image
                 src="/fred.jpg"
-                unoptimized
-                alt="Frederic - Formateur"
+                alt="Frederic - Formateur Growth Acceleration, CEO de La Growth Agence"
                 width={400}
                 height={500}
                 className="w-full h-auto object-cover"

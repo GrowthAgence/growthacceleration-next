@@ -34,9 +34,8 @@ export function Footer() {
           <div>
             <h4 className="text-[#FAFAFA] font-mono text-sm mb-4">Ressources</h4>
             <ul className="space-y-2 text-[#A9A9A9] text-sm">
-              <li><Link href="/ressources/glossaire" className="hover:text-[#E07A5F]">Glossaire IA</Link></li>
-              <li><Link href="/ressources/guides" className="hover:text-[#E07A5F]">Guides</Link></li>
-              <li><Link href="/ressources/comparatifs" className="hover:text-[#E07A5F]">Comparatifs</Link></li>
+              <li><Link href="/ressources" className="hover:text-[#E07A5F]">Ressources</Link></li>
+              <li><Link href="/formation-intelligence-artificielle" className="hover:text-[#E07A5F]">Toutes les formations</Link></li>
             </ul>
           </div>
 
@@ -45,8 +44,6 @@ export function Footer() {
             <ul className="space-y-2 text-[#A9A9A9] text-sm">
               <li>231 rue Saint-Honore</li>
               <li>75001 Paris</li>
-              <li><Link href="/a-propos" className="hover:text-[#E07A5F]">A propos</Link></li>
-              <li><Link href="/mentions-legales" className="hover:text-[#E07A5F]">Mentions legales</Link></li>
             </ul>
           </div>
         </div>

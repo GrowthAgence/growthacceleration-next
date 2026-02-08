@@ -30,6 +30,9 @@ export const metadata: Metadata = {
     "low-code",
     "Paris",
   ],
+  alternates: {
+    canonical: "/claude-code",
+  },
   openGraph: {
     title: "Formation Claude Code - Ship ton produit en une journee",
     description:
@@ -48,7 +51,7 @@ const courseSchema = {
   provider: {
     "@type": "EducationalOrganization",
     name: "Growth Acceleration",
-    url: "https://growthacceleration.fr",
+    url: "https://www.growth-acceleration.fr",
   },
   courseCode: "CLAUDE-CODE-01",
   educationalLevel: "Debutant a Intermediaire",
@@ -69,7 +72,7 @@ const courseSchema = {
     price: "900",
     priceCurrency: "EUR",
     availability: "https://schema.org/InStock",
-    validFrom: "2025-01-01",
+    validFrom: "2026-01-01",
   },
   hasCourseInstance: {
     "@type": "CourseInstance",

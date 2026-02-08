@@ -28,6 +28,9 @@ export const metadata: Metadata = {
     "future of work",
     "Paris",
   ],
+  alternates: {
+    canonical: "/agents-ai",
+  },
   openGraph: {
     title: "Formation Agents.AI - Future of Work",
     description: "Concevez et deployez des agents IA autonomes.",
@@ -44,7 +47,7 @@ const courseSchema = {
   provider: {
     "@type": "EducationalOrganization",
     name: "Growth Acceleration",
-    url: "https://growthacceleration.fr",
+    url: "https://www.growth-acceleration.fr",
   },
   courseCode: "AGENTS-01",
   educationalLevel: "Intermediaire a Avance",

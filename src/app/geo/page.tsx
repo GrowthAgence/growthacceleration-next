@@ -28,6 +28,9 @@ export const metadata: Metadata = {
     "llms.txt",
     "Paris",
   ],
+  alternates: {
+    canonical: "/geo",
+  },
   openGraph: {
     title: "Formation GEO - Le nouvel eldorado SEO",
     description: "Optimisez votre presence dans les reponses des moteurs IA.",
@@ -44,7 +47,7 @@ const courseSchema = {
   provider: {
     "@type": "EducationalOrganization",
     name: "Growth Acceleration",
-    url: "https://growthacceleration.fr",
+    url: "https://www.growth-acceleration.fr",
   },
   courseCode: "GEO-01",
   educationalLevel: "Intermediaire",
