@@ -194,7 +194,7 @@ export default function AutomationsPage() {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" className="bg-[#E07A5F] text-[#1E1E1E] hover:bg-[#E07A5F]/90" asChild>
-                <a href="#reservation" className="flex items-center gap-2">
+                <a href="https://calendly.com/fredericorlicki/15min" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                   Reserver ma place <ArrowRight className="w-4 h-4" />
                 </a>
               </Button>
@@ -289,7 +289,9 @@ export default function AutomationsPage() {
               </p>
               <p className="text-[#A9A9A9] text-sm mt-2">231 rue Saint-Honore, 75001 Paris</p>
             </div>
-            <CTAButton>Reserver maintenant</CTAButton>
+            <a href="https://calendly.com/fredericorlicki/15min" target="_blank" rel="noopener noreferrer">
+              <CTAButton>Reserver maintenant</CTAButton>
+            </a>
           </ReservationCard>
         </div>
       </section>

@@ -72,13 +72,15 @@ export function FinalCTA({
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
-                <Button
-                  size="lg"
-                  className="text-base px-8"
-                  style={{ backgroundColor: accentColor }}
-                >
-                  &gt; Confirmer ma presence_
-                </Button>
+                <a href="https://calendly.com/fredericorlicki/15min" target="_blank" rel="noopener noreferrer">
+                  <Button
+                    size="lg"
+                    className="text-base px-8"
+                    style={{ backgroundColor: accentColor }}
+                  >
+                    &gt; Confirmer ma presence_
+                  </Button>
+                </a>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
                 <Button

@@ -201,7 +201,7 @@ export default function ClaudeCodePage() {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" asChild>
-                <a href="#reservation" className="flex items-center gap-2">
+                <a href="https://calendly.com/fredericorlicki/15min" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                   &gt; Reserver ma place_
                 </a>
               </Button>

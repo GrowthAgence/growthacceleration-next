@@ -394,7 +394,7 @@ export default function FormationIAPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" asChild>
-              <Link href="#contact">Reserver une formation</Link>
+              <a href="https://calendly.com/fredericorlicki/15min" target="_blank" rel="noopener noreferrer">Reserver une formation</a>
             </Button>
             <Button size="lg" variant="outline" asChild>
               <Link href="/">Voir toutes les formations</Link>

@@ -260,7 +260,7 @@ export default function HomePage() {
           </div>
 
           <Button size="lg" asChild>
-            <Link href="#contact">Nous contacter</Link>
+            <a href="https://calendly.com/fredericorlicki/15min" target="_blank" rel="noopener noreferrer">Nous contacter</a>
           </Button>
         </div>
       </section>

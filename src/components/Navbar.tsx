@@ -50,7 +50,7 @@ export function Navbar() {
               ./ressources
             </Link>
             <Button size="sm" variant="outline" asChild>
-              <Link href="#reservation">Reserver_</Link>
+              <a href="https://calendly.com/fredericorlicki/15min" target="_blank" rel="noopener noreferrer">Reserver_</a>
             </Button>
           </div>
 
@@ -77,7 +77,7 @@ export function Navbar() {
             </Link>
           ))}
           <Button className="w-full mt-4" variant="outline" asChild>
-            <Link href="#reservation">Reserver_</Link>
+            <a href="https://calendly.com/fredericorlicki/15min" target="_blank" rel="noopener noreferrer">Reserver_</a>
           </Button>
         </div>
       )}
