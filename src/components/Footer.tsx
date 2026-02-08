@@ -44,6 +44,7 @@ export function Footer() {
             <ul className="space-y-2 text-[#A9A9A9] text-sm">
               <li>231 rue Saint-Honore</li>
               <li>75001 Paris</li>
+              <li><Link href="/mentions-legales" className="hover:text-[#E07A5F]">Mentions legales</Link></li>
             </ul>
           </div>
         </div>
