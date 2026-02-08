@@ -18,7 +18,7 @@ import { Instructor } from "@/components/Instructor";
 export const metadata: Metadata = {
   title: "Formation GEO - Le nouvel eldorado SEO",
   description:
-    "Formation GEO (Generative Engine Optimization) par Growth Acceleration : apprenez a etre cite par ChatGPT, Perplexity et Claude. 8h de formation pratique a Paris, 900 EUR TTC.",
+    "Formation GEO (Generative Engine Optimization) par Growth Acceleration : apprenez a optimiser votre contenu pour etre cite par ChatGPT, Perplexity et Claude. 8h de formation pratique a Paris, 900 EUR TTC. Pour SEO managers et marketers.",
   keywords: [
     "formation GEO",
     "Generative Engine Optimization",
@@ -87,6 +87,46 @@ const courseSchema = {
   },
 };
 
+// Schema.org FAQPage - FAQ GEO
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Qu est-ce que le GEO (Generative Engine Optimization) ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Le GEO est l optimisation de contenu pour les moteurs de reponse IA comme ChatGPT, Perplexity et Claude. Contrairement au SEO classique qui vise Google, le GEO vise a etre cite dans les reponses generees par les modeles de langage.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Quelle est la difference entre GEO et SEO ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Le SEO optimise pour les moteurs de recherche classiques (Google, Bing). Le GEO optimise pour les moteurs de reponse IA (ChatGPT, Perplexity, Claude). Les techniques sont differentes : le GEO se concentre sur la structuration du contenu, les donnees structurees et l extractabilite par les LLM.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Faut-il des competences techniques pour la formation GEO ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Des bases en SEO classique sont recommandees. Vous n avez pas besoin de savoir coder, mais vous devez gerer du contenu web (blog, site, e-commerce). La formation couvre les aspects techniques comme Schema.org et llms.txt.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Comment mesurer sa visibilite dans les reponses IA ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "La formation enseigne comment tracker ses citations dans ChatGPT, Perplexity et Claude, analyser les logs de crawl des bots IA, et construire une strategie d autorite pour maximiser ses chances d etre cite.",
+      },
+    },
+  ],
+};
+
 const programItems = [
   {
     time: "09h00 - 10h30",
@@ -136,6 +176,10 @@ export default function GeoPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       {/* RESUME LLM-FRIENDLY */}

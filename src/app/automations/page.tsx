@@ -18,7 +18,7 @@ import { Instructor } from "@/components/Instructor";
 export const metadata: Metadata = {
   title: "Formation Automations - Fini de galerer avec N8N",
   description:
-    "Formation N8N et automatisation IA par Growth Acceleration : maitrisez N8N et connectez vos outils metier avec l intelligence artificielle. 8h a Paris, 900 EUR TTC.",
+    "Formation N8N et automatisation IA par Growth Acceleration : maitrisez N8N et connectez vos outils metier (CRM, email, Notion) avec GPT et Claude. 8h de formation pratique a Paris, 900 EUR TTC. Pour ops et marketing.",
   keywords: [
     "formation N8N",
     "automatisation IA",
@@ -87,6 +87,46 @@ const courseSchema = {
   },
 };
 
+// Schema.org FAQPage - FAQ Automations N8N
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Qu est-ce que N8N ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "N8N est un outil open-source d automatisation de workflows qui permet de connecter vos applications et services entre eux sans coder. Il est une alternative plus flexible a Zapier et Make, avec la possibilite de l heberger soi-meme et d integrer des modeles IA comme GPT et Claude.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Quelle est la difference entre N8N, Zapier et Make ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "N8N est open-source et auto-hebergeable, ce qui donne plus de controle sur vos donnees et vos couts. Zapier et Make sont des solutions cloud avec des limites sur les plans gratuits. N8N permet aussi une integration native plus poussee avec les APIs d IA generative comme GPT et Claude.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Faut-il savoir coder pour utiliser N8N ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Non. N8N dispose d une interface visuelle drag-and-drop. La formation vous apprend a creer des workflows complexes sans ecrire de code. Des notions de base en logique (si/alors) et en APIs sont utiles mais pas obligatoires.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Comment integrer l IA dans ses automatisations N8N ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "La formation couvre l integration de GPT et Claude dans vos workflows N8N pour des cas concrets : enrichissement automatique de leads, classification de tickets support, generation de contenu, analyse de documents et resume de reunions.",
+      },
+    },
+  ],
+};
+
 const programItems = [
   {
     time: "09h00 - 10h30",
@@ -136,6 +176,10 @@ export default function AutomationsPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       {/* RESUME LLM-FRIENDLY */}

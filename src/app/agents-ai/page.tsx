@@ -18,7 +18,7 @@ import { Instructor } from "@/components/Instructor";
 export const metadata: Metadata = {
   title: "Formation Agents.AI - Future of Work",
   description:
-    "Formation Agents IA par Growth Acceleration : concevez et deployez des agents IA autonomes pour automatiser vos processus metier. 8h a Paris, 900 EUR TTC.",
+    "Formation Agents IA par Growth Acceleration : concevez et deployez des agents IA autonomes avec MCP pour automatiser vos processus metier. 8h de formation pratique a Paris, 900 EUR TTC. Pour CTOs et product managers.",
   keywords: [
     "formation agents IA",
     "agents autonomes",
@@ -87,6 +87,46 @@ const courseSchema = {
   },
 };
 
+// Schema.org FAQPage - FAQ Agents IA
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Qu est-ce qu un agent IA ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Un agent IA est un systeme capable d executer des taches complexes en plusieurs etapes de maniere autonome. Contrairement a un chatbot qui repond a des questions, un agent peut utiliser des outils, prendre des decisions et realiser des actions concretes (envoyer des emails, interroger des bases de donnees, modifier des fichiers).",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Qu est-ce que MCP (Model Context Protocol) ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "MCP est un protocole standardise par Anthropic qui permet aux agents IA de se connecter a des outils externes (API, bases de donnees, systemes internes). La formation couvre comment utiliser MCP pour creer des agents qui interagissent avec vos systemes d entreprise.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Faut-il savoir coder pour la formation Agents.AI ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Des bases techniques sont recommandees. Vous n avez pas besoin d etre developpeur, mais vous devez comprendre les concepts d API et avoir deja utilise des outils IA generatifs (ChatGPT, Claude). La formation est pensee pour les profils tech-savvy non-developpeurs.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Quels cas d usage concrets pour les agents IA en entreprise ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "La formation couvre les cas d usage les plus demandes : support client automatise, analyse de documents, veille concurrentielle, automatisation RH, enrichissement de donnees CRM et generation de rapports. Chaque participant travaille sur un cas d usage adapte a son entreprise.",
+      },
+    },
+  ],
+};
+
 const programItems = [
   {
     time: "09h00 - 10h30",
@@ -136,6 +176,10 @@ export default function AgentsAIPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       {/* RESUME LLM-FRIENDLY */}

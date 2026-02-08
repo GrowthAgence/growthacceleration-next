@@ -92,6 +92,68 @@ const courseSchema = {
   },
 };
 
+// Schema.org AggregateRating - 29 avis Google 5 etoiles
+const reviewSchema = {
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  name: "Growth Acceleration",
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5.0",
+    ratingCount: 29,
+    bestRating: "5",
+    worstRating: "1",
+  },
+};
+
+// Schema.org FAQPage - FAQ Claude Code
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Quel niveau technique faut-il pour la formation Claude Code ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Vous devez etre a l aise avec un terminal et avoir deja modifie du code. Si vous utilisez Webflow en custom code, Notion avec des formules complexes, ou des outils no-code avances, vous avez le niveau.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Claude Code est-il gratuit ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Claude Code necessite un abonnement Claude Pro (20$/mois) ou une cle API Anthropic. Le cout moyen d utilisation est de 5-15$/mois pour un usage regulier.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Puis-je utiliser les competences pour mon travail salarie ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Absolument. Les competences acquises sont immediatement applicables en entreprise. Beaucoup de nos alumni utilisent Claude Code pour accelerer leur productivite au travail.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Puis-je venir avec mon propre projet ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Oui et c est meme recommande. Les exercices pratiques peuvent etre adaptes a votre projet. Vous repartirez avec du code utilisable.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Mac, Windows ou Linux ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Claude Code fonctionne sur les trois systemes. La formation est donnee sur Mac mais les concepts sont identiques. Apportez votre propre laptop.",
+      },
+    },
+  ],
+};
+
 // Schema.org Person (formateur)
 const instructorSchema = {
   "@context": "https://schema.org",
@@ -162,6 +224,14 @@ export default function ClaudeCodePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(instructorSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       {/* RESUME LLM-FRIENDLY */}
