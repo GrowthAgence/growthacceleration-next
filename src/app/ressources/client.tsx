@@ -5,6 +5,12 @@ import { motion, AnimatePresence } from "motion/react";
 import { Download, Loader2, CheckCircle, X, Sparkles, Bot, Search, Zap, LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
 interface Resource {
   id: string;
   title: string;
@@ -100,6 +106,13 @@ function ResourceCard({ resource }: { resource: Resource }) {
 
       setIsSuccess(true);
 
+      window.gtag?.("event", "generate_lead", {
+        form_type: "resource_download",
+        resource_id: resource.id,
+        resource_title: resource.title,
+        page_path: window.location.pathname,
+      });
+
       // Téléchargement automatique après 1.5s
       setTimeout(() => {
         window.open(resource.downloadUrl, "_blank");
@@ -133,7 +146,15 @@ function ResourceCard({ resource }: { resource: Resource }) {
         <p className="text-[#A9A9A9] text-sm leading-relaxed mb-6">{resource.description}</p>
 
         <Button
-          onClick={() => setIsModalOpen(true)}
+          onClick={() => {
+            setIsModalOpen(true);
+            window.gtag?.("event", "form_start", {
+              form_type: "resource_download",
+              resource_id: resource.id,
+              resource_title: resource.title,
+              page_path: window.location.pathname,
+            });
+          }}
           className="w-full bg-[#E07A5F] text-[#1E1E1E] hover:bg-[#E07A5F]/90"
         >
           <Download className="w-4 h-4 mr-2" />

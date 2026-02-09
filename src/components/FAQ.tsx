@@ -4,6 +4,12 @@ import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
 interface FAQItem {
   question: string;
   answer: string;
@@ -74,7 +80,17 @@ export function FAQ({ accentColor = "#E07A5F" }: FAQProps) {
               className="bg-[#2D2A2E] rounded-lg overflow-hidden"
             >
               <button
-                onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                onClick={() => {
+                  const isOpening = openIndex !== i;
+                  setOpenIndex(openIndex === i ? null : i);
+                  if (isOpening) {
+                    window.gtag?.("event", "faq_click", {
+                      faq_question: item.question,
+                      faq_index: i,
+                      page_path: window.location.pathname,
+                    });
+                  }
+                }}
                 className="w-full flex items-center justify-between p-4 text-left hover:bg-[#FAFAFA]/5 transition-colors"
               >
                 <span className="font-mono text-[#FAFAFA] flex items-center gap-2">
