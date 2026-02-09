@@ -87,6 +87,35 @@ const courseSchema = {
   },
 };
 
+// Schema.org Person (formateur)
+const instructorSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Frederic Orlicki",
+  jobTitle: "CEO & Formateur Automations",
+  worksFor: {
+    "@type": "Organization",
+    name: "Growth Acceleration",
+  },
+  description:
+    "10 ans d experience en growth marketing et automatisation. Createur de 3 SaaS en production. Formateur de plus de 400 professionnels a l IA et a N8N.",
+  knowsAbout: ["N8N", "automatisation", "GPT", "Claude API", "Zapier", "Make", "workflows IA"],
+};
+
+// Schema.org AggregateRating - 29 avis Google 5 etoiles
+const reviewSchema = {
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  name: "Growth Acceleration",
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5.0",
+    ratingCount: 29,
+    bestRating: "5",
+    worstRating: "1",
+  },
+};
+
 // Schema.org FAQPage - FAQ Automations N8N
 const faqSchema = {
   "@context": "https://schema.org",
@@ -181,6 +210,14 @@ export default function AutomationsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(instructorSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
+      />
 
       {/* RESUME LLM-FRIENDLY */}
       <section className="bg-[#2D2A2E] border-b border-[#E07A5F]/20">
@@ -192,6 +229,9 @@ export default function AutomationsPage() {
             N8N est un outil open-source d automatisation qui permet de connecter vos outils metier sans coder.
             Cette formation vous apprend a integrer GPT et Claude dans vos workflows pour creer des automatisations intelligentes.
             Prix : 900 EUR TTC. Lieu : Paris 1er. Public : ops, marketing, entrepreneurs.
+            Selon McKinsey, l automatisation augmentee par l IA peut reduire de 60 a 70% le temps consacre aux taches repetitives.
+            N8N compte plus de 400 integrations natives et une communaute de 50 000+ utilisateurs.
+            Growth Acceleration est note 5/5 sur Google (29 avis).
           </p>
         </div>
       </section>

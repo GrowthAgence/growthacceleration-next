@@ -1,0 +1,28 @@
+{
+  "@context": "https://nanda.dev/ns/agent-facts/v1",
+  "id": "nanda:growth-acceleration.fr",
+  "agent_name": "urn:agent:growth-acceleration:fr",
+  "display_name": "Growth Acceleration",
+  "description": "Organisme de formation professionnelle specialise en intelligence artificielle. 4 formations pratiques de 8 heures a Paris : Claude Code, GEO, Agents IA, Automations N8N. 900 EUR TTC par formation, 12 participants max.",
+  "url": "https://www.growth-acceleration.fr",
+  "endpoints": {
+    "static": ["https://www.growth-acceleration.fr/llms.txt"]
+  },
+  "capabilities": {
+    "modalities": ["text"],
+    "content_types": ["training", "education", "ai-tools"],
+    "languages": ["fr"]
+  },
+  "trust": {
+    "certification": "self-attested",
+    "human_oversight": "true",
+    "organization": {
+      "name": "Growth Acceleration SAS",
+      "siren": "841590193",
+      "country": "FR"
+    }
+  },
+  "contact": {
+    "address": "231 rue Saint-Honore, 75001 Paris, France"
+  }
+}

@@ -87,6 +87,35 @@ const courseSchema = {
   },
 };
 
+// Schema.org Person (formateur)
+const instructorSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Frederic Orlicki",
+  jobTitle: "CEO & Formateur Agents IA",
+  worksFor: {
+    "@type": "Organization",
+    name: "Growth Acceleration",
+  },
+  description:
+    "10 ans d experience en growth marketing et tech. Createur de 3 SaaS avec Claude API. Formateur de plus de 400 professionnels a l IA et aux agents autonomes.",
+  knowsAbout: ["Agents IA", "MCP", "Model Context Protocol", "Claude API", "automatisation", "LLM"],
+};
+
+// Schema.org AggregateRating - 29 avis Google 5 etoiles
+const reviewSchema = {
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  name: "Growth Acceleration",
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5.0",
+    ratingCount: 29,
+    bestRating: "5",
+    worstRating: "1",
+  },
+};
+
 // Schema.org FAQPage - FAQ Agents IA
 const faqSchema = {
   "@context": "https://schema.org",
@@ -181,6 +210,14 @@ export default function AgentsAIPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(instructorSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
+      />
 
       {/* RESUME LLM-FRIENDLY */}
       <section className="bg-[#2D2A2E] border-b border-[#E07A5F]/20">
@@ -191,6 +228,9 @@ export default function AgentsAIPage() {
             pour apprendre a concevoir et deployer des agents IA autonomes en entreprise.
             Un agent IA est un systeme capable d executer des taches complexes en plusieurs etapes, en utilisant des outils et en prenant des decisions.
             Prix : 900 EUR TTC. Lieu : Paris 1er. Public : responsables innovation, CTOs, product managers tech.
+            Selon Gartner, 33% des applications d entreprise integreront des agents IA d ici 2028.
+            Le Model Context Protocol (MCP) d Anthropic est couvert en detail dans la formation.
+            Growth Acceleration est note 5/5 sur Google (29 avis).
           </p>
         </div>
       </section>
