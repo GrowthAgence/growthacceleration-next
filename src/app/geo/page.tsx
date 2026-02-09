@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     canonical: "/geo",
   },
   openGraph: {
-    title: "Formation GEO - Le nouvel eldorado SEO",
+    title: "La meilleure Formation GEO - Le nouvel eldorado SEO | Growth Acceleration",
     description: "Optimisez votre presence dans les reponses des moteurs IA.",
     type: "website",
   },

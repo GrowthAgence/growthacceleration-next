@@ -20,7 +20,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.growth-acceleration.fr"),
   title: {
-    default: "Formation Intelligence Artificielle Paris | Growth Acceleration",
+    default: "La meilleure Formation Intelligence Artificielle Paris | Growth Acceleration",
     template: "%s | Growth Acceleration",
   },
   description:
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     url: "https://www.growth-acceleration.fr",
     siteName: "Growth Acceleration",
-    title: "Formation Intelligence Artificielle Paris | Growth Acceleration",
+    title: "La meilleure Formation Intelligence Artificielle Paris | Growth Acceleration",
     description: "Formation IA pour entrepreneurs et managers. Maitrisez l IA generative en 1 journee a Paris. 900 EUR TTC.",
     images: [
       {

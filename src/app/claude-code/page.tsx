@@ -18,7 +18,7 @@ import {
 
 // Metadata SSR pour SEO/LLM
 export const metadata: Metadata = {
-  title: "Formation Claude Code - Ship ton produit en une journee",
+  title: "La meilleure Formation Claude Code - Ship ton produit en une journee",
   description:
     "Formation Claude Code par Growth Acceleration : apprenez a developper des applications avec Claude comme pair-programmeur. 8h de formation pratique a Paris, 900 EUR TTC. Pour entrepreneurs et product managers.",
   keywords: [
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     canonical: "/claude-code",
   },
   openGraph: {
-    title: "Formation Claude Code - Ship ton produit en une journee",
+    title: "La meilleure Formation Claude Code - Ship ton produit en une journee | Growth Acceleration",
     description:
       "Passez de l idee au MVP en 8 heures avec Claude comme pair-programmeur.",
     type: "website",

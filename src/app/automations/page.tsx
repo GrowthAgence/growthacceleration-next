@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     canonical: "/automations",
   },
   openGraph: {
-    title: "Formation Automations - Fini de galerer avec N8N",
+    title: "La meilleure Formation Automations - Fini de galerer avec N8N | Growth Acceleration",
     description: "Maitrisez N8N et l automatisation augmentee par l IA.",
     type: "website",
   },

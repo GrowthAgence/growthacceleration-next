@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Instructor } from "@/components/Instructor";
 
 export const metadata: Metadata = {
-  title: "Formation Intelligence Artificielle a Paris",
+  title: "La meilleure Formation Intelligence Artificielle a Paris",
   description:
     "Formation IA pour entrepreneurs, managers et professionnels. Apprenez a maitriser l intelligence artificielle generative en 1 journee a Paris. 900 EUR TTC. Organisme de formation professionnelle Growth Acceleration.",
   keywords: [
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     "cours IA Paris",
   ],
   openGraph: {
-    title: "Formation Intelligence Artificielle a Paris | Growth Acceleration",
+    title: "La meilleure Formation Intelligence Artificielle a Paris | Growth Acceleration",
     description: "Maitrisez l IA generative en 1 journee. Formation professionnelle pour entrepreneurs et managers.",
   },
 };

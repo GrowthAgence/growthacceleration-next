@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     canonical: "/agents-ai",
   },
   openGraph: {
-    title: "Formation Agents.AI - Future of Work",
+    title: "La meilleure Formation Agents.AI - Future of Work | Growth Acceleration",
     description: "Concevez et deployez des agents IA autonomes.",
     type: "website",
   },
