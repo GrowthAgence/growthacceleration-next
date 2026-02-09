@@ -101,8 +101,8 @@ Schemas déployés sur le site :
 |--------|---------|
 | `Organization` | layout.tsx (global) |
 | `Course` | claude-code, geo, agents-ai, automations |
-| `Person` (formateur) | claude-code |
-| `AggregateRating` (29 avis, 5.0/5) | claude-code |
+| `Person` (formateur) | claude-code, geo, agents-ai, automations |
+| `AggregateRating` (29 avis, 5.0/5) | claude-code, geo, agents-ai, automations |
 | `FAQPage` | homepage, claude-code, geo, agents-ai, automations |
 
 ### 3. Fichier llms.txt
@@ -150,13 +150,13 @@ src/
 │   │   ├── page.tsx                # Formation (Course + Person + AggregateRating + FAQ schemas)
 │   │   └── client.tsx              # Composants animés partagés
 │   ├── geo/
-│   │   ├── page.tsx                # Formation (Course + FAQ schemas)
+│   │   ├── page.tsx                # Formation (Course + Person + AggregateRating + FAQ schemas)
 │   │   └── client.tsx              # GeoTerminal
 │   ├── agents-ai/
-│   │   ├── page.tsx                # Formation (Course + FAQ schemas)
+│   │   ├── page.tsx                # Formation (Course + Person + AggregateRating + FAQ schemas)
 │   │   └── client.tsx              # AgentsTerminal
 │   ├── automations/
-│   │   ├── page.tsx                # Formation (Course + FAQ schemas)
+│   │   ├── page.tsx                # Formation (Course + Person + AggregateRating + FAQ schemas)
 │   │   └── client.tsx              # AutomationsTerminal
 │   ├── formation-intelligence-artificielle/
 │   │   └── page.tsx                # Hub toutes formations
@@ -175,10 +175,11 @@ src/
 │   ├── FinalCTA.tsx                # CTA final (Calendly)
 │   ├── AnimatedTerminal.tsx        # Terminal animé hero
 │   ├── SmoothScroll.tsx            # Scroll ease-in-out cubique
-│   ├── ClickTracker.tsx            # GA4 event tracking (cta_click)
+│   ├── ClickTracker.tsx            # GA4 tracking (clicks, scroll, page context)
 │   └── ui/                        # shadcn components
 └── public/
     ├── llms.txt                    # Guide LLM
+    ├── .well-known/agent-facts      # NANDA protocol (agent discovery)
     ├── logo.png
     ├── fred.jpg
     └── space-invader.webp
@@ -191,15 +192,30 @@ src/
 
 ### Analytics & Tracking
 
-- **GA4** : G-KN9FKJ6S0R chargé via `next/script afterInteractive`
-- **ClickTracker** : Event delegation global qui envoie `cta_click` à GA4
-  - `cta_type` : reservation | navigation | outbound | internal | button
-  - `cta_text` : texte du bouton
-  - `page_path` : page source
+- **GA4** : G-KN9FKJ6S0R (propriété "Growth-acceleration IA", ID 522529512) chargé via `next/script afterInteractive`
+- **ClickTracker.tsx** : centralise tout le tracking (clicks + scroll)
+  - `cta_click` : 5 types (reservation | navigation | outbound | internal | button) + `page_type` + `formation_name`
+  - `scroll_depth` : milestones 25%, 50%, 75%, 100% + `page_type` + `formation_name`
+- **FAQ.tsx** : `faq_click` avec `faq_question` et `faq_index`
+- **ressources/client.tsx** :
+  - `form_start` : ouverture modale téléchargement
+  - `generate_lead` : soumission formulaire réussie (marqué comme conversion/événement clé dans GA4)
 
 ---
 
 ## Updates & Changelog
+
+### 2026-02-09
+- Person schema + AggregateRating sur toutes les pages formation (geo, agents-ai, automations)
+- AgentFacts NANDA protocol (/.well-known/agent-facts)
+- Citations industrie (Princeton, Gartner, McKinsey) dans résumés LLM
+- Titres formations préfixés "La meilleure" + suffix "| Growth Acceleration"
+- Audit GA4 complet + corrections :
+  - generate_lead + form_start sur /ressources
+  - faq_click sur FAQ accordion
+  - scroll_depth (25/50/75/100%)
+  - page_type + formation_name sur tous les cta_click
+- generate_lead marqué comme événement clé dans GA4
 
 ### 2026-02-08
 - Audit SEO complet (2 passes) et corrections
@@ -253,7 +269,9 @@ src/
 - [x] Sitemap dynamique soumis à Google Search Console
 - [x] Schema.org complet (Course, FAQ, AggregateRating, Person, Organization)
 - [x] Meta descriptions optimisées (150-160 chars)
-- [x] Click tracking GA4 (cta_click events)
+- [x] Click tracking GA4 complet (6 événements, page context)
+- [x] generate_lead conversion dans GA4
+- [ ] Vérifier Measurement ID GA4 (G-KN9FKJ6S0R) dans la bonne propriété
 - [ ] Configurer SPF/DMARC/DKIM (DNS chez le registrar)
 - [ ] Monitorer citations LLM (Perplexity, ChatGPT)
 - [ ] Ajouter plus de témoignages quand disponibles
