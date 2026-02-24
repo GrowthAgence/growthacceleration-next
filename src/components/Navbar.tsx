@@ -49,6 +49,9 @@ export function Navbar() {
             <Link href="/ressources" className="text-[#F4F1DE] hover:text-[#E07A5F] font-mono text-sm transition-colors">
               ./ressources
             </Link>
+            <Link href="/blog" className="text-[#F4F1DE] hover:text-[#E07A5F] font-mono text-sm transition-colors">
+              ./blog
+            </Link>
             <Button size="sm" variant="outline" asChild>
               <a href="https://calendly.com/fredericorlicki/15min" target="_blank" rel="noopener noreferrer">Reserver_</a>
             </Button>
@@ -82,6 +85,13 @@ export function Navbar() {
             onClick={() => setIsOpen(false)}
           >
             ./ressources
+          </Link>
+          <Link
+            href="/blog"
+            className="block text-[#F4F1DE] hover:text-[#E07A5F] font-mono py-2"
+            onClick={() => setIsOpen(false)}
+          >
+            ./blog
           </Link>
           <Button className="w-full mt-4" variant="outline" asChild>
             <a href="https://calendly.com/fredericorlicki/15min" target="_blank" rel="noopener noreferrer">Reserver_</a>

@@ -5,7 +5,7 @@ export function Footer() {
   return (
     <footer className="bg-[#1E1E1E] border-t border-[#FAFAFA]/5 py-12 px-4">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           <div>
             <Link href="/" className="flex items-center mb-4">
               <Image
@@ -36,6 +36,18 @@ export function Footer() {
             <ul className="space-y-0 text-[#A9A9A9] text-sm">
               <li><Link href="/ressources" className="hover:text-[#E07A5F] block py-2">Ressources</Link></li>
               <li><Link href="/formation-intelligence-artificielle" className="hover:text-[#E07A5F] block py-2">Toutes les formations</Link></li>
+              <li><Link href="/blog" className="hover:text-[#E07A5F] block py-2">Blog</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-[#FAFAFA] font-mono text-sm mb-4">Articles</h4>
+            <ul className="space-y-0 text-[#A9A9A9] text-sm">
+              <li><Link href="/blog/claude-code-vs-cursor" className="hover:text-[#E07A5F] block py-2">Claude Code vs Cursor</Link></li>
+              <li><Link href="/blog/guide-geo-2026" className="hover:text-[#E07A5F] block py-2">Guide GEO 2026</Link></li>
+              <li><Link href="/blog/agents-ia-entreprise" className="hover:text-[#E07A5F] block py-2">Agents IA entreprise</Link></li>
+              <li><Link href="/blog/formation-ia-debutant" className="hover:text-[#E07A5F] block py-2">Formation IA debutant</Link></li>
+              <li><Link href="/blog/n8n-vs-make-vs-zapier" className="hover:text-[#E07A5F] block py-2">N8N vs Make vs Zapier</Link></li>
             </ul>
           </div>
 

@@ -36,5 +36,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/mentions-legales`,
       lastModified: new Date("2026-02-08"),
     },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: new Date("2026-02-24"),
+    },
+    {
+      url: `${baseUrl}/blog/claude-code-vs-cursor`,
+      lastModified: new Date("2026-02-24"),
+    },
+    {
+      url: `${baseUrl}/blog/guide-geo-2026`,
+      lastModified: new Date("2026-02-24"),
+    },
+    {
+      url: `${baseUrl}/blog/agents-ia-entreprise`,
+      lastModified: new Date("2026-02-24"),
+    },
+    {
+      url: `${baseUrl}/blog/formation-ia-debutant`,
+      lastModified: new Date("2026-02-24"),
+    },
+    {
+      url: `${baseUrl}/blog/n8n-vs-make-vs-zapier`,
+      lastModified: new Date("2026-02-24"),
+    },
   ];
 }
