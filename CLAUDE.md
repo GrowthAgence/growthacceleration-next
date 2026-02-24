@@ -104,6 +104,9 @@ Schemas déployés sur le site :
 | `Person` (formateur) | claude-code, geo, agents-ai, automations |
 | `AggregateRating` (29 avis, 5.0/5) | claude-code, geo, agents-ai, automations |
 | `FAQPage` | homepage, claude-code, geo, agents-ai, automations |
+| `BlogPosting` | 5 articles blog |
+| `BreadcrumbList` | formation-intelligence-artificielle, 5 articles blog |
+| `CollectionPage` | blog hub |
 
 ### 3. Fichier llms.txt
 
@@ -158,6 +161,13 @@ src/
 │   ├── automations/
 │   │   ├── page.tsx                # Formation (Course + Person + AggregateRating + FAQ schemas)
 │   │   └── client.tsx              # AutomationsTerminal
+│   ├── blog/
+│   │   ├── page.tsx                # Blog hub (CollectionPage schema)
+│   │   ├── claude-code-vs-cursor/page.tsx   # Article (BlogPosting schema)
+│   │   ├── guide-geo-2026/page.tsx          # Article (BlogPosting schema)
+│   │   ├── agents-ia-entreprise/page.tsx    # Article (BlogPosting schema)
+│   │   ├── formation-ia-debutant/page.tsx   # Article (BlogPosting schema)
+│   │   └── n8n-vs-make-vs-zapier/page.tsx   # Article (BlogPosting schema)
 │   ├── formation-intelligence-artificielle/
 │   │   └── page.tsx                # Hub toutes formations
 │   ├── ressources/
@@ -204,6 +214,20 @@ src/
 ---
 
 ## Updates & Changelog
+
+### 2026-02-24
+- Blog section créée : hub /blog + 5 articles SEO longue traîne
+  - claude-code-vs-cursor : comparatif outils coding IA (~1800 mots)
+  - guide-geo-2026 : guide complet GEO (~1800 mots)
+  - agents-ia-entreprise : cas d'usage agents IA (~1800 mots)
+  - formation-ia-debutant : guide débutant IA (~1800 mots)
+  - n8n-vs-make-vs-zapier : comparatif automatisation (~1800 mots)
+- Schema.org : BlogPosting + BreadcrumbList sur chaque article, CollectionPage sur hub
+- Résumé LLM-friendly (> cat article.txt) sur chaque page
+- Cross-links entre articles et vers formations + FinalCTA
+- Navbar : ajout lien ./blog (desktop + mobile)
+- Footer : nouvelle colonne Articles (5 liens), grille passée à 5 colonnes
+- Sitemap : 6 nouvelles URLs (14 total)
 
 ### 2026-02-09
 - Person schema + AggregateRating sur toutes les pages formation (geo, agents-ai, automations)
@@ -271,6 +295,9 @@ src/
 - [x] Meta descriptions optimisées (150-160 chars)
 - [x] Click tracking GA4 complet (6 événements, page context)
 - [x] generate_lead conversion dans GA4
+- [x] Blog avec 5 articles SEO longue traîne
+- [x] Mettre à jour llms.txt avec les URLs du blog
+- [ ] Soumettre les nouvelles URLs dans Google Search Console
 - [ ] Vérifier Measurement ID GA4 (G-KN9FKJ6S0R) dans la bonne propriété
 - [ ] Configurer SPF/DMARC/DKIM (DNS chez le registrar)
 - [ ] Monitorer citations LLM (Perplexity, ChatGPT)
