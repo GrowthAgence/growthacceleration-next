@@ -33,6 +33,10 @@ Créer le site de référence francophone pour les formations IA pratiques, opti
 
 ### Formateur
 Frédéric Orlicki (Guy-Frederic Orlicki) - CEO Growth Acceleration (SAS, SIREN 841 590 193)
+- Developpeur full stack, ex Le Wagon #0001
+- 3 SaaS en production avec Claude API : VideoTools, Jobbot.io, Bigmails.AI
+- Stack : Next.js, TypeScript, Supabase, GCP, Claude Code, Cursor, NeonBase, OpenClaw
+- 400+ professionnels formés à l'IA
 
 ### Réservation
 Tous les CTA pointent vers : https://calendly.com/fredericorlicki/15min
@@ -216,6 +220,9 @@ src/
 ## Updates & Changelog
 
 ### 2026-02-24
+- Bio formateur mise à jour : developpeur full stack, ex Le Wagon #0001
+- Stack en accent color : Next.js, TypeScript, Supabase, GCP, Claude Code, Cursor, NeonBase, OpenClaw
+- Person schema mis à jour sur les 4 pages formation
 - Blog section créée : hub /blog + 5 articles SEO longue traîne
   - claude-code-vs-cursor : comparatif outils coding IA (~1800 mots)
   - guide-geo-2026 : guide complet GEO (~1800 mots)
