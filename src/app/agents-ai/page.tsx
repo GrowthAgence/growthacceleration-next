@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Clock, Users, MapPin, ArrowRight, Cpu, Bot, Workflow } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,7 +19,7 @@ import { Instructor } from "@/components/Instructor";
 export const metadata: Metadata = {
   title: "Formation Agents.AI - Future of Work",
   description:
-    "Formation Agents IA par Growth Acceleration : concevez et deployez des agents IA autonomes avec MCP pour automatiser vos processus metier. 8h de formation pratique a Paris, 900 EUR TTC. Pour CTOs et product managers.",
+    "Concevez et deployez des agents IA autonomes avec MCP. 8h de formation pratique a Paris, 900 EUR TTC. Pour CTOs et PMs.",
   keywords: [
     "formation agents IA",
     "agents autonomes",
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
     canonical: "/agents-ai",
   },
   openGraph: {
-    title: "La meilleure Formation Agents.AI - Future of Work | Growth Acceleration",
+    title: "Formation Agents IA - Deployer des agents autonomes | Growth Acceleration",
     description: "Concevez et deployez des agents IA autonomes.",
     type: "website",
   },
@@ -85,28 +86,6 @@ const courseSchema = {
       },
     },
   },
-};
-
-// Schema.org Person (formateur)
-const instructorSchema = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Frederic Orlicki",
-  jobTitle: "CEO & Formateur Agents IA",
-  worksFor: {
-    "@type": "Organization",
-    name: "Growth Acceleration",
-  },
-  description:
-    "10 ans d experience en growth marketing et tech. Createur de 3 SaaS avec Claude API. Formateur de plus de 400 professionnels a l IA et aux agents autonomes.",
-  knowsAbout: ["Agents IA", "MCP", "Model Context Protocol", "Claude API", "automatisation", "LLM"],
-};
-
-// Schema.org AggregateRating - 29 avis Google 5 etoiles
-const reviewSchema = {
-  "@context": "https://schema.org",
-  "@type": "EducationalOrganization",
-  name: "Growth Acceleration",
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: "5.0",
@@ -116,42 +95,36 @@ const reviewSchema = {
   },
 };
 
-// Schema.org FAQPage - FAQ Agents IA
-const faqSchema = {
+const instructorSchema = {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
+  "@type": "Person",
+  "@id": "https://www.growth-acceleration.fr/#frederic",
+  name: "Frederic Orlicki",
+  jobTitle: "CEO & Formateur",
+  worksFor: {
+    "@id": "https://www.growth-acceleration.fr/#organization",
+  },
+  image: "https://www.growth-acceleration.fr/fred.jpg",
+  description:
+    "10 ans d experience en growth marketing et tech. Createur de 3 SaaS avec Claude API. Formateur de plus de 400 professionnels a l IA et aux agents autonomes.",
+  knowsAbout: ["Agents IA", "MCP", "Model Context Protocol", "Claude API", "automatisation", "LLM"],
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
     {
-      "@type": "Question",
-      name: "Qu est-ce qu un agent IA ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Un agent IA est un systeme capable d executer des taches complexes en plusieurs etapes de maniere autonome. Contrairement a un chatbot qui repond a des questions, un agent peut utiliser des outils, prendre des decisions et realiser des actions concretes (envoyer des emails, interroger des bases de donnees, modifier des fichiers).",
-      },
+      "@type": "ListItem",
+      position: 1,
+      name: "Formations IA",
+      item: "https://www.growth-acceleration.fr",
     },
     {
-      "@type": "Question",
-      name: "Qu est-ce que MCP (Model Context Protocol) ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "MCP est un protocole standardise par Anthropic qui permet aux agents IA de se connecter a des outils externes (API, bases de donnees, systemes internes). La formation couvre comment utiliser MCP pour creer des agents qui interagissent avec vos systemes d entreprise.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Faut-il savoir coder pour la formation Agents.AI ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Des bases techniques sont recommandees. Vous n avez pas besoin d etre developpeur, mais vous devez comprendre les concepts d API et avoir deja utilise des outils IA generatifs (ChatGPT, Claude). La formation est pensee pour les profils tech-savvy non-developpeurs.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Quels cas d usage concrets pour les agents IA en entreprise ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "La formation couvre les cas d usage les plus demandes : support client automatise, analyse de documents, veille concurrentielle, automatisation RH, enrichissement de donnees CRM et generation de rapports. Chaque participant travaille sur un cas d usage adapte a son entreprise.",
-      },
+      "@type": "ListItem",
+      position: 2,
+      name: "Formation Agents IA",
+      item: "https://www.growth-acceleration.fr/agents-ai",
     },
   ],
 };
@@ -208,15 +181,11 @@ export default function AgentsAIPage() {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(instructorSchema) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       {/* RESUME LLM-FRIENDLY */}
@@ -355,6 +324,29 @@ export default function AgentsAIPage() {
 
       {/* FORMATEUR */}
       <Instructor />
+
+      {/* AUTRES FORMATIONS */}
+      <section className="py-12 px-4 border-t border-[#FAFAFA]/5">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-xl font-mono font-bold text-[#FAFAFA] mb-6 text-center">
+            Nos autres formations
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <Link href="/claude-code" className="bg-[#2D2A2E]/50 border border-[#FAFAFA]/10 rounded-lg p-4 hover:border-[#E07A5F]/50 transition-all">
+              <p className="text-[#FAFAFA] font-mono font-bold mb-1">Claude Code</p>
+              <p className="text-[#A9A9A9] text-sm">De l idee au MVP en une journee</p>
+            </Link>
+            <Link href="/geo" className="bg-[#2D2A2E]/50 border border-[#FAFAFA]/10 rounded-lg p-4 hover:border-[#E07A5F]/50 transition-all">
+              <p className="text-[#FAFAFA] font-mono font-bold mb-1">GEO</p>
+              <p className="text-[#A9A9A9] text-sm">Optimisez votre visibilite dans les moteurs IA</p>
+            </Link>
+            <Link href="/automations" className="bg-[#2D2A2E]/50 border border-[#FAFAFA]/10 rounded-lg p-4 hover:border-[#E07A5F]/50 transition-all">
+              <p className="text-[#FAFAFA] font-mono font-bold mb-1">Automations</p>
+              <p className="text-[#A9A9A9] text-sm">Maitrisez N8N et l automatisation IA</p>
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* CTA */}
       <section id="reservation" className="py-16 px-4 bg-[#E07A5F]/10 border-y border-[#E07A5F]/20">

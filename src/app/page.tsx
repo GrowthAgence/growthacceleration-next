@@ -3,54 +3,6 @@ import { Terminal, Cpu, Search, Zap, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Instructor } from "@/components/Instructor";
 
-// Schema.org FAQPage - rendu cote serveur pour SEO/LLM
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "Qu est-ce qu une formation en intelligence artificielle ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Une formation IA vous apprend a utiliser les outils d intelligence artificielle generative (ChatGPT, Claude, agents IA) pour automatiser vos taches, creer des applications, et gagner en productivite. Nos formations sont pratiques : vous repartez avec des competences immediatement applicables.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Faut-il savoir coder pour suivre une formation IA ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Non. Nos formations sont concues pour les non-developpeurs : entrepreneurs, managers, marketers. La formation Claude Code permet meme de creer des applications sans experience prealable en programmation.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Quelle formation IA choisir pour un manager ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Pour un manager, nous recommandons Agents.AI (comprendre et piloter les agents IA en entreprise) ou Automations (automatiser les workflows metier avec N8N et l IA). Ces formations donnent une vision strategique et des competences pratiques pour transformer vos equipes.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Combien coute une formation IA professionnelle ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Nos formations coutent 900 EUR TTC pour une journee complete (8 heures) en presentiel a Paris. Groupes limites a 12 participants pour garantir un accompagnement personnalise. Possibilite de financement OPCO pour les entreprises.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Ou se deroulent les formations IA Growth Acceleration ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Toutes nos formations se deroulent en presentiel a Paris, au 231 rue Saint-Honore (75001), en plein coeur du 1er arrondissement. Format intensif d une journee pour maximiser l apprentissage.",
-      },
-    },
-  ],
-};
-
 // Les 4 formations
 const formations = [
   {
@@ -95,12 +47,6 @@ const formations = [
 export default function HomePage() {
   return (
     <>
-      {/* Schema.org FAQPage */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-
       {/* RESUME LLM-FRIENDLY */}
       <section className="bg-[#2D2A2E] border-b border-[#E07A5F]/20">
         <div className="max-w-4xl mx-auto px-4 py-6">

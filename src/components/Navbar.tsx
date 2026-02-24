@@ -56,7 +56,7 @@ export function Navbar() {
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-[#F4F1DE] hover:text-[#E07A5F]"
+            className="md:hidden p-3 min-w-[48px] min-h-[48px] flex items-center justify-center text-[#F4F1DE] hover:text-[#E07A5F]"
             aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -76,6 +76,13 @@ export function Navbar() {
               ./{f.label.toLowerCase().replace(/[.\s]/g, "-")}
             </Link>
           ))}
+          <Link
+            href="/ressources"
+            className="block text-[#F4F1DE] hover:text-[#E07A5F] font-mono py-2"
+            onClick={() => setIsOpen(false)}
+          >
+            ./ressources
+          </Link>
           <Button className="w-full mt-4" variant="outline" asChild>
             <a href="https://calendly.com/fredericorlicki/15min" target="_blank" rel="noopener noreferrer">Reserver_</a>
           </Button>

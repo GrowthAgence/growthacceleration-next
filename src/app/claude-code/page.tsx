@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Clock, Users, MapPin, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnimatedTerminal } from "@/components/AnimatedTerminal";
@@ -18,9 +19,9 @@ import {
 
 // Metadata SSR pour SEO/LLM
 export const metadata: Metadata = {
-  title: "La meilleure Formation Claude Code - Ship ton produit en une journee",
+  title: "Formation Claude Code - De l idee au MVP en 1 jour",
   description:
-    "Formation Claude Code par Growth Acceleration : apprenez a developper des applications avec Claude comme pair-programmeur. 8h de formation pratique a Paris, 900 EUR TTC. Pour entrepreneurs et product managers.",
+    "Developpez des applications avec Claude Code. 8h de formation pratique a Paris, 900 EUR TTC. Entrepreneurs et product managers.",
   keywords: [
     "formation Claude Code",
     "Claude AI",
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
     canonical: "/claude-code",
   },
   openGraph: {
-    title: "La meilleure Formation Claude Code - Ship ton produit en une journee | Growth Acceleration",
+    title: "Formation Claude Code - De l idee au MVP en 1 jour | Growth Acceleration",
     description:
       "Passez de l idee au MVP en 8 heures avec Claude comme pair-programmeur.",
     type: "website",
@@ -90,13 +91,6 @@ const courseSchema = {
       },
     },
   },
-};
-
-// Schema.org AggregateRating - 29 avis Google 5 etoiles
-const reviewSchema = {
-  "@context": "https://schema.org",
-  "@type": "EducationalOrganization",
-  name: "Growth Acceleration",
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: "5.0",
@@ -106,67 +100,39 @@ const reviewSchema = {
   },
 };
 
-// Schema.org FAQPage - FAQ Claude Code
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "Quel niveau technique faut-il pour la formation Claude Code ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Vous devez etre a l aise avec un terminal et avoir deja modifie du code. Si vous utilisez Webflow en custom code, Notion avec des formules complexes, ou des outils no-code avances, vous avez le niveau.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Claude Code est-il gratuit ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Claude Code necessite un abonnement Claude Pro (20$/mois) ou une cle API Anthropic. Le cout moyen d utilisation est de 5-15$/mois pour un usage regulier.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Puis-je utiliser les competences pour mon travail salarie ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Absolument. Les competences acquises sont immediatement applicables en entreprise. Beaucoup de nos alumni utilisent Claude Code pour accelerer leur productivite au travail.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Puis-je venir avec mon propre projet ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Oui et c est meme recommande. Les exercices pratiques peuvent etre adaptes a votre projet. Vous repartirez avec du code utilisable.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Mac, Windows ou Linux ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Claude Code fonctionne sur les trois systemes. La formation est donnee sur Mac mais les concepts sont identiques. Apportez votre propre laptop.",
-      },
-    },
-  ],
-};
-
 // Schema.org Person (formateur)
 const instructorSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Frederic",
-  jobTitle: "CEO",
+  "@id": "https://www.growth-acceleration.fr/#frederic",
+  name: "Frederic Orlicki",
+  jobTitle: "CEO & Formateur",
   worksFor: {
-    "@type": "Organization",
-    name: "La Growth Agence",
+    "@id": "https://www.growth-acceleration.fr/#organization",
   },
+  image: "https://www.growth-acceleration.fr/fred.jpg",
   description:
     "10 ans d experience en growth marketing et tech. Createur de 3 SaaS en production avec Claude API. Formateur de plus de 400 professionnels a l IA.",
   knowsAbout: ["Claude Code", "Next.js", "TypeScript", "Supabase", "Claude API"],
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Formations IA",
+      item: "https://www.growth-acceleration.fr",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Formation Claude Code",
+      item: "https://www.growth-acceleration.fr/claude-code",
+    },
+  ],
 };
 
 // Donnees du programme
@@ -227,11 +193,7 @@ export default function ClaudeCodePage() {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       {/* RESUME LLM-FRIENDLY */}
@@ -363,6 +325,29 @@ export default function ClaudeCodePage() {
 
       {/* FAQ */}
       <FAQ accentColor="#E07A5F" />
+
+      {/* AUTRES FORMATIONS */}
+      <section className="py-12 px-4 border-t border-[#FAFAFA]/5">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-xl font-mono font-bold text-[#FAFAFA] mb-6 text-center">
+            Nos autres formations
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <Link href="/geo" className="bg-[#2D2A2E]/50 border border-[#FAFAFA]/10 rounded-lg p-4 hover:border-[#E07A5F]/50 transition-all">
+              <p className="text-[#FAFAFA] font-mono font-bold mb-1">GEO</p>
+              <p className="text-[#A9A9A9] text-sm">Optimisez votre visibilite dans les moteurs IA</p>
+            </Link>
+            <Link href="/agents-ai" className="bg-[#2D2A2E]/50 border border-[#FAFAFA]/10 rounded-lg p-4 hover:border-[#E07A5F]/50 transition-all">
+              <p className="text-[#FAFAFA] font-mono font-bold mb-1">Agents.AI</p>
+              <p className="text-[#A9A9A9] text-sm">Concevez et deployez des agents IA autonomes</p>
+            </Link>
+            <Link href="/automations" className="bg-[#2D2A2E]/50 border border-[#FAFAFA]/10 rounded-lg p-4 hover:border-[#E07A5F]/50 transition-all">
+              <p className="text-[#FAFAFA] font-mono font-bold mb-1">Automations</p>
+              <p className="text-[#A9A9A9] text-sm">Maitrisez N8N et l automatisation IA</p>
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* CTA FINAL */}
       <FinalCTA

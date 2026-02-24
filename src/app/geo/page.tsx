@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Clock, Users, MapPin, ArrowRight, Search, TrendingUp, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,7 +19,7 @@ import { Instructor } from "@/components/Instructor";
 export const metadata: Metadata = {
   title: "Formation GEO - Le nouvel eldorado SEO",
   description:
-    "Formation GEO (Generative Engine Optimization) par Growth Acceleration : apprenez a optimiser votre contenu pour etre cite par ChatGPT, Perplexity et Claude. 8h de formation pratique a Paris, 900 EUR TTC. Pour SEO managers et marketers.",
+    "Apprenez le GEO (Generative Engine Optimization). Soyez cite par ChatGPT, Perplexity et Claude. 8h a Paris, 900 EUR TTC.",
   keywords: [
     "formation GEO",
     "Generative Engine Optimization",
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
     canonical: "/geo",
   },
   openGraph: {
-    title: "La meilleure Formation GEO - Le nouvel eldorado SEO | Growth Acceleration",
+    title: "Formation GEO - Visibilite dans les moteurs IA | Growth Acceleration",
     description: "Optimisez votre presence dans les reponses des moteurs IA.",
     type: "website",
   },
@@ -85,68 +86,6 @@ const courseSchema = {
       },
     },
   },
-};
-
-// Schema.org FAQPage - FAQ GEO
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "Qu est-ce que le GEO (Generative Engine Optimization) ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Le GEO est l optimisation de contenu pour les moteurs de reponse IA comme ChatGPT, Perplexity et Claude. Contrairement au SEO classique qui vise Google, le GEO vise a etre cite dans les reponses generees par les modeles de langage.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Quelle est la difference entre GEO et SEO ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Le SEO optimise pour les moteurs de recherche classiques (Google, Bing). Le GEO optimise pour les moteurs de reponse IA (ChatGPT, Perplexity, Claude). Les techniques sont differentes : le GEO se concentre sur la structuration du contenu, les donnees structurees et l extractabilite par les LLM.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Faut-il des competences techniques pour la formation GEO ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Des bases en SEO classique sont recommandees. Vous n avez pas besoin de savoir coder, mais vous devez gerer du contenu web (blog, site, e-commerce). La formation couvre les aspects techniques comme Schema.org et llms.txt.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Comment mesurer sa visibilite dans les reponses IA ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "La formation enseigne comment tracker ses citations dans ChatGPT, Perplexity et Claude, analyser les logs de crawl des bots IA, et construire une strategie d autorite pour maximiser ses chances d etre cite.",
-      },
-    },
-  ],
-};
-
-// Schema.org Person (formateur)
-const instructorSchema = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Frederic Orlicki",
-  jobTitle: "CEO & Formateur GEO",
-  worksFor: {
-    "@type": "Organization",
-    name: "Growth Acceleration",
-  },
-  description:
-    "10 ans d experience en growth marketing et SEO. Pionnier du GEO en France. Formateur de plus de 400 professionnels a l IA.",
-  knowsAbout: ["GEO", "Generative Engine Optimization", "SEO", "Schema.org", "llms.txt", "ChatGPT", "Perplexity"],
-};
-
-// Schema.org AggregateRating - 29 avis Google 5 etoiles
-const reviewSchema = {
-  "@context": "https://schema.org",
-  "@type": "EducationalOrganization",
-  name: "Growth Acceleration",
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: "5.0",
@@ -154,6 +93,41 @@ const reviewSchema = {
     bestRating: "5",
     worstRating: "1",
   },
+};
+
+// Schema.org Person (formateur)
+const instructorSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://www.growth-acceleration.fr/#frederic",
+  name: "Frederic Orlicki",
+  jobTitle: "CEO & Formateur",
+  worksFor: {
+    "@id": "https://www.growth-acceleration.fr/#organization",
+  },
+  image: "https://www.growth-acceleration.fr/fred.jpg",
+  description:
+    "10 ans d experience en growth marketing et SEO. Pionnier du GEO en France. Formateur de plus de 400 professionnels a l IA.",
+  knowsAbout: ["GEO", "Generative Engine Optimization", "SEO", "Schema.org", "llms.txt", "ChatGPT", "Perplexity"],
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Formations IA",
+      item: "https://www.growth-acceleration.fr",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Formation GEO",
+      item: "https://www.growth-acceleration.fr/geo",
+    },
+  ],
 };
 
 const programItems = [
@@ -208,15 +182,11 @@ export default function GeoPage() {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(instructorSchema) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       {/* RESUME LLM-FRIENDLY */}
@@ -354,6 +324,29 @@ export default function GeoPage() {
 
       {/* FORMATEUR */}
       <Instructor />
+
+      {/* AUTRES FORMATIONS */}
+      <section className="py-12 px-4 border-t border-[#FAFAFA]/5">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-xl font-mono font-bold text-[#FAFAFA] mb-6 text-center">
+            Nos autres formations
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <Link href="/claude-code" className="bg-[#2D2A2E]/50 border border-[#FAFAFA]/10 rounded-lg p-4 hover:border-[#E07A5F]/50 transition-all">
+              <p className="text-[#FAFAFA] font-mono font-bold mb-1">Claude Code</p>
+              <p className="text-[#A9A9A9] text-sm">De l idee au MVP en une journee</p>
+            </Link>
+            <Link href="/agents-ai" className="bg-[#2D2A2E]/50 border border-[#FAFAFA]/10 rounded-lg p-4 hover:border-[#E07A5F]/50 transition-all">
+              <p className="text-[#FAFAFA] font-mono font-bold mb-1">Agents.AI</p>
+              <p className="text-[#A9A9A9] text-sm">Concevez et deployez des agents IA autonomes</p>
+            </Link>
+            <Link href="/automations" className="bg-[#2D2A2E]/50 border border-[#FAFAFA]/10 rounded-lg p-4 hover:border-[#E07A5F]/50 transition-all">
+              <p className="text-[#FAFAFA] font-mono font-bold mb-1">Automations</p>
+              <p className="text-[#A9A9A9] text-sm">Maitrisez N8N et l automatisation IA</p>
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* CTA */}
       <section id="reservation" className="py-16 px-4 bg-[#E07A5F]/10 border-y border-[#E07A5F]/20">

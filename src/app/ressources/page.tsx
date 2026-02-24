@@ -6,7 +6,7 @@ import { Instructor } from "@/components/Instructor";
 export const metadata: Metadata = {
   title: "Ressources gratuites IA",
   description:
-    "Telechargez gratuitement nos guides, templates et checklists sur l intelligence artificielle par Growth Acceleration. Prompts ChatGPT, templates N8N, guides GEO, checklists automatisation et plus encore.",
+    "Guides, templates et prompts IA gratuits par Growth Acceleration. Prompts ChatGPT, templates N8N, guides GEO.",
   keywords: [
     "ressources IA gratuites",
     "prompts ChatGPT",
@@ -14,6 +14,9 @@ export const metadata: Metadata = {
     "guide GEO",
     "formation IA",
   ],
+  alternates: {
+    canonical: "/ressources",
+  },
 };
 
 export default function RessourcesPage() {

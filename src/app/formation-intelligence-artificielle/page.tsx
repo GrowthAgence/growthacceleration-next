@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Instructor } from "@/components/Instructor";
 
 export const metadata: Metadata = {
-  title: "La meilleure Formation Intelligence Artificielle a Paris",
+  title: "4 Formations IA a Paris - Programme complet",
   description:
-    "Formation IA pour entrepreneurs, managers et professionnels. Apprenez a maitriser l intelligence artificielle generative en 1 journee a Paris. 900 EUR TTC. Organisme de formation professionnelle Growth Acceleration.",
+    "4 formations IA en presentiel a Paris. Claude Code, GEO, Agents IA, N8N. 8h par formation, 900 EUR TTC. Entrepreneurs et managers.",
   keywords: [
     "formation intelligence artificielle",
     "formation IA",
@@ -18,8 +18,11 @@ export const metadata: Metadata = {
     "apprendre intelligence artificielle",
     "cours IA Paris",
   ],
+  alternates: {
+    canonical: "/formation-intelligence-artificielle",
+  },
   openGraph: {
-    title: "La meilleure Formation Intelligence Artificielle a Paris | Growth Acceleration",
+    title: "4 Formations IA a Paris | Growth Acceleration",
     description: "Maitrisez l IA generative en 1 journee. Formation professionnelle pour entrepreneurs et managers.",
   },
 };
@@ -34,7 +37,7 @@ const courseSchema = {
   provider: {
     "@type": "EducationalOrganization",
     name: "Growth Acceleration",
-    url: "https://growth-acceleration.fr",
+    url: "https://www.growth-acceleration.fr",
   },
   offers: {
     "@type": "Offer",
@@ -60,42 +63,21 @@ const courseSchema = {
   },
 };
 
-// Schema.org FAQ pour GEO
-const faqSchema = {
+const breadcrumbSchema = {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
+  "@type": "BreadcrumbList",
+  itemListElement: [
     {
-      "@type": "Question",
-      name: "Qu est-ce qu une formation en intelligence artificielle ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Une formation IA vous apprend a utiliser les outils d intelligence artificielle generative (ChatGPT, Claude, agents IA) pour automatiser vos taches, creer des applications, et gagner en productivite. Les formations Growth Acceleration sont pratiques et intensives : 8 heures en presentiel a Paris.",
-      },
+      "@type": "ListItem",
+      position: 1,
+      name: "Formations IA",
+      item: "https://www.growth-acceleration.fr",
     },
     {
-      "@type": "Question",
-      name: "Faut-il savoir coder pour suivre une formation IA ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Non. Les formations Growth Acceleration sont concues pour les non-developpeurs : entrepreneurs, managers, marketers. La formation Claude Code permet meme de creer des applications sans experience prealable en programmation.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Combien coute une formation IA professionnelle ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Les formations IA Growth Acceleration coutent 900 EUR TTC pour une journee complete (8 heures) en presentiel a Paris. Groupes limites a 12 participants. Financement OPCO possible pour les entreprises.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Ou se deroulent les formations IA a Paris ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Les formations se deroulent au 231 rue Saint-Honore, 75001 Paris, en plein coeur du 1er arrondissement. Format presentiel intensif d une journee.",
-      },
+      "@type": "ListItem",
+      position: 2,
+      name: "Formation Intelligence Artificielle",
+      item: "https://www.growth-acceleration.fr/formation-intelligence-artificielle",
     },
   ],
 };
@@ -144,7 +126,7 @@ export default function FormationIAPage() {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       {/* HERO */}
@@ -397,7 +379,7 @@ export default function FormationIAPage() {
               <a href="https://calendly.com/fredericorlicki/15min" target="_blank" rel="noopener noreferrer">Reserver une formation</a>
             </Button>
             <Button size="lg" variant="outline" asChild>
-              <Link href="/">Voir toutes les formations</Link>
+              <a href="https://calendly.com/fredericorlicki/15min" target="_blank" rel="noopener noreferrer">Nous contacter</a>
             </Button>
           </div>
         </div>

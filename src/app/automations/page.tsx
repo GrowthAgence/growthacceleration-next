@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Clock, Users, MapPin, ArrowRight, Zap, Workflow, Database } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,9 +17,9 @@ import { AutomationsTerminal } from "./client";
 import { Instructor } from "@/components/Instructor";
 
 export const metadata: Metadata = {
-  title: "Formation Automations - Fini de galerer avec N8N",
+  title: "Formation N8N et Automatisation IA",
   description:
-    "Formation N8N et automatisation IA par Growth Acceleration : maitrisez N8N et connectez vos outils metier (CRM, email, Notion) avec GPT et Claude. 8h de formation pratique a Paris, 900 EUR TTC. Pour ops et marketing.",
+    "Maitrisez N8N et connectez vos outils metier avec GPT et Claude. 8h de formation pratique a Paris, 900 EUR TTC.",
   keywords: [
     "formation N8N",
     "automatisation IA",
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
     canonical: "/automations",
   },
   openGraph: {
-    title: "La meilleure Formation Automations - Fini de galerer avec N8N | Growth Acceleration",
+    title: "Formation N8N et Automatisation IA | Growth Acceleration",
     description: "Maitrisez N8N et l automatisation augmentee par l IA.",
     type: "website",
   },
@@ -85,28 +86,6 @@ const courseSchema = {
       },
     },
   },
-};
-
-// Schema.org Person (formateur)
-const instructorSchema = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Frederic Orlicki",
-  jobTitle: "CEO & Formateur Automations",
-  worksFor: {
-    "@type": "Organization",
-    name: "Growth Acceleration",
-  },
-  description:
-    "10 ans d experience en growth marketing et automatisation. Createur de 3 SaaS en production. Formateur de plus de 400 professionnels a l IA et a N8N.",
-  knowsAbout: ["N8N", "automatisation", "GPT", "Claude API", "Zapier", "Make", "workflows IA"],
-};
-
-// Schema.org AggregateRating - 29 avis Google 5 etoiles
-const reviewSchema = {
-  "@context": "https://schema.org",
-  "@type": "EducationalOrganization",
-  name: "Growth Acceleration",
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: "5.0",
@@ -116,42 +95,36 @@ const reviewSchema = {
   },
 };
 
-// Schema.org FAQPage - FAQ Automations N8N
-const faqSchema = {
+const instructorSchema = {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
+  "@type": "Person",
+  "@id": "https://www.growth-acceleration.fr/#frederic",
+  name: "Frederic Orlicki",
+  jobTitle: "CEO & Formateur",
+  worksFor: {
+    "@id": "https://www.growth-acceleration.fr/#organization",
+  },
+  image: "https://www.growth-acceleration.fr/fred.jpg",
+  description:
+    "10 ans d experience en growth marketing et automatisation. Createur de 3 SaaS en production. Formateur de plus de 400 professionnels a l IA et a N8N.",
+  knowsAbout: ["N8N", "automatisation", "GPT", "Claude API", "Zapier", "Make", "workflows IA"],
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
     {
-      "@type": "Question",
-      name: "Qu est-ce que N8N ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "N8N est un outil open-source d automatisation de workflows qui permet de connecter vos applications et services entre eux sans coder. Il est une alternative plus flexible a Zapier et Make, avec la possibilite de l heberger soi-meme et d integrer des modeles IA comme GPT et Claude.",
-      },
+      "@type": "ListItem",
+      position: 1,
+      name: "Formations IA",
+      item: "https://www.growth-acceleration.fr",
     },
     {
-      "@type": "Question",
-      name: "Quelle est la difference entre N8N, Zapier et Make ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "N8N est open-source et auto-hebergeable, ce qui donne plus de controle sur vos donnees et vos couts. Zapier et Make sont des solutions cloud avec des limites sur les plans gratuits. N8N permet aussi une integration native plus poussee avec les APIs d IA generative comme GPT et Claude.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Faut-il savoir coder pour utiliser N8N ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Non. N8N dispose d une interface visuelle drag-and-drop. La formation vous apprend a creer des workflows complexes sans ecrire de code. Des notions de base en logique (si/alors) et en APIs sont utiles mais pas obligatoires.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Comment integrer l IA dans ses automatisations N8N ?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "La formation couvre l integration de GPT et Claude dans vos workflows N8N pour des cas concrets : enrichissement automatique de leads, classification de tickets support, generation de contenu, analyse de documents et resume de reunions.",
-      },
+      "@type": "ListItem",
+      position: 2,
+      name: "Formation N8N Automations",
+      item: "https://www.growth-acceleration.fr/automations",
     },
   ],
 };
@@ -208,15 +181,11 @@ export default function AutomationsPage() {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(instructorSchema) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       {/* RESUME LLM-FRIENDLY */}
@@ -356,6 +325,29 @@ export default function AutomationsPage() {
 
       {/* FORMATEUR */}
       <Instructor />
+
+      {/* AUTRES FORMATIONS */}
+      <section className="py-12 px-4 border-t border-[#FAFAFA]/5">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-xl font-mono font-bold text-[#FAFAFA] mb-6 text-center">
+            Nos autres formations
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <Link href="/claude-code" className="bg-[#2D2A2E]/50 border border-[#FAFAFA]/10 rounded-lg p-4 hover:border-[#E07A5F]/50 transition-all">
+              <p className="text-[#FAFAFA] font-mono font-bold mb-1">Claude Code</p>
+              <p className="text-[#A9A9A9] text-sm">De l idee au MVP en une journee</p>
+            </Link>
+            <Link href="/geo" className="bg-[#2D2A2E]/50 border border-[#FAFAFA]/10 rounded-lg p-4 hover:border-[#E07A5F]/50 transition-all">
+              <p className="text-[#FAFAFA] font-mono font-bold mb-1">GEO</p>
+              <p className="text-[#A9A9A9] text-sm">Optimisez votre visibilite dans les moteurs IA</p>
+            </Link>
+            <Link href="/agents-ai" className="bg-[#2D2A2E]/50 border border-[#FAFAFA]/10 rounded-lg p-4 hover:border-[#E07A5F]/50 transition-all">
+              <p className="text-[#FAFAFA] font-mono font-bold mb-1">Agents.AI</p>
+              <p className="text-[#A9A9A9] text-sm">Concevez et deployez des agents IA autonomes</p>
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* CTA */}
       <section id="reservation" className="py-16 px-4 bg-[#E07A5F]/10 border-y border-[#E07A5F]/20">

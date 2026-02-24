@@ -6,51 +6,35 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1.0,
+      lastModified: new Date("2026-02-24"),
     },
     {
       url: `${baseUrl}/formation-intelligence-artificielle`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1.0,
+      lastModified: new Date("2026-02-24"),
     },
     {
       url: `${baseUrl}/claude-code`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
+      lastModified: new Date("2026-02-24"),
     },
     {
       url: `${baseUrl}/geo`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
+      lastModified: new Date("2026-02-24"),
     },
     {
       url: `${baseUrl}/agents-ai`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
+      lastModified: new Date("2026-02-24"),
     },
     {
       url: `${baseUrl}/automations`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
+      lastModified: new Date("2026-02-24"),
     },
     {
       url: `${baseUrl}/ressources`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.7,
+      lastModified: new Date("2026-02-24"),
     },
     {
       url: `${baseUrl}/mentions-legales`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.3,
+      lastModified: new Date("2026-02-08"),
     },
   ];
 }
