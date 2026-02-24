@@ -107,8 +107,8 @@ const instructorSchema = {
   },
   image: "https://www.growth-acceleration.fr/fred.jpg",
   description:
-    "10 ans d experience en growth marketing et SEO. Pionnier du GEO en France. Formateur de plus de 400 professionnels a l IA.",
-  knowsAbout: ["GEO", "Generative Engine Optimization", "SEO", "Schema.org", "llms.txt", "ChatGPT", "Perplexity"],
+    "Developpeur full stack, ex Le Wagon #0001. 10 ans d experience en growth marketing et tech. Createur de 3 SaaS en production avec Claude API (VideoTools, Jobbot.io, Bigmails.AI). Pionnier du GEO en France. Formateur de plus de 400 professionnels a l IA.",
+  knowsAbout: ["GEO", "Generative Engine Optimization", "SEO", "Schema.org", "llms.txt", "ChatGPT", "Perplexity", "OpenClaw"],
 };
 
 const breadcrumbSchema = {

@@ -106,8 +106,8 @@ const instructorSchema = {
   },
   image: "https://www.growth-acceleration.fr/fred.jpg",
   description:
-    "10 ans d experience en growth marketing et tech. Createur de 3 SaaS avec Claude API. Formateur de plus de 400 professionnels a l IA et aux agents autonomes.",
-  knowsAbout: ["Agents IA", "MCP", "Model Context Protocol", "Claude API", "automatisation", "LLM"],
+    "Developpeur full stack, ex Le Wagon #0001. 10 ans d experience en growth marketing et tech. Createur de 3 SaaS en production avec Claude API (VideoTools, Jobbot.io, Bigmails.AI). Utilisateur de Claude Code depuis le jour 1 de la beta. Formateur de plus de 400 professionnels a l IA.",
+  knowsAbout: ["Agents IA", "MCP", "Model Context Protocol", "Claude API", "automatisation", "LLM", "OpenClaw"],
 };
 
 const breadcrumbSchema = {

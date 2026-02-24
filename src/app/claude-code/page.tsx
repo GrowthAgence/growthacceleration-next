@@ -112,8 +112,8 @@ const instructorSchema = {
   },
   image: "https://www.growth-acceleration.fr/fred.jpg",
   description:
-    "10 ans d experience en growth marketing et tech. Createur de 3 SaaS en production avec Claude API. Formateur de plus de 400 professionnels a l IA.",
-  knowsAbout: ["Claude Code", "Next.js", "TypeScript", "Supabase", "Claude API"],
+    "Developpeur full stack, ex Le Wagon #0001. 10 ans d experience en growth marketing et tech. Createur de 3 SaaS en production avec Claude API (VideoTools, Jobbot.io, Bigmails.AI). Utilisateur de Claude Code depuis le jour 1 de la beta. Formateur de plus de 400 professionnels a l IA.",
+  knowsAbout: ["Claude Code", "Next.js", "TypeScript", "Supabase", "GCP", "Cursor", "NeonBase", "OpenClaw"],
 };
 
 const breadcrumbSchema = {
@@ -204,7 +204,7 @@ export default function ClaudeCodePage() {
             <strong>Formation Claude Code</strong> est une formation pratique de 8 heures par Growth Acceleration
             pour apprendre a developper des applications avec Claude (Anthropic) comme pair-programmeur.
             Prix : 900 EUR TTC. Lieu : Paris 1er (231 rue Saint-Honore). Formateur : Frederic, CEO de La Growth Agence,
-            createur de 3 SaaS avec Claude API. Public cible : entrepreneurs, product managers, indie hackers.
+            createur de 3 SaaS avec Claude API. Public cible : entrepreneurs, product managers.
             Objectif : passer d une idee a un MVP fonctionnel en une journee.
           </p>
         </div>

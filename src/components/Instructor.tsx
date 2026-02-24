@@ -61,19 +61,29 @@ export function Instructor({ accentColor = "#E07A5F" }: InstructorProps) {
 
             <div className="space-y-4 text-[#F4F1DE]">
               <p>
-                10 ans d'experience en growth marketing et tech. J'ai construit 3 SaaS en
-                production avec Claude API (VideoTools, Jobbot.io, Bigmails.AI).
+                Developpeur full stack, ex{" "}
+                <span className="font-mono" style={{ color: accentColor }}>Le Wagon #0001</span>.
+                10 ans d experience en growth marketing et tech.
+                J ai construit 3 SaaS en production avec Claude API :{" "}
+                <span className="font-mono" style={{ color: accentColor }}>VideoTools</span>,{" "}
+                <span className="font-mono" style={{ color: accentColor }}>Jobbot.io</span>,{" "}
+                <span className="font-mono" style={{ color: accentColor }}>Bigmails.AI</span>.
               </p>
               <p>
                 Stack quotidien :{" "}
-                <span className="font-mono" style={{ color: "#98C379" }}>Next.js</span>,{" "}
-                <span className="font-mono" style={{ color: "#98C379" }}>TypeScript</span>,{" "}
-                <span className="font-mono" style={{ color: "#98C379" }}>Supabase</span>,{" "}
-                <span className="font-mono" style={{ color: "#98C379" }}>Claude API</span>.
+                <span className="font-mono" style={{ color: accentColor }}>Next.js</span>,{" "}
+                <span className="font-mono" style={{ color: accentColor }}>TypeScript</span>,{" "}
+                <span className="font-mono" style={{ color: accentColor }}>Supabase</span>,{" "}
+                <span className="font-mono" style={{ color: accentColor }}>GCP</span>,{" "}
+                <span className="font-mono" style={{ color: accentColor }}>Claude Code</span>,{" "}
+                <span className="font-mono" style={{ color: accentColor }}>Cursor</span>,{" "}
+                <span className="font-mono" style={{ color: accentColor }}>NeonBase</span>,{" "}
+                <span className="font-mono" style={{ color: accentColor }}>OpenClaw</span>.
               </p>
               <p>
-                Utilisateur de Claude Code depuis le premier jour de la beta. J'ai forme plus
-                de 400 professionnels a l'IA.
+                Utilisateur de Claude Code depuis le jour 1 de la beta.
+                J ai forme plus de 400 professionnels a l IA — du prompting
+                avance au deploiement d agents autonomes.
               </p>
             </div>
 
