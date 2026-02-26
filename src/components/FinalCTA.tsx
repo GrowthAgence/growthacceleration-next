@@ -86,8 +86,13 @@ export function FinalCTA({
                 <Button
                   size="lg"
                   variant="outline"
-                  className="text-base px-8"
+                  className="text-base px-8 cursor-pointer"
                   style={{ borderColor: accentColor, color: accentColor }}
+                  onClick={() => {
+                    if (typeof window !== "undefined" && window.Tawk_API) {
+                      window.Tawk_API.maximize();
+                    }
+                  }}
                 >
                   Poser une question
                 </Button>
