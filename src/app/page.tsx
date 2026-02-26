@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Terminal, Cpu, Search, Zap, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Instructor } from "@/components/Instructor";
+import { Testimonials } from "@/components/Testimonials";
+import { FinalCTA } from "@/components/FinalCTA";
 
 // Les 4 formations
 const formations = [
@@ -61,7 +63,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* HERO */}
+      {/* HERO + CTA */}
       <section className="pt-20 pb-16 px-4 max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center space-x-2 bg-[#2D2A2E] px-3 py-1 rounded-full border border-[#FAFAFA]/10 mb-6">
@@ -76,13 +78,28 @@ export default function HomePage() {
             <span className="text-[#E07A5F]">pour entrepreneurs et managers</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-[#F4F1DE]/80 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-[#F4F1DE]/80 max-w-2xl mx-auto leading-relaxed mb-8">
             Maitrisez l IA generative, les agents IA et l automatisation en 1 journee a Paris.<br />
             <span className="text-[#A9A9A9]">Formations professionnelles en presentiel — 8h — 12 participants max — 900 EUR TTC</span>
           </p>
-        </div>
 
-        {/* GRILLE DES FORMATIONS */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" className="text-base px-8 bg-[#E07A5F] hover:bg-[#E07A5F]/90 cursor-pointer" asChild>
+              <a href="https://calendly.com/fredericorlicki/15min" target="_blank" rel="noopener noreferrer">
+                Reserver ma place
+              </a>
+            </Button>
+            <Button size="lg" variant="outline" className="text-base px-8 border-[#E07A5F]/30 text-[#F4F1DE] hover:bg-[#E07A5F]/10 hover:border-[#E07A5F]/50 cursor-pointer" asChild>
+              <Link href="#formations">
+                Voir les formations
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* GRILLE DES FORMATIONS */}
+      <section id="formations" className="pb-16 px-4 max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {formations.map((f) => {
             const Icon = f.icon;
@@ -90,7 +107,7 @@ export default function HomePage() {
               <Link
                 key={f.slug}
                 href={`/${f.slug}`}
-                className="group relative bg-[#2D2A2E]/50 border border-[#FAFAFA]/10 rounded-lg p-6 hover:border-[#E07A5F]/50 transition-all"
+                className="group relative bg-[#2D2A2E]/50 border border-[#FAFAFA]/10 rounded-lg p-6 hover:border-[#E07A5F]/50 transition-all duration-200 cursor-pointer"
               >
                 {f.badge && (
                   <span className="absolute top-4 right-4 px-2 py-1 rounded bg-[#E07A5F] text-[10px] font-bold text-[#1E1E1E] animate-pulse">
@@ -115,13 +132,47 @@ export default function HomePage() {
 
                 <div className="flex items-center justify-between">
                   <span className="text-[#F4F1DE] font-mono font-bold">900 EUR</span>
-                  <span className="text-[#E07A5F] group-hover:translate-x-1 transition-transform flex items-center gap-1 text-sm">
+                  <span className="text-[#E07A5F] group-hover:translate-x-1 transition-transform duration-200 flex items-center gap-1 text-sm">
                     Decouvrir <ArrowRight className="w-4 h-4" />
                   </span>
                 </div>
               </Link>
             );
           })}
+        </div>
+      </section>
+
+      {/* TESTIMONIALS (29 avis Google) */}
+      <Testimonials />
+
+      {/* FORMATEUR */}
+      <Instructor />
+
+      {/* INFOS PRATIQUES */}
+      <section id="contact" className="py-16 px-4 bg-[#2D2A2E]/30">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-2xl font-mono font-bold text-[#FAFAFA] mb-8">
+            Toutes nos formations
+          </h2>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+            <div className="bg-[#2D2A2E] p-4 rounded-lg border border-[#FAFAFA]/10">
+              <p className="text-2xl font-mono font-bold text-[#E07A5F]">8h</p>
+              <p className="text-[#A9A9A9] text-sm">par formation</p>
+            </div>
+            <div className="bg-[#2D2A2E] p-4 rounded-lg border border-[#FAFAFA]/10">
+              <p className="text-2xl font-mono font-bold text-[#E07A5F]">12</p>
+              <p className="text-[#A9A9A9] text-sm">participants max</p>
+            </div>
+            <div className="bg-[#2D2A2E] p-4 rounded-lg border border-[#FAFAFA]/10">
+              <p className="text-2xl font-mono font-bold text-[#E07A5F]">900 EUR</p>
+              <p className="text-[#A9A9A9] text-sm">TTC</p>
+            </div>
+            <div className="bg-[#2D2A2E] p-4 rounded-lg border border-[#FAFAFA]/10">
+              <p className="text-2xl font-mono font-bold text-[#E07A5F]">Paris</p>
+              <p className="text-[#A9A9A9] text-sm">75001</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -179,40 +230,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* INFOS PRATIQUES */}
-      <section id="contact" className="py-16 px-4 bg-[#2D2A2E]/30">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl font-mono font-bold text-[#FAFAFA] mb-8">
-            Toutes nos formations
-          </h2>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-            <div className="bg-[#2D2A2E] p-4 rounded-lg border border-[#FAFAFA]/10">
-              <p className="text-2xl font-mono font-bold text-[#E07A5F]">8h</p>
-              <p className="text-[#A9A9A9] text-sm">par formation</p>
-            </div>
-            <div className="bg-[#2D2A2E] p-4 rounded-lg border border-[#FAFAFA]/10">
-              <p className="text-2xl font-mono font-bold text-[#E07A5F]">12</p>
-              <p className="text-[#A9A9A9] text-sm">participants max</p>
-            </div>
-            <div className="bg-[#2D2A2E] p-4 rounded-lg border border-[#FAFAFA]/10">
-              <p className="text-2xl font-mono font-bold text-[#E07A5F]">900 EUR</p>
-              <p className="text-[#A9A9A9] text-sm">TTC</p>
-            </div>
-            <div className="bg-[#2D2A2E] p-4 rounded-lg border border-[#FAFAFA]/10">
-              <p className="text-2xl font-mono font-bold text-[#E07A5F]">Paris</p>
-              <p className="text-[#A9A9A9] text-sm">75001</p>
-            </div>
-          </div>
-
-          <Button size="lg" asChild>
-            <a href="https://calendly.com/fredericorlicki/15min" target="_blank" rel="noopener noreferrer">Nous contacter</a>
-          </Button>
-        </div>
-      </section>
-
-      {/* FORMATEUR */}
-      <Instructor />
+      {/* FINAL CTA */}
+      <FinalCTA
+        title="Pret a maitriser l IA ?"
+        price="900"
+      />
     </>
   );
 }
