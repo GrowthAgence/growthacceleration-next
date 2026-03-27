@@ -198,7 +198,7 @@ export function Testimonials({ accentColor = "#E07A5F" }: TestimonialsProps) {
 
               {/* Quote */}
               <p className="text-[#F4F1DE] text-sm leading-relaxed mb-3">
-                "{review.quote}"
+                &ldquo;{review.quote}&rdquo;
               </p>
 
               {/* Author */}
