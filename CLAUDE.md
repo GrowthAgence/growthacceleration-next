@@ -143,6 +143,8 @@ Les sections visuelles incluent du contenu caché accessible aux crawlers :
 - **Icons** : Lucide React
 - **UI Components** : shadcn/ui
 - **Analytics** : Google Analytics 4 (G-KN9FKJ6S0R) via next/script
+- **Chat** : Tawk.to (widget global via next/script)
+- **Design skill** : ui-ux-pro-max (.claude/skills/ui-ux-pro-max/)
 - **Déploiement** : Vercel (auto-deploy sur push main)
 
 ### Structure des fichiers
@@ -151,7 +153,7 @@ Les sections visuelles incluent du contenu caché accessible aux crawlers :
 src/
 ├── app/
 │   ├── page.tsx                    # Homepage (FAQPage schema)
-│   ├── layout.tsx                  # Layout global (Organization schema, GA4)
+│   ├── layout.tsx                  # Layout global (Organization schema, GA4, Tawk.to)
 │   ├── sitemap.ts                  # Sitemap dynamique
 │   ├── claude-code/
 │   │   ├── page.tsx                # Formation (Course + Person + AggregateRating + FAQ schemas)
@@ -179,6 +181,13 @@ src/
 │   │   └── client.tsx              # ResourcesGrid + formulaire
 │   ├── mentions-legales/
 │   │   └── page.tsx                # Mentions légales (SAS info)
+│   ├── proposition/
+│   │   └── europ-assistance/
+│   │       ├── page.tsx            # Proposition B2B FR (noindex)
+│   │       ├── client.tsx          # Composants animés proposition FR
+│   │       └── en/
+│   │           ├── page.tsx        # Proposition B2B EN (noindex)
+│   │           └── client.tsx      # Composants animés proposition EN
 │   └── admin/                      # Admin leads (protégé)
 ├── components/
 │   ├── Navbar.tsx                  # Navigation responsive
@@ -196,7 +205,9 @@ src/
     ├── .well-known/agent-facts      # NANDA protocol (agent discovery)
     ├── logo.png
     ├── fred.jpg
-    └── space-invader.webp
+    ├── space-invader.webp
+    └── logos/
+        └── europ-assistance.png    # Logo client (blanc sur transparent)
 ```
 
 ### Séparation Client/Server
@@ -218,6 +229,29 @@ src/
 ---
 
 ## Updates & Changelog
+
+### 2026-04-20
+- Pages proposition Europ Assistance (FR + EN) — noindex, privées
+  - `/proposition/europ-assistance` (FR) + `/proposition/europ-assistance/en` (EN)
+  - 2 formats : ACCESS (1 jour, 7h) et FULL PACK (2 jours, 15h, lieu + catering inclus)
+  - Contenu original (copywriting rewrité, pas de copie France IA)
+  - Logo EA dans `public/logos/europ-assistance.png`
+  - Concept retenu : "AI Solutions Lab" — hackathon gamifié, 5 équipes, mêmes challenges, compétition + livrables business
+  - Deal : 100 cadres sup, 5 groupes de 20, 5 formateurs, septembre 2026, anglais
+  - Dossier complet : `documents/europ-assistance/AI-SOLUTIONS-LAB.md`
+
+### 2026-02-26
+- Refonte homepage (pattern Social Proof via skill ui-ux-pro-max) :
+  - Ajout 2 CTA dans le hero (Reserver ma place + Voir les formations)
+  - Ajout Testimonials (29 avis Google) après la grille formations
+  - Ajout FinalCTA en bas de page
+  - Réorganisation : Hero → Formations → Testimonials → Instructor → Infos → FAQ → FinalCTA
+  - Transitions 200ms + cursor-pointer sur les cards
+- Tawk.to chat widget intégré (layout.tsx, next/script afterInteractive)
+  - Bouton "Poser une question" du FinalCTA ouvre Tawk.to (Tawk_API.maximize)
+  - Type declaration : src/types/tawk.d.ts
+- Skill ui-ux-pro-max installée (.claude/skills/ui-ux-pro-max/)
+- Audit GA4 (30j) : 133 sessions, 83 users, 63% bounce, 0 vues blog, 83% trafic direct
 
 ### 2026-02-24
 - Bio formateur mise à jour : developpeur full stack, ex Le Wagon #0001
@@ -304,8 +338,10 @@ src/
 - [x] generate_lead conversion dans GA4
 - [x] Blog avec 5 articles SEO longue traîne
 - [x] Mettre à jour llms.txt avec les URLs du blog
-- [ ] Soumettre les nouvelles URLs dans Google Search Console
+- [ ] Soumettre les nouvelles URLs dans Google Search Console (blog articles = 0 vues)
+- [ ] Poster les articles blog sur LinkedIn (2e source de trafic)
 - [ ] Vérifier Measurement ID GA4 (G-KN9FKJ6S0R) dans la bonne propriété
 - [ ] Configurer SPF/DMARC/DKIM (DNS chez le registrar)
 - [ ] Monitorer citations LLM (Perplexity, ChatGPT)
 - [ ] Ajouter plus de témoignages quand disponibles
+- [ ] Re-audit GA4 dans 2 semaines pour mesurer impact refonte homepage (bounce rate baseline = 63%)

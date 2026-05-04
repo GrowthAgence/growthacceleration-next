@@ -1,0 +1,10 @@
+wing: growthacceleration_next
+rooms:
+- name: public
+  description: Files from public/
+- name: src
+  description: Files from src/
+- name: frontend
+  description: Files from components/
+- name: general
+  description: Files that don't fit other rooms
