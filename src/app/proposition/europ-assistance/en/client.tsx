@@ -687,7 +687,7 @@ export function EuropAssistanceProposalEN() {
               { name: "Simon Timssale-Bourrioux", role: "AI Pedagogy", co: "Explore The Vault", tag: "AI Educator", stats: "6,000+ followers — accessible AI expert" },
               { name: "Maxime Pitussi", role: "Growth + AI", co: "Founder, Let's Fail", tag: "Intrapreneurship", stats: "Organizer, Startup Weekends Nantes" },
               { name: "Guillaume Albisetti", role: "Growth B2B", co: "Founder, Leadger", tag: "AI Sales Tech", stats: "28,000+ followers — Claude Code practitioner" },
-              { name: "Romain Quechon", role: "AI Agents Expert", co: "The World of AI", tag: "Agent Systems", stats: "565 qualified leads via AI agents in 2025 · 35,036 LinkedIn followers" },
+              { name: "Romain Quechon", role: "AI Agents Expert", co: "The World of AI", tag: "Agent Systems", stats: "35,036 LinkedIn followers" },
             ].map((t, i) => (
               <FadeIn key={t.name} delay={i * 0.07}>
                 <motion.div whileHover={{ y: -4, borderColor: `${accent}80` }}
