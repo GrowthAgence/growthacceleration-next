@@ -207,7 +207,7 @@ function AnimatedLeaderboard() {
   const teams = [
     { name: "Team Phoenix", domain: "Auto", score: 94, badge: "🏆 Best Innovation" },
     { name: "Team Atlas", domain: "Voyage", score: 89, badge: "🥈 Best ROI" },
-    { name: "Team Nexus", domain: "Service", score: 85, badge: "🥉 Best UX" },
+    { name: "Team Nexus", domain: "Health", score: 85, badge: "🥉 Best UX" },
     { name: "Team Orbit", domain: "Auto", score: 81, badge: "" },
     { name: "Team Pulse", domain: "Voyage", score: 77, badge: "" },
   ];
@@ -426,7 +426,7 @@ export function EuropAssistanceProposalEN() {
             {[
               { icon: Car, color: blue, domain: "AUTO ASSISTANCE", challenge: "Claims Accelerator", desc: "Build an agent that triages, summarizes, and auto-responds to car assistance claims.", input: "50 fake dossiers", output: "Classification + priority + draft response", teams: "Teams 1–3" },
               { icon: Plane, color: purple, domain: "TRAVEL & REPATRIATION", challenge: "Emergency Intelligence", desc: "International emergency management across 200 simulated countries. Coordinate medical providers in real time.", input: "200-country virtual network", output: "Recommended actions + provider contact", teams: "Teams 4–6" },
-              { icon: Headphones, color: green, domain: "CUSTOMER SERVICE", challenge: "Support Optimizer", desc: "Analyze 6 months of fake customer tickets (NPS, complaints, calls) and produce an actionable report.", input: "6 months of simulated tickets", output: "Prioritized recommendation report", teams: "Teams 7–9" },
+              { icon: Headphones, color: green, domain: "HEALTH & TELEMEDICINE", challenge: "Care Coordinator", desc: "Build an agent that triages medical requests, matches patients with the right remote doctor, and tracks consultation outcomes.", input: "500 fake patient requests + doctor network", output: "Triage score + doctor match + follow-up plan", teams: "Teams 7–9" },
               { icon: Network, color: amber, domain: "PROVIDER COORDINATION", challenge: "Network Builder", desc: "AI agent that finds and contacts the right providers (doctors, mechanics, hotels) by geolocation and urgency.", input: "12,400 fake partners DB", output: "Optimized match + automated outreach", teams: "Teams 10–12" },
             ].map((item, i) => (
               <FadeIn key={item.domain} delay={i * 0.1}>
