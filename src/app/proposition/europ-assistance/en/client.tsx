@@ -1,13 +1,14 @@
 "use client";
 
-import { motion, useInView, useMotionValue, useTransform, useSpring } from "motion/react";
+import { motion, useInView } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import {
-  Car, Plane, Headphones, Network, Trophy, MapPin, Coffee,
+  Car, Plane, Headphones, Network, MapPin, Coffee,
   UtensilsCrossed, CakeSlice, Users, Rocket, CheckCircle,
   Shield, GraduationCap, CalendarDays, Bot,
   Globe, Sparkles, Server, Layers, BookOpen, Gauge, Code,
+  Repeat, ClipboardCheck, Zap,
 } from "lucide-react";
 
 const accent = "#E07A5F";
@@ -111,15 +112,15 @@ function TypingText({ text, speed = 60, delay = 0 }: { text: string; speed?: num
 // ── Animated Terminal ─────────────────────────────────────────────────────────
 
 const TERM_LINES: Array<{ text: string; type: "cmd" | "ok" | "data" | "done" }> = [
-  { text: "$ ./init-env --client europ-assistance --domain auto", type: "cmd" },
-  { text: "[OK] Virtual CRM: 847 fake dossiers loaded", type: "ok" },
-  { text: "[OK] Prestataire network: 12,400 partners / 200 countries", type: "ok" },
-  { text: "[OK] Claims DB: 50 auto cases ready", type: "ok" },
-  { text: "$ GET /api/tickets?domain=auto&status=urgent", type: "cmd" },
-  { text: '{"tickets":[{"id":"AUT-2847","priority":"HIGH","client":"Dupont M.","loc":"Lyon"},...]}', type: "data" },
-  { text: "$ POST /api/agent/classify --ticket AUT-2847", type: "cmd" },
-  { text: '{"status":"URGENT","response":"drafted","ETA":"4h","confidence":0.94}', type: "data" },
-  { text: "[DONE] Agent: 47 tickets in 3.2s | 12 auto-resolved | 0 errors", type: "done" },
+  { text: "$ dust connect --workspace europ-assistance-training", type: "cmd" },
+  { text: "[OK] Dust workspace connected", type: "ok" },
+  { text: "[OK] Data sources loaded: 4 domains available", type: "ok" },
+  { text: "[OK] Agent builder: ready", type: "ok" },
+  { text: "$ dust agent create --domain auto --brief claims-accelerator", type: "cmd" },
+  { text: '{"agent":"Claims Accelerator","status":"configured","tools":["search","classify","draft"]}', type: "data" },
+  { text: "$ dust agent run --input fake-dossiers/AUT-2847.pdf", type: "cmd" },
+  { text: '{"priority":"HIGH","type":"breakdown","draft":"Bonjour M. Dupont, nous avons bien reçu..."}', type: "data" },
+  { text: "[DONE] Agent processed 47 dossiers — 12 auto-resolved — 0 errors", type: "done" },
 ];
 
 function AnimatedTerminal() {
@@ -151,7 +152,7 @@ function AnimatedTerminal() {
         <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "#FF5F57" }} />
         <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "#FFBD2E" }} />
         <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "#28C840" }} />
-        <span className="ml-2 text-xs" style={{ color: gray }}>ea-virtual-env — bash</span>
+        <span className="ml-2 text-xs" style={{ color: gray }}>dust-agent — bash</span>
       </div>
       <div className="space-y-1 leading-relaxed">
         {lines.map((line, i) => (
@@ -164,79 +165,6 @@ function AnimatedTerminal() {
           <span style={{ color: accent }} className="animate-pulse">▋</span>
         )}
       </div>
-    </div>
-  );
-}
-
-// ── 3D Tilt Card ──────────────────────────────────────────────────────────────
-
-function TiltCard({ children, className = "", style }: { children: React.ReactNode; className?: string; style?: React.CSSProperties }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const rawX = useMotionValue(0);
-  const rawY = useMotionValue(0);
-  const rotateX = useSpring(useTransform(rawY, [-80, 80], [8, -8]), { stiffness: 200, damping: 25 });
-  const rotateY = useSpring(useTransform(rawX, [-80, 80], [-8, 8]), { stiffness: 200, damping: 25 });
-
-  function onMove(e: React.MouseEvent<HTMLDivElement>) {
-    if (!cardRef.current) return;
-    const r = cardRef.current.getBoundingClientRect();
-    rawX.set(e.clientX - r.left - r.width / 2);
-    rawY.set(e.clientY - r.top - r.height / 2);
-  }
-
-  function onLeave() { rawX.set(0); rawY.set(0); }
-
-  return (
-    <div style={{ perspective: "1000px" }}>
-      <motion.div ref={cardRef} style={{ rotateX, rotateY, ...style }}
-        onMouseMove={onMove} onMouseLeave={onLeave}
-        className={`rounded-lg border-2 border-dashed p-6 cursor-default ${className}`}>
-        {children}
-      </motion.div>
-    </div>
-  );
-}
-
-// ── Animated Leaderboard ──────────────────────────────────────────────────────
-
-function AnimatedLeaderboard() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true });
-
-  const teams = [
-    { name: "Team Phoenix", domain: "Auto", score: 94, badge: "🏆 Best Innovation" },
-    { name: "Team Atlas", domain: "Voyage", score: 89, badge: "🥈 Best ROI" },
-    { name: "Team Nexus", domain: "Health", score: 85, badge: "🥉 Best UX" },
-    { name: "Team Orbit", domain: "Auto", score: 81, badge: "" },
-    { name: "Team Pulse", domain: "Voyage", score: 77, badge: "" },
-  ];
-
-  return (
-    <div ref={ref} className="space-y-4">
-      {teams.map((team, i) => (
-        <motion.div key={team.name} initial={{ opacity: 0, x: -20 }}
-          animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.45, delay: i * 0.12 }}>
-          <div className="flex items-center justify-between mb-1">
-            <span className="font-mono text-sm">
-              <span style={{ color: gray }} className="mr-2">{i + 1}.</span>
-              <span style={{ color: offWhite }} className="font-bold">{team.name}</span>
-              <span style={{ color: gray }} className="ml-1 text-xs">[{team.domain}]</span>
-            </span>
-            <span className="font-mono text-sm font-bold" style={{ color: i === 0 ? accent : cream }}>
-              {inView ? team.score : 0} pts
-            </span>
-          </div>
-          <div className="h-2 rounded-full overflow-hidden" style={{ backgroundColor: `${accent}15` }}>
-            <motion.div className="h-full rounded-full"
-              initial={{ width: 0 }}
-              animate={inView ? { width: `${team.score}%` } : {}}
-              transition={{ duration: 1, delay: 0.3 + i * 0.12, ease: "easeOut" }}
-              style={{ backgroundColor: i === 0 ? accent : `${accent}55` }} />
-          </div>
-          {team.badge && <p className="text-xs mt-0.5" style={{ color: accent }}>{team.badge}</p>}
-        </motion.div>
-      ))}
     </div>
   );
 }
@@ -288,6 +216,7 @@ function TimelineSlot({ time, title, tag, tagColor, delay = 0 }: { time: string;
   );
 }
 
+
 // ── Main Component ────────────────────────────────────────────────────────────
 
 export function EuropAssistanceProposalEN() {
@@ -311,7 +240,7 @@ export function EuropAssistanceProposalEN() {
           <FadeIn delay={0.1} className="text-center mb-6">
             <p className="font-mono text-xs inline-block px-4 py-2 rounded-lg"
               style={{ color: gray, backgroundColor: `${accent}0D`, border: `1px solid ${accent}22` }}>
-              $ ./run-proposal --client europ-assistance --format hackathon --lang en
+              $ ./run-proposal --client europ-assistance --format training-day --platform dust
             </p>
           </FadeIn>
 
@@ -327,19 +256,19 @@ export function EuropAssistanceProposalEN() {
 
           <FadeIn delay={0.4} className="text-center mb-10">
             <p className="text-xl md:text-2xl max-w-3xl mx-auto" style={{ color: cream }}>
-              2 days. 12 teams. 4 Europ Assistance challenges.
+              1 day. 20 managers. 4 real-world challenges.
               <br />
-              <span className="font-mono" style={{ color: accent }}>100 managers who leave as AI builders.</span>
+              <span className="font-mono" style={{ color: accent }}>Build AI agents directly on Dust — no installation, no theory.</span>
             </p>
           </FadeIn>
 
           <FadeIn delay={0.5} className="flex flex-wrap justify-center gap-3 mb-10">
             {[
-              { label: "100 managers", icon: Users },
-              { label: "12 teams", icon: Trophy },
-              { label: "September 2026", icon: CalendarDays },
+              { label: "20 managers / session", icon: Users },
+              { label: "1 day intensive", icon: CalendarDays },
+              { label: "4 EA domains", icon: Layers },
+              { label: "Dust.tt platform", icon: Bot },
               { label: "Paris 1er", icon: MapPin },
-              { label: "100% browser-based", icon: Globe },
             ].map(({ label, icon: Icon }, i) => (
               <motion.div key={label}
                 initial={{ opacity: 0, scale: 0.85 }}
@@ -353,7 +282,6 @@ export function EuropAssistanceProposalEN() {
               </motion.div>
             ))}
           </FadeIn>
-
         </div>
       </section>
 
@@ -362,10 +290,10 @@ export function EuropAssistanceProposalEN() {
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { value: 100, suffix: "", label: "Senior managers" },
-              { value: 12, suffix: "", label: "Competing teams" },
+              { value: 20, suffix: "", label: "Managers per session" },
+              { value: 1, suffix: " day", label: "Per cohort" },
               { value: 4, suffix: "", label: "Business domains" },
-              { value: 2, suffix: " days", label: "Intensive hackathon" },
+              { value: 5, suffix: " sessions", label: "To reach 100 managers" },
             ].map((s, i) => (
               <FadeIn key={s.label} delay={i * 0.1} className="text-center">
                 <p className="text-5xl font-mono font-bold mb-2" style={{ color: accent }}>
@@ -383,16 +311,16 @@ export function EuropAssistanceProposalEN() {
         <div className="max-w-5xl mx-auto">
           <FadeIn>
             <SectionLabel>cat concept.md</SectionLabel>
-            <SectionTitle>Not training. A <span style={{ color: accent }}>competition.</span></SectionTitle>
+            <SectionTitle>Not slides. <span style={{ color: accent }}>Real agents.</span></SectionTitle>
             <p className="text-lg mb-10 max-w-3xl" style={{ color: cream }}>
-              Every team attacks a real Europ Assistance challenge. At the end of Day 2, EA doesn&apos;t just have trained managers — it has 12 tested AI solutions to evaluate, combine, and deploy.
+              Each session is a hands-on day where managers build working AI agents on Dust — connected to realistic Europ Assistance data. No PowerPoint. No theory. Every participant leaves with something they built themselves.
             </p>
           </FadeIn>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { icon: Rocket, title: "Build real agents", desc: "Each team builds a working AI agent on a virtual EA environment. No toy examples. No slides.", tag: "DAY 1–2" },
-              { icon: Trophy, title: "Compete live", desc: "A live leaderboard tracks all 12 teams. Points for speed, solution quality, and business impact.", tag: "GAMIFIED" },
-              { icon: Sparkles, title: "Ship it to EA", desc: "At the Awards ceremony, the jury selects the best solutions. EA leaves with a deployment-ready AI Playbook.", tag: "DELIVERABLE" },
+              { icon: Rocket, title: "Build on Dust", desc: "Managers configure real agents in your Dust workspace — on data that mirrors EA's actual environment.", tag: "PLATFORM" },
+              { icon: Repeat, title: "Repeatable cohorts", desc: "Same program, 5 sessions of 20. Each cohort gets the same experience — consistent quality, scalable rollout.", tag: "FORMAT" },
+              { icon: Zap, title: "Day-1 ready", desc: "Every participant leaves with a working agent and a concrete use case they can apply in their role the next morning.", tag: "OUTCOME" },
             ].map((item, i) => (
               <FadeIn key={item.title} delay={i * 0.1}>
                 <Card>
@@ -416,17 +344,17 @@ export function EuropAssistanceProposalEN() {
         <div className="max-w-5xl mx-auto">
           <FadeIn>
             <SectionLabel>ls challenges/</SectionLabel>
-            <SectionTitle>4 domains. 12 <span style={{ color: accent }}>briefs.</span></SectionTitle>
+            <SectionTitle>4 domains. 4 <span style={{ color: accent }}>real challenges.</span></SectionTitle>
             <p className="text-lg mb-10" style={{ color: cream }}>
-              3 teams per domain, each attacking from a different angle. 3 competing solutions per challenge.
+              Each session focuses on one domain. Teams attack a real EA problem — with realistic data, a clear brief, and a working agent to deliver by end of day.
             </p>
           </FadeIn>
           <div className="grid md:grid-cols-2 gap-6">
             {[
-              { icon: Car, color: blue, domain: "AUTO ASSISTANCE", challenge: "Claims Accelerator", desc: "Build an agent that triages, summarizes, and auto-responds to car assistance claims.", input: "50 fake dossiers", output: "Classification + priority + draft response", teams: "Teams 1–3" },
-              { icon: Plane, color: purple, domain: "TRAVEL & REPATRIATION", challenge: "Emergency Intelligence", desc: "International emergency management across 200 simulated countries. Coordinate medical providers in real time.", input: "200-country virtual network", output: "Recommended actions + provider contact", teams: "Teams 4–6" },
-              { icon: Headphones, color: green, domain: "HEALTH & TELEMEDICINE", challenge: "Care Coordinator", desc: "Build an agent that triages medical requests, matches patients with the right remote doctor, and tracks consultation outcomes.", input: "500 fake patient requests + doctor network", output: "Triage score + doctor match + follow-up plan", teams: "Teams 7–9" },
-              { icon: Network, color: amber, domain: "PROVIDER COORDINATION", challenge: "Network Builder", desc: "AI agent that finds and contacts the right providers (doctors, mechanics, hotels) by geolocation and urgency.", input: "12,400 fake partners DB", output: "Optimized match + automated outreach", teams: "Teams 10–12" },
+              { icon: Car, color: blue, domain: "AUTO ASSISTANCE", challenge: "Claims Accelerator", desc: "Build an agent that triages, summarizes, and auto-responds to car assistance claims.", input: "50 fake dossiers", output: "Classification + priority + draft response" },
+              { icon: Plane, color: purple, domain: "TRAVEL & REPATRIATION", challenge: "Emergency Intelligence", desc: "International emergency management across 200 simulated countries. Coordinate medical providers in real time.", input: "200-country virtual network", output: "Recommended actions + provider contact" },
+              { icon: Headphones, color: green, domain: "HEALTH & TELEMEDICINE", challenge: "Care Coordinator", desc: "Triage medical requests, match patients with the right remote doctor, and track consultation outcomes.", input: "500 fake patient requests + doctor network", output: "Triage score + doctor match + follow-up plan" },
+              { icon: Network, color: amber, domain: "PROVIDER COORDINATION", challenge: "Network Builder", desc: "Find and contact the right providers (doctors, mechanics, hotels) by geolocation and urgency level.", input: "12,400 fake partners database", output: "Optimized match + automated outreach" },
             ].map((item, i) => (
               <FadeIn key={item.domain} delay={i * 0.1}>
                 <div style={{ perspective: "1000px" }}>
@@ -439,7 +367,6 @@ export function EuropAssistanceProposalEN() {
                       <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: `${item.color}15` }}>
                         <item.icon className="w-6 h-6" style={{ color: item.color }} />
                       </div>
-                      <span className="px-2 py-1 rounded-full text-xs font-mono font-bold" style={{ backgroundColor: `${item.color}15`, color: item.color }}>{item.teams}</span>
                     </div>
                     <p className="font-mono text-xs mb-1 uppercase tracking-wider" style={{ color: item.color }}>{item.domain}</p>
                     <h3 className="font-mono font-bold text-xl mb-2" style={{ color: offWhite }}>{item.challenge}</h3>
@@ -462,18 +389,18 @@ export function EuropAssistanceProposalEN() {
         </div>
       </section>
 
-      {/* VIRTUAL ENVIRONMENT */}
+      {/* DUST PLATFORM */}
       <section className="py-16 px-4">
         <div className="max-w-5xl mx-auto">
           <FadeIn>
-            <SectionLabel>cat virtual-env.md</SectionLabel>
-            <SectionTitle>Zero real data. <span style={{ color: accent }}>100% real agents.</span></SectionTitle>
+            <SectionLabel>cat platform.md</SectionLabel>
+            <SectionTitle>Everything runs <span style={{ color: accent }}>on Dust.</span></SectionTitle>
             <p className="text-lg mb-3" style={{ color: cream }}>
-              No access to EA&apos;s internal systems. Growth Acceleration builds a complete virtual replica — fake CRM, fake claims, fake provider network — accessible from any browser.
+              No new tools. No installation. Managers work directly in your existing Dust environment — connected to realistic EA data, configured before Day 1.
             </p>
             <div className="flex items-center gap-2 mb-10">
               <CheckCircle className="w-4 h-4" style={{ color: green }} />
-              <p className="font-mono text-sm" style={{ color: green }}>No install on EA laptops. No VPN. No IT ticket.</p>
+              <p className="font-mono text-sm" style={{ color: green }}>Works on any EA laptop — browser only, zero IT friction.</p>
             </div>
           </FadeIn>
           <div className="grid md:grid-cols-2 gap-8 items-start">
@@ -481,10 +408,10 @@ export function EuropAssistanceProposalEN() {
             <FadeIn delay={0.2}>
               <div className="space-y-4">
                 {[
-                  { icon: Server, title: "Fake EA API", desc: "REST API with realistic endpoints: /tickets, /dossiers, /prestataires. Teams' agents call it exactly like a real enterprise system." },
-                  { icon: Bot, title: "Pre-wired agent tools", desc: "Tools are already connected to the fake API. Teams configure logic and behavior — not the plumbing." },
-                  { icon: Globe, title: "Browser only", desc: "Teams open a URL. No Claude Code install, no terminal, no admin rights. Works on any EA corporate laptop." },
-                ].map((item, i) => (
+                  { icon: Server, title: "Realistic EA data, pre-loaded in Dust", desc: "Fake but realistic data sources (claims, cases, provider network) loaded into Dust before the session. Teams start building from minute one." },
+                  { icon: Bot, title: "Agent builder — no code required", desc: "Managers configure agent behavior, instructions, and data sources directly in the Dust interface. No API, no terminal." },
+                  { icon: Globe, title: "Your Dust workspace, your rules", desc: "The training runs inside EA's Dust environment. Connectors, permissions, and data sources are confirmed in advance with your technical team." },
+                ].map((item) => (
                   <Card key={item.title} className="!p-4 flex gap-4 items-start">
                     <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: `${accent}15` }}>
                       <item.icon className="w-4 h-4" style={{ color: accent }} />
@@ -495,14 +422,6 @@ export function EuropAssistanceProposalEN() {
                     </div>
                   </Card>
                 ))}
-                <Card className="!p-4" style={{ borderColor: `${green}40` }}>
-                  <p className="font-mono text-xs font-bold mb-3" style={{ color: green }}>AGENT INTERFACE — 3 zones</p>
-                  <div className="grid grid-cols-3 gap-2 text-xs font-mono text-center">
-                    {["Config Agent", "Live Results", "Auto Report"].map((z) => (
-                      <div key={z} className="p-2 rounded" style={{ backgroundColor: `${accent}0D`, color: accent }}>{z}</div>
-                    ))}
-                  </div>
-                </Card>
               </div>
             </FadeIn>
           </div>
@@ -516,7 +435,7 @@ export function EuropAssistanceProposalEN() {
             <SectionLabel>cat pre-training.md</SectionLabel>
             <SectionTitle>Ready on <span style={{ color: accent }}>Day 1.</span></SectionTitle>
             <p className="text-lg mb-10" style={{ color: cream }}>
-              15 days before the hackathon, every participant receives an interactive web app — 5 modules, ~4h, self-paced. Heterogeneous levels leveled before the starting gun.
+              15 days before each session, participants receive an interactive web app — 5 modules, ~4h, self-paced. Every manager arrives at the same level.
             </p>
           </FadeIn>
           <div className="grid md:grid-cols-2 gap-10 items-center">
@@ -526,7 +445,7 @@ export function EuropAssistanceProposalEN() {
                   { label: "Module 1 — AI Fundamentals (no jargon)", pct: 100, color: blue },
                   { label: "Module 2 — Prompt Engineering", pct: 100, color: accent },
                   { label: "Module 3 — Anatomy of an AI Agent", pct: 100, color: purple },
-                  { label: "Module 4 — Virtual EA Environment", pct: 100, color: green },
+                  { label: "Module 4 — Dust walkthrough + sandbox", pct: 100, color: green },
                   { label: "Module 5 — Mini-challenge: your first agent", pct: 100, color: amber },
                 ].map((m, i) => (
                   <ProgressBar key={m.label} label={m.label} pct={m.pct} delay={i * 0.2} color={m.color} />
@@ -538,8 +457,8 @@ export function EuropAssistanceProposalEN() {
                 {[
                   { icon: BookOpen, title: "~4h total", desc: "Self-paced, 24/7, on any device" },
                   { icon: Gauge, title: "Progress tracked", desc: "Completion dashboard visible to the coordinator" },
-                  { icon: Code, title: "Includes a sandbox", desc: "Module 4 lets participants explore fake EA data before Day 1" },
-                  { icon: CheckCircle, title: "EA retains the app", desc: "Post-training, the upskilling app stays with Europ Assistance for future cohorts" },
+                  { icon: Code, title: "Includes a Dust sandbox", desc: "Module 4 lets participants try Dust before Day 1 — no surprises on the morning" },
+                  { icon: CheckCircle, title: "EA retains the app", desc: "The upskilling app stays with Europ Assistance for future cohorts" },
                 ].map((item) => (
                   <div key={item.title} className="flex gap-3 items-start">
                     <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: `${accent}15` }}>
@@ -557,114 +476,107 @@ export function EuropAssistanceProposalEN() {
         </div>
       </section>
 
-      {/* PROGRAM J1 + J2 */}
+      {/* PROGRAM — 1 DAY */}
       <section className="py-16 px-4">
         <div className="max-w-5xl mx-auto">
           <FadeIn>
             <SectionLabel>cat schedule.md</SectionLabel>
-            <SectionTitle>2 days, <span style={{ color: accent }}>zero downtime.</span></SectionTitle>
+            <SectionTitle>One day. <span style={{ color: accent }}>Full build.</span></SectionTitle>
+            <p className="text-lg mb-10" style={{ color: cream }}>
+              From zero to a working AI agent in 8 hours — structured to maximize build time and minimize passive learning.
+            </p>
           </FadeIn>
-          <div className="grid md:grid-cols-2 gap-10">
+
+          <div className="grid md:grid-cols-2 gap-12">
             <div>
               <FadeIn>
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="px-3 py-1 rounded-lg font-mono font-bold" style={{ backgroundColor: `${blue}18`, color: blue }}>DAY 1</div>
-                  <p className="font-mono font-bold text-lg" style={{ color: offWhite }}>Learn &amp; Build</p>
-                </div>
+                <p className="font-mono font-bold text-sm mb-6" style={{ color: blue }}>MORNING — Discover & Configure</p>
               </FadeIn>
               {[
-                { time: "9:00", title: "Welcome + breakfast networking", tag: "WELCOME", tagColor: gray },
-                { time: "9:30", title: 'Keynote — "AI & Intrapreneurship: Why Now?"', tag: "KEYNOTE", tagColor: accent },
-                { time: "10:00", title: "Live demo — Virtual EA environment", tag: "DEMO", tagColor: blue },
-                { time: "10:30", title: "Team draw + domain + problem brief", tag: "SETUP", tagColor: purple },
-                { time: "11:00", title: "Virtual data exploration by team", tag: "EXPLORE", tagColor: green },
-                { time: "12:30", title: "Lunch", tag: "BREAK", tagColor: gray },
-                { time: "13:30", title: "Ideation — solution architecture + KPIs", tag: "IDEATE", tagColor: accent },
-                { time: "15:15", title: "First build — prompting + testing", tag: "BUILD", tagColor: blue },
-                { time: "17:30", title: "Express check-in — 2 min per team", tag: "SYNC", tagColor: gray },
+                { time: "9:00", title: "Welcome + breakfast", tag: "WELCOME", tagColor: gray },
+                { time: "9:30", title: "Keynote — AI & Dust: what agents can do for EA", tag: "KEYNOTE", tagColor: accent },
+                { time: "10:00", title: "Live demo — trainer builds a Dust agent in real time", tag: "DEMO", tagColor: blue },
+                { time: "10:30", title: "Teams formed + challenge brief + Dust workspace access", tag: "SETUP", tagColor: purple },
+                { time: "11:00", title: "Sprint 1 — first Dust assistant configured on EA data", tag: "BUILD", tagColor: blue },
+                { time: "12:30", title: "Lunch + informal coaching", tag: "BREAK", tagColor: gray },
               ].map((s, i) => <TimelineSlot key={s.time} {...s} delay={i * 0.05} />)}
             </div>
+
             <div>
               <FadeIn>
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="px-3 py-1 rounded-lg font-mono font-bold" style={{ backgroundColor: `${accent}18`, color: accent }}>DAY 2</div>
-                  <p className="font-mono font-bold text-lg" style={{ color: offWhite }}>Ship It</p>
-                </div>
+                <p className="font-mono font-bold text-sm mb-6" style={{ color: accent }}>AFTERNOON — Refine & Ship</p>
               </FadeIn>
               {[
-                { time: "9:00", title: "Breakfast + interim leaderboard reveal", tag: "WELCOME", tagColor: gray },
-                { time: "9:30", title: "Morning build sprint (coached per team)", tag: "BUILD", tagColor: blue },
-                { time: "12:00", title: "Lunch", tag: "BREAK", tagColor: gray },
-                { time: "13:00", title: "Final polish + pitch prep (template provided)", tag: "POLISH", tagColor: purple },
-                { time: "15:00", title: "Pitches — 5 min/team + 3 min jury Q&A", tag: "PITCH", tagColor: accent },
-                { time: "17:00", title: "Jury deliberation", tag: "JURY", tagColor: gray },
-                { time: "17:30", title: "🏆 Awards Ceremony + closing", tag: "AWARDS", tagColor: amber },
-                { time: "18:00", title: "Closing cocktail", tag: "COCKTAIL", tagColor: green },
+                { time: "13:30", title: "Sprint 2 — refine agent: better prompts, edge cases, outputs", tag: "BUILD", tagColor: accent },
+                { time: "15:00", title: "Snack + coach visits each team (10 min)", tag: "COACHING", tagColor: gray },
+                { time: "15:15", title: "Sprint final — polish + 5-min pitch prep", tag: "POLISH", tagColor: purple },
+                { time: "16:15", title: "Pitches — 5 min/team + Q&A", tag: "PITCH", tagColor: accent },
+                { time: "17:00", title: "Debrief — what worked, what to keep, next steps", tag: "RETRO", tagColor: blue },
+                { time: "17:30", title: "Closing drinks", tag: "DONE", tagColor: green },
               ].map((s, i) => <TimelineSlot key={s.time} {...s} delay={i * 0.05} />)}
             </div>
           </div>
         </div>
       </section>
 
-      {/* AWARDS */}
+      {/* PILOT */}
       <section className="py-16 px-4" style={{ backgroundColor: charcoalLight }}>
         <div className="max-w-5xl mx-auto">
           <FadeIn>
-            <SectionLabel>cat awards.md</SectionLabel>
-            <SectionTitle>The <span style={{ color: accent }}>Awards</span> ceremony</SectionTitle>
-            <p className="text-lg mb-10" style={{ color: cream }}>End of Day 2. Real jury. Real stakes. The winning solutions become EA&apos;s first internal AI stack.</p>
+            <SectionLabel>cat pilot.md</SectionLabel>
+            <SectionTitle>June pilot — <span style={{ color: accent }}>before we scale.</span></SectionTitle>
+            <p className="text-lg mb-10" style={{ color: cream }}>
+              Before the September rollout, we run a full dress rehearsal with 20 EA early adopters — internal AI champions who stress-test everything so the first real cohort is flawless.
+            </p>
           </FadeIn>
+
           <div className="grid md:grid-cols-2 gap-8">
             <FadeIn>
-              <Card>
-                <p className="font-mono text-xs font-bold mb-5 uppercase tracking-wider" style={{ color: accent }}>&gt; leaderboard --final</p>
-                <AnimatedLeaderboard />
+              <Card style={{ borderColor: `${green}40` }}>
+                <div className="flex items-start justify-between mb-4">
+                  <CalendarDays className="w-8 h-8" style={{ color: green }} />
+                  <span className="px-3 py-1 rounded-full text-sm font-mono font-bold" style={{ backgroundColor: `${green}15`, color: green }}>JUNE 2026</span>
+                </div>
+                <h3 className="font-mono font-bold text-xl mb-4" style={{ color: offWhite }}>Dress Rehearsal</h3>
+                <div className="space-y-3 mb-6">
+                  {[
+                    { label: "Participants", value: "20 EA early adopters" },
+                    { label: "Format", value: "Full 1-day program" },
+                    { label: "Platform", value: "Dust — real config" },
+                    { label: "Deliverable", value: "Validation report + adjustments" },
+                  ].map((row) => (
+                    <div key={row.label} className="flex justify-between border-b border-dashed pb-2" style={{ borderColor: `${green}20` }}>
+                      <span className="font-mono text-sm" style={{ color: gray }}>{row.label}</span>
+                      <span className="font-mono text-sm" style={{ color: cream }}>{row.value}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-sm" style={{ color: gray }}>If anything needs adjusting before September, we fix it in June — not in front of a live cohort.</p>
               </Card>
             </FadeIn>
-            <FadeIn delay={0.2}>
+
+            <FadeIn delay={0.1}>
               <div className="space-y-4">
-                <Card>
-                  <p className="font-mono text-xs font-bold mb-4 uppercase tracking-wider" style={{ color: accent }}>SCORING CRITERIA</p>
-                  <div className="space-y-3">
-                    {[
-                      { label: "Business impact", pct: 30, color: accent },
-                      { label: "Technical quality of the agent", pct: 25, color: blue },
-                      { label: "Relevance to EA operations", pct: 25, color: purple },
-                      { label: "Pitch & presentation", pct: 20, color: green },
-                    ].map((c) => (
-                      <div key={c.label}>
-                        <div className="flex justify-between mb-1">
-                          <span className="text-xs font-mono" style={{ color: cream }}>{c.label}</span>
-                          <span className="text-xs font-mono" style={{ color: gray }}>{c.pct}%</span>
-                        </div>
-                        <div className="h-1.5 rounded-full" style={{ backgroundColor: `${c.color}15` }}>
-                          <motion.div className="h-full rounded-full"
-                            initial={{ width: 0 }}
-                            whileInView={{ width: `${c.pct}%` }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1, ease: "easeOut" }}
-                            style={{ backgroundColor: c.color }} />
-                        </div>
+                <p className="font-mono text-sm font-bold uppercase tracking-wider" style={{ color: accent }}>What the pilot validates</p>
+                {[
+                  { icon: ClipboardCheck, color: blue, title: "Dust workspace setup", desc: "Data sources load correctly, agent tools work as expected, permissions are properly scoped per team." },
+                  { icon: ClipboardCheck, color: purple, title: "Challenge briefs", desc: "Each domain brief is clear enough that a non-technical manager can start building within 30 minutes." },
+                  { icon: ClipboardCheck, color: green, title: "Upskilling app", desc: "Module 4 (Dust sandbox) gives participants enough foundation — no one is blocked on Day 1." },
+                  { icon: ClipboardCheck, color: accent, title: "Timing", desc: "Sprints are correctly sized. Coaches can cover all teams. Pitches fit in the allocated slot." },
+                  { icon: ClipboardCheck, color: amber, title: "Agent quality", desc: "Agents built during the day produce outputs that are genuinely useful — not just technically functional." },
+                ].map((item, i) => (
+                  <FadeIn key={item.title} delay={i * 0.07}>
+                    <div className="flex gap-3 items-start">
+                      <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style={{ backgroundColor: `${item.color}15` }}>
+                        <item.icon className="w-3.5 h-3.5" style={{ color: item.color }} />
                       </div>
-                    ))}
-                  </div>
-                </Card>
-                <Card>
-                  <p className="font-mono text-xs font-bold mb-3 uppercase tracking-wider" style={{ color: accent }}>AWARDS</p>
-                  <div className="space-y-2">
-                    {[
-                      { a: "🏆 Best AI Solution", b: "1 winner per domain (4 awards)" },
-                      { a: "🚀 Best Innovation", b: "Most creative approach" },
-                      { a: "⚡ Best ROI", b: "Highest estimated business impact" },
-                      { a: "🎖️ Best Individual", b: "MVP across all teams" },
-                    ].map((row) => (
-                      <div key={row.a} className="flex items-baseline gap-2">
-                        <p className="font-mono text-sm" style={{ color: offWhite }}>{row.a}</p>
-                        <p className="text-xs" style={{ color: gray }}>— {row.b}</p>
+                      <div>
+                        <p className="font-mono font-bold text-sm" style={{ color: offWhite }}>{item.title}</p>
+                        <p className="text-sm" style={{ color: gray }}>{item.desc}</p>
                       </div>
-                    ))}
-                  </div>
-                </Card>
+                    </div>
+                  </FadeIn>
+                ))}
               </div>
             </FadeIn>
           </div>
@@ -677,7 +589,7 @@ export function EuropAssistanceProposalEN() {
           <FadeIn>
             <SectionLabel>ls trainers/</SectionLabel>
             <SectionTitle>6 <span style={{ color: accent }}>expert</span> trainers</SectionTitle>
-            <p className="text-lg mb-10" style={{ color: cream }}>1 trainer per 2 teams during the hackathon. Each expert covers a specific dimension.</p>
+            <p className="text-lg mb-10" style={{ color: cream }}>1–2 trainers per session. Each expert covers a specific dimension of the program.</p>
           </FadeIn>
           <div className="grid md:grid-cols-3 gap-4">
             {[
@@ -768,10 +680,10 @@ export function EuropAssistanceProposalEN() {
           </FadeIn>
           <div className="grid md:grid-cols-2 gap-6">
             {[
-              { icon: Users, color: blue, title: "100 trained AI builders", desc: "Every manager built a working AI agent — not watched a demo. Built one." },
-              { icon: Layers, color: purple, title: "12 tested AI solutions", desc: "3 solutions per business domain, stress-tested in competition conditions." },
-              { icon: BookOpen, color: accent, title: "AI Solutions Playbook", desc: "Best prompts, best workflows, tool recommendations, and a deployment plan." },
-              { icon: Sparkles, color: green, title: "Upskilling app (yours to keep)", desc: "The interactive pre-training app stays with EA for future cohorts and onboarding." },
+              { icon: Users, color: blue, title: "100 trained AI builders", desc: "Every manager builds a working agent — not a demo, not a slide. Something real they can use the next day." },
+              { icon: Layers, color: purple, title: "4 domains covered", desc: "Auto, Travel, Health, Coordination — each session produces tested agents on a specific EA business challenge." },
+              { icon: BookOpen, color: accent, title: "AI Solutions Playbook", desc: "After all sessions: best prompts, best agent designs, tool recommendations, and a deployment plan." },
+              { icon: Sparkles, color: green, title: "Upskilling app (yours to keep)", desc: "The interactive pre-training app stays with Europ Assistance for future cohorts and new employee onboarding." },
             ].map((item, i) => (
               <FadeIn key={item.title} delay={i * 0.1}>
                 <Card className="flex gap-4 items-start">
@@ -789,58 +701,8 @@ export function EuropAssistanceProposalEN() {
         </div>
       </section>
 
-      {/* PILOT */}
-      <section className="py-16 px-4" style={{ backgroundColor: charcoalLight }}>
-        <div className="max-w-5xl mx-auto">
-          <FadeIn>
-            <SectionLabel>cat pilot.md</SectionLabel>
-            <SectionTitle>June <span style={{ color: accent }}>Pilot</span> — zero risk for September</SectionTitle>
-          </FadeIn>
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <FadeIn>
-              <div className="space-y-4">
-                <p className="text-lg" style={{ color: cream }}>A paid dress rehearsal with 20 EA managers (early adopters / internal AI champions) before the September cohort.</p>
-                <div className="space-y-3">
-                  {["All 4 challenges tested end-to-end", "Timing validated, scoring calibrated", "Virtual environment stress-tested", "Upskilling app validated with real participants", "Proof of concept before final September sign-off"].map((item) => (
-                    <div key={item} className="flex items-center gap-3">
-                      <CheckCircle className="w-4 h-4 shrink-0" style={{ color: green }} />
-                      <p style={{ color: cream }}>{item}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </FadeIn>
-            <FadeIn delay={0.2}>
-              <Card style={{ borderColor: `${green}40` }}>
-                <div className="flex items-start justify-between mb-4">
-                  <CalendarDays className="w-8 h-8" style={{ color: green }} />
-                  <span className="px-3 py-1 rounded-full text-sm font-mono font-bold" style={{ backgroundColor: `${green}15`, color: green }}>JUNE 2026</span>
-                </div>
-                <h3 className="font-mono font-bold text-xl mb-3" style={{ color: offWhite }}>Dress Rehearsal</h3>
-                <div className="space-y-2 mb-4">
-                  {[
-                    { label: "Participants", value: "20 EA managers" },
-                    { label: "Duration", value: "1 full day" },
-                    { label: "Format", value: "Condensed version" },
-                    { label: "Deliverable", value: "Full validation report" },
-                  ].map((row) => (
-                    <div key={row.label} className="flex justify-between">
-                      <span className="font-mono text-sm" style={{ color: gray }}>{row.label}</span>
-                      <span className="font-mono text-sm" style={{ color: cream }}>{row.value}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="pt-3 border-t border-dashed" style={{ borderColor: `${green}30` }}>
-                  <p className="text-sm" style={{ color: gray }}>If anything needs adjusting before September, we fix it in June — not live in front of 100 executives.</p>
-                </div>
-              </Card>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-
       {/* CERTIFICATION */}
-      <section className="py-16 px-4">
+      <section className="py-16 px-4" style={{ backgroundColor: charcoalLight }}>
         <div className="max-w-5xl mx-auto">
           <FadeIn>
             <SectionLabel>cat certification.md</SectionLabel>
@@ -862,9 +724,9 @@ export function EuropAssistanceProposalEN() {
               <Card>
                 <GraduationCap className="w-8 h-8 mb-4" style={{ color: accent }} />
                 <h3 className="font-mono font-bold text-xl mb-2" style={{ color: offWhite }}>Custom pricing</h3>
-                <p className="mb-4" style={{ color: gray }}>Budget adapted to scope. Everything included: program design, virtual environment, upskilling app, venue, catering, June pilot, September sessions.</p>
+                <p className="mb-4" style={{ color: gray }}>Budget adapted to number of sessions and level of customization. Everything included: program design, Dust data setup, upskilling app, venue, catering.</p>
                 <div className="space-y-2">
-                  {["Premium venue (2 days) included", "Full catering included", "Upskilling app + AI Playbook included", "June pilot + September delivery"].map((item) => (
+                  {["Premium venue included (all sessions)", "Full catering included", "Upskilling app + Playbook included", "June pilot + September–onwards delivery"].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <CheckCircle className="w-4 h-4 shrink-0" style={{ color: green }} />
                       <p className="text-sm" style={{ color: cream }}>{item}</p>
@@ -889,12 +751,15 @@ export function EuropAssistanceProposalEN() {
               <span style={{ color: accent }}>AI Solutions Lab</span>{" "}
               together
             </h2>
-            <p className="text-lg mb-10" style={{ color: cream }}>
-              30 minutes to validate objectives, co-design the 4 challenges, and confirm the June pilot date.
+            <p className="text-lg mb-6" style={{ color: cream }}>
+              Two next steps: a call with your technical team to understand your Dust setup, and a session with Giuseppe to align on the 4 strategic themes.
+            </p>
+            <p className="text-lg" style={{ color: cream }}>
+              Then: proposal delivered within a week, upskilling app ready for early June, pilot by end of June.
             </p>
           </FadeIn>
           <FadeIn delay={0.3}>
-            <p className="mt-8 font-mono text-sm" style={{ color: gray }}>
+            <p className="mt-10 font-mono text-sm" style={{ color: gray }}>
               Frederic Orlicki | fredericorlicki@gmail.com | Growth Acceleration
             </p>
           </FadeIn>
