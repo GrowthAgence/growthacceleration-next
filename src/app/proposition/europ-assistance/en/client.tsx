@@ -571,129 +571,6 @@ export function EuropAssistanceProposalEN() {
         </div>
       </section>
 
-      {/* PROGRAM — 1 DAY */}
-      <section className="py-16 px-4">
-        <div className="max-w-5xl mx-auto">
-          <FadeIn>
-            <SectionLabel>cat schedule.md</SectionLabel>
-            <SectionTitle>One day. <span style={{ color: accent }}>Full build.</span></SectionTitle>
-            <p className="text-lg mb-10" style={{ color: cream }}>
-              From zero to a production-ready AI agent in 8 hours. Every step is structured around building — not watching, not listening.
-            </p>
-          </FadeIn>
-
-          <div className="space-y-4">
-            {([
-              {
-                num: "00", time: "9:00 – 10:00", name: "Foundation",
-                color: gray, simple: true,
-                pills: [
-                  { label: "Welcome + breakfast",          color: gray   },
-                  { label: "Keynote — why agents, why Dust", color: accent },
-                  { label: "Live demo by trainer",          color: blue   },
-                  { label: "Teams + brief + Dust access",   color: purple },
-                ],
-              },
-              {
-                num: "01", time: "10:00 – 12:30", name: "First working agent",
-                color: blue, simple: false,
-                do: ["Connect Dust to EA data source", "Configure your first assistant", "Define instructions + test first queries"],
-                produce: "A Dust agent that reads, searches, and retrieves EA dossiers — live, in your workspace.",
-              },
-              {
-                num: "02", time: "13:30 – 15:15", name: "Make it smart",
-                color: accent, simple: false,
-                do: ["Refine prompts for precision and reliability", "Handle edge cases and unexpected inputs", "Structure outputs in a usable format"],
-                produce: "An agent that classifies, prioritizes, and drafts responses automatically — without human intervention.",
-              },
-              {
-                num: "03", time: "15:15 – 16:15", name: "Ship it",
-                color: green, simple: false,
-                do: ["Polish outputs against the challenge brief", "Benchmark: does it solve the problem?", "Prepare your 5-min pitch for the jury"],
-                produce: "A production-ready agent + a business pitch showing the ROI for Europ Assistance.",
-              },
-              {
-                num: "04", time: "16:15 – 17:00", name: "Pitches",
-                color: purple, simple: false,
-                do: ["5-min presentation per team", "Jury Q&A — real business questions", "Watch other teams' solutions"],
-                produce: "Jury verdict. The best solutions are flagged for real deployment inside Europ Assistance.",
-              },
-              {
-                num: "05", time: "17:00 – 17:30", name: "Debrief + closing drinks",
-                color: green, simple: true,
-                pills: [
-                  { label: "What worked across all teams", color: green },
-                  { label: "Next steps for deployment",    color: blue  },
-                  { label: "Every participant leaves with a working agent", color: accent },
-                ],
-              },
-            ] as Array<{
-              num: string; time: string; name: string; color: string; simple: boolean;
-              pills?: Array<{ label: string; color: string }>;
-              do?: string[]; produce?: string;
-            }>).map((step, i) => (
-              <FadeIn key={step.num} delay={i * 0.08}>
-                <motion.div
-                  whileHover={{ x: 3 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  className="rounded-xl border-2 border-dashed p-5 flex flex-col md:flex-row gap-5"
-                  style={{ backgroundColor: charcoal, borderColor: `${step.color}${step.simple ? "25" : "38"}` }}>
-
-                  {/* Number + time */}
-                  <div className="shrink-0 flex md:flex-col items-center md:items-start gap-3 md:gap-1.5 md:w-28">
-                    <div className="w-11 h-11 rounded-lg flex items-center justify-center font-mono font-bold text-lg shrink-0"
-                      style={{ backgroundColor: `${step.color}${step.simple ? "0D" : "18"}`, color: step.color }}>
-                      {step.num}
-                    </div>
-                    <div>
-                      <p className="font-mono text-xs" style={{ color: step.color }}>{step.time}</p>
-                      <p className="font-mono font-bold text-sm" style={{ color: offWhite }}>{step.name}</p>
-                    </div>
-                  </div>
-
-                  <div className="hidden md:block w-px" style={{ backgroundColor: `${step.color}18` }} />
-
-                  {/* Content */}
-                  {step.simple ? (
-                    <div className="flex-1 flex items-center">
-                      <div className="flex flex-wrap gap-2">
-                        {step.pills?.map((pill) => (
-                          <span key={pill.label} className="font-mono text-xs px-3 py-1.5 rounded-full"
-                            style={{ backgroundColor: `${pill.color}10`, color: pill.color, border: `1px solid ${pill.color}22` }}>
-                            {pill.label}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  ) : (
-                    <>
-                      <div className="flex-1">
-                        <p className="font-mono text-xs uppercase tracking-wider mb-2" style={{ color: gray }}>What you do</p>
-                        <ul className="space-y-1.5">
-                          {step.do?.map((item) => (
-                            <li key={item} className="flex items-start gap-2 text-sm" style={{ color: cream }}>
-                              <span className="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: step.color }} />
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div className="hidden md:block w-px" style={{ backgroundColor: `${step.color}18` }} />
-                      <div className="md:w-52 shrink-0">
-                        <p className="font-mono text-xs uppercase tracking-wider mb-2" style={{ color: step.color }}>You produce</p>
-                        <div className="rounded-lg p-3" style={{ backgroundColor: `${step.color}0A`, border: `1px solid ${step.color}25` }}>
-                          <p className="text-sm leading-relaxed" style={{ color: offWhite }}>{step.produce}</p>
-                        </div>
-                      </div>
-                    </>
-                  )}
-                </motion.div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* PILOT */}
       <section className="py-16 px-4" style={{ backgroundColor: charcoalLight }}>
         <div className="max-w-5xl mx-auto">
@@ -757,6 +634,121 @@ export function EuropAssistanceProposalEN() {
               </p>
             </motion.div>
           </FadeIn>
+
+          {/* Schedule 00→05 */}
+          <FadeIn delay={0.1}>
+            <p className="font-mono text-sm font-bold uppercase tracking-wider mb-4" style={{ color: accent }}>
+              &gt; pilot --schedule
+            </p>
+          </FadeIn>
+
+          <div className="space-y-3 mb-10">
+            {([
+              {
+                num: "00", time: "9:00 – 10:00", name: "Foundation",
+                color: gray, simple: true,
+                pills: [
+                  { label: "Welcome + breakfast",            color: gray   },
+                  { label: "Keynote — why agents, why Dust", color: accent },
+                  { label: "Live demo by trainer",            color: blue   },
+                  { label: "Teams + brief + Dust access",     color: purple },
+                ],
+              },
+              {
+                num: "01", time: "10:00 – 12:30", name: "First working agent",
+                color: blue, simple: false,
+                do: ["Connect Dust to EA data source", "Configure your first assistant", "Define instructions + test first queries"],
+                produce: "A Dust agent that reads, searches, and retrieves EA dossiers — live, in your workspace.",
+              },
+              {
+                num: "02", time: "13:30 – 15:15", name: "Make it smart",
+                color: accent, simple: false,
+                do: ["Refine prompts for precision and reliability", "Handle edge cases and unexpected inputs", "Structure outputs in a usable format"],
+                produce: "An agent that classifies, prioritizes, and drafts responses automatically — without human intervention.",
+              },
+              {
+                num: "03", time: "15:15 – 16:15", name: "Ship it",
+                color: green, simple: false,
+                do: ["Polish outputs against the challenge brief", "Benchmark: does it solve the problem?", "Prepare your 5-min pitch for the jury"],
+                produce: "A production-ready agent + a business pitch showing the ROI for Europ Assistance.",
+              },
+              {
+                num: "04", time: "16:15 – 17:00", name: "Pitches",
+                color: purple, simple: false,
+                do: ["5-min presentation per team", "Jury Q&A — real business questions", "Watch other teams' solutions"],
+                produce: "Jury verdict. The best solutions are flagged for real deployment inside Europ Assistance.",
+              },
+              {
+                num: "05", time: "17:00 – 17:30", name: "Debrief + closing drinks",
+                color: green, simple: true,
+                pills: [
+                  { label: "What worked across all teams",                   color: green  },
+                  { label: "Next steps for deployment",                      color: blue   },
+                  { label: "Every participant leaves with a working agent",   color: accent },
+                ],
+              },
+            ] as Array<{
+              num: string; time: string; name: string; color: string; simple: boolean;
+              pills?: Array<{ label: string; color: string }>;
+              do?: string[]; produce?: string;
+            }>).map((step, i) => (
+              <FadeIn key={step.num} delay={0.15 + i * 0.07}>
+                <motion.div
+                  whileHover={{ x: 3 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  className="rounded-xl border-2 border-dashed p-4 flex flex-col md:flex-row gap-4"
+                  style={{ backgroundColor: charcoal, borderColor: `${step.color}${step.simple ? "22" : "35"}` }}>
+
+                  <div className="shrink-0 flex md:flex-col items-center md:items-start gap-3 md:gap-1 md:w-28">
+                    <div className="w-10 h-10 rounded-lg flex items-center justify-center font-mono font-bold shrink-0"
+                      style={{ backgroundColor: `${step.color}${step.simple ? "0D" : "15"}`, color: step.color }}>
+                      {step.num}
+                    </div>
+                    <div>
+                      <p className="font-mono text-xs" style={{ color: step.color }}>{step.time}</p>
+                      <p className="font-mono font-bold text-sm" style={{ color: offWhite }}>{step.name}</p>
+                    </div>
+                  </div>
+
+                  <div className="hidden md:block w-px" style={{ backgroundColor: `${step.color}18` }} />
+
+                  {step.simple ? (
+                    <div className="flex-1 flex items-center">
+                      <div className="flex flex-wrap gap-2">
+                        {step.pills?.map((pill) => (
+                          <span key={pill.label} className="font-mono text-xs px-3 py-1.5 rounded-full"
+                            style={{ backgroundColor: `${pill.color}10`, color: pill.color, border: `1px solid ${pill.color}22` }}>
+                            {pill.label}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <div className="flex-1">
+                        <p className="font-mono text-xs uppercase tracking-wider mb-2" style={{ color: gray }}>What you do</p>
+                        <ul className="space-y-1">
+                          {step.do?.map((item) => (
+                            <li key={item} className="flex items-start gap-2 text-sm" style={{ color: cream }}>
+                              <span className="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: step.color }} />
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="hidden md:block w-px" style={{ backgroundColor: `${step.color}18` }} />
+                      <div className="md:w-48 shrink-0">
+                        <p className="font-mono text-xs uppercase tracking-wider mb-2" style={{ color: step.color }}>You produce</p>
+                        <div className="rounded-lg p-3" style={{ backgroundColor: `${step.color}0A`, border: `1px solid ${step.color}22` }}>
+                          <p className="text-sm leading-relaxed" style={{ color: offWhite }}>{step.produce}</p>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </motion.div>
+              </FadeIn>
+            ))}
+          </div>
 
           {/* What the pilot validates */}
           <FadeIn delay={0.1}>
