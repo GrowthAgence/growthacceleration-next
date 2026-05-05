@@ -585,7 +585,7 @@ export function EuropAssistanceProposalEN() {
           <div className="space-y-4">
             {([
               {
-                num: "00", time: "9:00 – 11:00", name: "Foundation",
+                num: "00", time: "9:00 – 10:00", name: "Foundation",
                 color: gray, simple: true,
                 pills: [
                   { label: "Welcome + breakfast",          color: gray   },
@@ -595,7 +595,7 @@ export function EuropAssistanceProposalEN() {
                 ],
               },
               {
-                num: "01", time: "11:00 – 12:30", name: "First working agent",
+                num: "01", time: "10:00 – 12:30", name: "First working agent",
                 color: blue, simple: false,
                 do: ["Connect Dust to EA data source", "Configure your first assistant", "Define instructions + test first queries"],
                 produce: "A Dust agent that reads, searches, and retrieves EA dossiers — live, in your workspace.",
