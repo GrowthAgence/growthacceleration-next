@@ -483,39 +483,134 @@ export function EuropAssistanceProposalEN() {
             <SectionLabel>cat schedule.md</SectionLabel>
             <SectionTitle>One day. <span style={{ color: accent }}>Full build.</span></SectionTitle>
             <p className="text-lg mb-10" style={{ color: cream }}>
-              From zero to a working AI agent in 8 hours — structured to maximize build time and minimize passive learning.
+              From zero to a production-ready AI agent in 8 hours. Every hour is structured around building — not watching, not listening.
             </p>
           </FadeIn>
 
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <FadeIn>
-                <p className="font-mono font-bold text-sm mb-6" style={{ color: blue }}>MORNING — Discover & Configure</p>
-              </FadeIn>
-              {[
-                { time: "9:00", title: "Welcome + breakfast", tag: "WELCOME", tagColor: gray },
-                { time: "9:30", title: "Keynote — AI & Dust: what agents can do for EA", tag: "KEYNOTE", tagColor: accent },
-                { time: "10:00", title: "Live demo — trainer builds a Dust agent in real time", tag: "DEMO", tagColor: blue },
-                { time: "10:30", title: "Teams formed + challenge brief + Dust workspace access", tag: "SETUP", tagColor: purple },
-                { time: "11:00", title: "Sprint 1 — first Dust assistant configured on EA data", tag: "BUILD", tagColor: blue },
-                { time: "12:30", title: "Lunch + informal coaching", tag: "BREAK", tagColor: gray },
-              ].map((s, i) => <TimelineSlot key={s.time} {...s} delay={i * 0.05} />)}
+          {/* Foundation block — compact */}
+          <FadeIn>
+            <div className="rounded-xl border border-dashed p-5 mb-8 flex flex-col md:flex-row md:items-center gap-4"
+              style={{ borderColor: `${gray}30`, backgroundColor: `${charcoalLight}` }}>
+              <div>
+                <p className="font-mono text-xs font-bold uppercase tracking-wider mb-2" style={{ color: gray }}>Foundation · 9:00 – 11:00</p>
+                <div className="flex flex-wrap gap-3">
+                  {[
+                    { label: "Welcome + breakfast", color: gray },
+                    { label: "Keynote — why agents, why Dust", color: accent },
+                    { label: "Live demo by trainer", color: blue },
+                    { label: "Teams + brief + Dust access", color: purple },
+                  ].map((item) => (
+                    <span key={item.label} className="font-mono text-xs px-3 py-1.5 rounded-full"
+                      style={{ backgroundColor: `${item.color}12`, color: item.color, border: `1px solid ${item.color}25` }}>
+                      {item.label}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
+          </FadeIn>
 
-            <div>
-              <FadeIn>
-                <p className="font-mono font-bold text-sm mb-6" style={{ color: accent }}>AFTERNOON — Refine & Ship</p>
+          {/* Sprint cards */}
+          <div className="space-y-5">
+            {[
+              {
+                num: "01", time: "11:00 – 12:30", name: "First working agent",
+                color: blue,
+                do: ["Connect Dust to EA data source", "Configure your first assistant", "Define instructions + test first queries"],
+                produce: "A Dust agent that reads, searches, and retrieves EA dossiers — live, in your workspace.",
+              },
+              {
+                num: "02", time: "13:30 – 15:15", name: "Make it smart",
+                color: accent,
+                do: ["Refine prompts for precision and reliability", "Handle edge cases and unexpected inputs", "Structure outputs in a usable format"],
+                produce: "An agent that classifies, prioritizes, and drafts responses automatically — without human intervention.",
+              },
+              {
+                num: "03", time: "15:15 – 16:15", name: "Ship it",
+                color: green,
+                do: ["Polish outputs against the challenge brief", "Benchmark: does it solve the problem?", "Prepare your 5-min pitch for the jury"],
+                produce: "A production-ready agent + a business pitch showing the ROI for Europ Assistance.",
+              },
+            ].map((sprint, i) => (
+              <FadeIn key={sprint.num} delay={i * 0.12}>
+                <motion.div
+                  whileHover={{ x: 4 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  className="rounded-xl border-2 border-dashed p-6 flex flex-col md:flex-row gap-6"
+                  style={{ backgroundColor: charcoal, borderColor: `${sprint.color}35` }}>
+
+                  {/* Left: number + time */}
+                  <div className="shrink-0 flex md:flex-col items-center md:items-start gap-4 md:gap-2 md:w-32">
+                    <div className="w-12 h-12 rounded-lg flex items-center justify-center font-mono font-bold text-xl shrink-0"
+                      style={{ backgroundColor: `${sprint.color}15`, color: sprint.color }}>
+                      {sprint.num}
+                    </div>
+                    <div>
+                      <p className="font-mono text-xs" style={{ color: sprint.color }}>{sprint.time}</p>
+                      <p className="font-mono font-bold text-sm" style={{ color: offWhite }}>{sprint.name}</p>
+                    </div>
+                  </div>
+
+                  {/* Divider */}
+                  <div className="hidden md:block w-px" style={{ backgroundColor: `${sprint.color}20` }} />
+
+                  {/* Middle: what you do */}
+                  <div className="flex-1">
+                    <p className="font-mono text-xs uppercase tracking-wider mb-3" style={{ color: gray }}>What you do</p>
+                    <ul className="space-y-1.5">
+                      {sprint.do.map((item) => (
+                        <li key={item} className="flex items-start gap-2 text-sm" style={{ color: cream }}>
+                          <span className="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: sprint.color }} />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Divider */}
+                  <div className="hidden md:block w-px" style={{ backgroundColor: `${sprint.color}20` }} />
+
+                  {/* Right: what you produce */}
+                  <div className="md:w-56 shrink-0">
+                    <p className="font-mono text-xs uppercase tracking-wider mb-3" style={{ color: sprint.color }}>You produce</p>
+                    <div className="rounded-lg p-3" style={{ backgroundColor: `${sprint.color}0C`, border: `1px solid ${sprint.color}25` }}>
+                      <p className="text-sm leading-relaxed" style={{ color: offWhite }}>{sprint.produce}</p>
+                    </div>
+                  </div>
+                </motion.div>
               </FadeIn>
-              {[
-                { time: "13:30", title: "Sprint 2 — refine agent: better prompts, edge cases, outputs", tag: "BUILD", tagColor: accent },
-                { time: "15:00", title: "Snack + coach visits each team (10 min)", tag: "COACHING", tagColor: gray },
-                { time: "15:15", title: "Sprint final — polish + 5-min pitch prep", tag: "POLISH", tagColor: purple },
-                { time: "16:15", title: "Pitches — 5 min/team + Q&A", tag: "PITCH", tagColor: accent },
-                { time: "17:00", title: "Debrief — what worked, what to keep, next steps", tag: "RETRO", tagColor: blue },
-                { time: "17:30", title: "Closing drinks", tag: "DONE", tagColor: green },
-              ].map((s, i) => <TimelineSlot key={s.time} {...s} delay={i * 0.05} />)}
-            </div>
+            ))}
           </div>
+
+          {/* Pitches + close */}
+          <FadeIn delay={0.4}>
+            <div className="grid md:grid-cols-2 gap-4 mt-5">
+              <div className="rounded-xl border border-dashed p-5 flex items-start gap-4"
+                style={{ borderColor: `${accent}30`, backgroundColor: `${accent}08` }}>
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
+                  style={{ backgroundColor: `${accent}15` }}>
+                  <Zap className="w-5 h-5" style={{ color: accent }} />
+                </div>
+                <div>
+                  <p className="font-mono text-xs" style={{ color: gray }}>16:15 – 17:00</p>
+                  <p className="font-mono font-bold text-sm mb-1" style={{ color: offWhite }}>Pitches — 5 min/team + jury Q&A</p>
+                  <p className="text-xs" style={{ color: gray }}>The best solutions are flagged for real deployment inside Europ Assistance.</p>
+                </div>
+              </div>
+              <div className="rounded-xl border border-dashed p-5 flex items-start gap-4"
+                style={{ borderColor: `${green}25`, backgroundColor: `${green}06` }}>
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
+                  style={{ backgroundColor: `${green}15` }}>
+                  <CheckCircle className="w-5 h-5" style={{ color: green }} />
+                </div>
+                <div>
+                  <p className="font-mono text-xs" style={{ color: gray }}>17:00 – 17:30</p>
+                  <p className="font-mono font-bold text-sm mb-1" style={{ color: offWhite }}>Debrief + closing drinks</p>
+                  <p className="text-xs" style={{ color: gray }}>Every participant leaves with a working agent and a concrete next step.</p>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
