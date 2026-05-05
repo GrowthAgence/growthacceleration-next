@@ -966,6 +966,118 @@ export function EuropAssistanceProposalEN() {
         </div>
       </section>
 
+      {/* ROADMAP */}
+      <section className="py-16 px-4">
+        <div className="max-w-5xl mx-auto">
+          <FadeIn>
+            <SectionLabel>cat roadmap.md</SectionLabel>
+            <SectionTitle>What happens <span style={{ color: accent }}>next.</span></SectionTitle>
+            <p className="text-lg mb-12" style={{ color: cream }}>
+              From today&apos;s meeting to the September rollout — every step, every deadline.
+            </p>
+          </FadeIn>
+
+          <div className="relative">
+            {/* Horizontal line */}
+            <div className="hidden md:block absolute top-8 left-0 right-0 h-px" style={{ backgroundColor: `${accent}25` }} />
+
+            <div className="grid md:grid-cols-5 gap-6">
+              {[
+                {
+                  date: "May 2026",
+                  status: "NOW",
+                  statusColor: green,
+                  milestones: [
+                    { text: "R3 meeting — done ✅", done: true },
+                    { text: "Call with Dust technical team", done: false },
+                    { text: "Strategic themes alignment with Giuseppe", done: false },
+                  ],
+                },
+                {
+                  date: "Mid-May",
+                  status: "NEXT",
+                  statusColor: accent,
+                  milestones: [
+                    { text: "Finalized proposal delivered", done: false },
+                    { text: "Dust data environment scoped", done: false },
+                  ],
+                },
+                {
+                  date: "Early June",
+                  status: "JUNE",
+                  statusColor: blue,
+                  milestones: [
+                    { text: "Upskilling app ready", done: false },
+                    { text: "20 participants receive pre-training access", done: false },
+                    { text: "Level detection + batch assignment", done: false },
+                  ],
+                },
+                {
+                  date: "End of June",
+                  status: "PILOT",
+                  statusColor: purple,
+                  milestones: [
+                    { text: "Pilot session — 1 or 2 days, your call", done: false },
+                    { text: "20 EA early adopters", done: false },
+                    { text: "Validation report delivered", done: false },
+                  ],
+                },
+                {
+                  date: "September",
+                  status: "LIVE",
+                  statusColor: accent,
+                  milestones: [
+                    { text: "Full rollout begins", done: false },
+                    { text: "Sessions of 20 managers, repeated", done: false },
+                    { text: "100 managers trained on Dust agents", done: false },
+                  ],
+                },
+              ].map((col, i) => (
+                <FadeIn key={col.date} delay={i * 0.1}>
+                  <div className="flex flex-col items-start">
+                    {/* Dot on the line */}
+                    <div className="relative flex items-center justify-start w-full mb-4">
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 + i * 0.1, type: "spring", stiffness: 300 }}
+                        className="w-4 h-4 rounded-full border-2 z-10"
+                        style={{
+                          backgroundColor: col.status === "NOW" ? col.statusColor : charcoal,
+                          borderColor: col.statusColor,
+                          boxShadow: col.status === "NOW" ? `0 0 12px ${col.statusColor}60` : "none",
+                        }}
+                      />
+                      <span className="ml-3 font-mono text-xs font-bold px-2 py-0.5 rounded-full"
+                        style={{ backgroundColor: `${col.statusColor}15`, color: col.statusColor }}>
+                        {col.status}
+                      </span>
+                    </div>
+
+                    {/* Date */}
+                    <p className="font-mono font-bold text-sm mb-3" style={{ color: offWhite }}>{col.date}</p>
+
+                    {/* Card */}
+                    <div className="w-full rounded-lg border border-dashed p-4 space-y-2"
+                      style={{ borderColor: `${col.statusColor}30`, backgroundColor: `${col.statusColor}06` }}>
+                      {col.milestones.map((m) => (
+                        <div key={m.text} className="flex items-start gap-2">
+                          <div className="mt-1 w-1.5 h-1.5 rounded-full shrink-0"
+                            style={{ backgroundColor: m.done ? green : col.statusColor }} />
+                          <p className="font-mono text-xs leading-relaxed"
+                            style={{ color: m.done ? green : cream }}>{m.text}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-24 px-4 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none"
