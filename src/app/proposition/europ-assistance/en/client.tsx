@@ -8,7 +8,7 @@ import {
   UtensilsCrossed, CakeSlice, Users, Rocket, CheckCircle,
   Shield, GraduationCap, CalendarDays, Bot,
   Globe, Sparkles, Server, Layers, BookOpen, Gauge, Code,
-  Repeat, ClipboardCheck, Zap,
+  Repeat, Zap,
 } from "lucide-react";
 
 const accent = "#E07A5F";
@@ -556,27 +556,32 @@ export function EuropAssistanceProposalEN() {
             </FadeIn>
 
             <FadeIn delay={0.1}>
-              <div className="space-y-4">
-                <p className="font-mono text-sm font-bold uppercase tracking-wider" style={{ color: accent }}>What the pilot validates</p>
+              <div>
+                <p className="font-mono text-sm font-bold uppercase tracking-wider mb-4" style={{ color: accent }}>Pilot schedule</p>
+                <p className="font-mono text-xs font-bold mb-3" style={{ color: blue }}>MORNING — Discover & Configure</p>
                 {[
-                  { icon: ClipboardCheck, color: blue, title: "Dust workspace setup", desc: "Data sources load correctly, agent tools work as expected, permissions are properly scoped per team." },
-                  { icon: ClipboardCheck, color: purple, title: "Challenge briefs", desc: "Each domain brief is clear enough that a non-technical manager can start building within 30 minutes." },
-                  { icon: ClipboardCheck, color: green, title: "Upskilling app", desc: "Module 4 (Dust sandbox) gives participants enough foundation — no one is blocked on Day 1." },
-                  { icon: ClipboardCheck, color: accent, title: "Timing", desc: "Sprints are correctly sized. Coaches can cover all teams. Pitches fit in the allocated slot." },
-                  { icon: ClipboardCheck, color: amber, title: "Agent quality", desc: "Agents built during the day produce outputs that are genuinely useful — not just technically functional." },
-                ].map((item, i) => (
-                  <FadeIn key={item.title} delay={i * 0.07}>
-                    <div className="flex gap-3 items-start">
-                      <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style={{ backgroundColor: `${item.color}15` }}>
-                        <item.icon className="w-3.5 h-3.5" style={{ color: item.color }} />
-                      </div>
-                      <div>
-                        <p className="font-mono font-bold text-sm" style={{ color: offWhite }}>{item.title}</p>
-                        <p className="text-sm" style={{ color: gray }}>{item.desc}</p>
-                      </div>
-                    </div>
-                  </FadeIn>
-                ))}
+                  { time: "9:00", title: "Welcome + breakfast", tag: "WELCOME", tagColor: gray },
+                  { time: "9:30", title: "Keynote — AI & Dust: what agents can do for EA", tag: "KEYNOTE", tagColor: accent },
+                  { time: "10:00", title: "Live demo — trainer builds a Dust agent in real time on EA data", tag: "DEMO", tagColor: blue },
+                  { time: "10:30", title: "Teams formed + challenge brief + Dust workspace access granted", tag: "SETUP", tagColor: purple },
+                  { time: "11:00", title: "Sprint 1 — configure first Dust assistant, test basic queries", tag: "BUILD", tagColor: blue },
+                  { time: "12:30", title: "Lunch + informal coaching per table", tag: "BREAK", tagColor: gray },
+                ].map((s, i) => <TimelineSlot key={s.time} {...s} delay={i * 0.04} />)}
+
+                <p className="font-mono text-xs font-bold mb-3 mt-2" style={{ color: accent }}>AFTERNOON — Refine & Validate</p>
+                {[
+                  { time: "13:30", title: "Sprint 2 — refine agent: better prompts, edge cases, structured outputs", tag: "BUILD", tagColor: accent },
+                  { time: "15:00", title: "Snack + trainer visits each team (10 min)", tag: "COACHING", tagColor: gray },
+                  { time: "15:15", title: "Sprint final — polish + 5-min pitch preparation", tag: "POLISH", tagColor: purple },
+                  { time: "16:15", title: "Pitches — 5 min/team + trainer Q&A", tag: "PITCH", tagColor: accent },
+                  { time: "17:00", title: "Pilot debrief — what worked, what to adjust before September", tag: "RETRO", tagColor: blue },
+                  { time: "17:30", title: "Closing drinks", tag: "DONE", tagColor: green },
+                ].map((s, i) => <TimelineSlot key={s.time} {...s} delay={i * 0.04} />)}
+
+                <div className="mt-4 p-4 rounded-lg border border-dashed" style={{ borderColor: `${green}30`, backgroundColor: `${green}06` }}>
+                  <p className="font-mono text-xs font-bold mb-2" style={{ color: green }}>PILOT DELIVERABLE</p>
+                  <p className="text-sm" style={{ color: gray }}>Full validation report: Dust config issues, brief clarity, timing adjustments, agent output quality. Everything fixed before the first real cohort.</p>
+                </div>
               </div>
             </FadeIn>
           </div>
