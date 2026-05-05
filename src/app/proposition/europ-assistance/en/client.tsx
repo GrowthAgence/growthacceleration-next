@@ -590,47 +590,40 @@ export function EuropAssistanceProposalEN() {
             </p>
           </FadeIn>
 
-          <div className="grid md:grid-cols-2 gap-0 md:gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {/* MORNING */}
             <div>
               <FadeIn delay={0.15}>
                 <div className="flex items-center gap-3 mb-5 pb-3 border-b border-dashed" style={{ borderColor: `${blue}30` }}>
-                  <div className="w-2 h-8 rounded-full" style={{ backgroundColor: blue }} />
+                  <div className="w-2 h-8 rounded-full shrink-0" style={{ backgroundColor: blue }} />
                   <div>
                     <p className="font-mono font-bold text-sm" style={{ color: blue }}>MORNING</p>
                     <p className="font-mono text-xs" style={{ color: gray }}>Discover & Configure</p>
                   </div>
-                  <span className="ml-auto font-mono text-xs" style={{ color: gray }}>9:00 – 12:30</span>
+                  <span className="ml-auto font-mono text-xs shrink-0" style={{ color: gray }}>9:00 – 12:30</span>
                 </div>
               </FadeIn>
               {[
-                { time: "9:00",  title: "Welcome + breakfast",                                    tag: "WELCOME", tagColor: gray    },
-                { time: "9:30",  title: "Keynote — AI & Dust: what agents can do for EA",          tag: "KEYNOTE", tagColor: accent  },
-                { time: "10:00", title: "Live demo — trainer builds a Dust agent in real time",    tag: "DEMO",    tagColor: blue    },
-                { time: "10:30", title: "Teams formed + brief + Dust workspace access",            tag: "SETUP",   tagColor: purple  },
-                { time: "11:00", title: "Sprint 1 — first Dust assistant on EA data",              tag: "BUILD",   tagColor: blue    },
-                { time: "12:30", title: "Lunch + informal coaching per table",                     tag: "BREAK",   tagColor: gray    },
+                { time: "9:00",  title: "Welcome + breakfast",                                  tag: "WELCOME", tagColor: gray   },
+                { time: "9:30",  title: "Keynote — AI & Dust: what agents can do for EA",       tag: "KEYNOTE", tagColor: accent },
+                { time: "10:00", title: "Live demo — trainer builds a Dust agent in real time", tag: "DEMO",    tagColor: blue   },
+                { time: "10:30", title: "Teams formed + brief + Dust workspace access",         tag: "SETUP",   tagColor: purple },
+                { time: "11:00", title: "Sprint 1 — first Dust assistant on EA data",           tag: "BUILD",   tagColor: blue   },
+                { time: "12:30", title: "Lunch + informal coaching per table",                  tag: "BREAK",   tagColor: gray   },
               ].map((s, i) => <TimelineSlot key={s.time} {...s} delay={0.2 + i * 0.04} />)}
             </div>
 
-            {/* Vertical separator desktop */}
-            <div className="hidden md:flex justify-center">
-              <div className="w-px" style={{ backgroundColor: `${accent}18` }} />
-            </div>
-
-            {/* Mobile separator */}
-            <div className="md:hidden border-t border-dashed my-6" style={{ borderColor: `${accent}20` }} />
-
             {/* AFTERNOON */}
-            <div>
+            <div className="border-t md:border-t-0 md:border-l border-dashed pt-8 md:pt-0 md:pl-8"
+              style={{ borderColor: `${accent}20` }}>
               <FadeIn delay={0.3}>
                 <div className="flex items-center gap-3 mb-5 pb-3 border-b border-dashed" style={{ borderColor: `${accent}30` }}>
-                  <div className="w-2 h-8 rounded-full" style={{ backgroundColor: accent }} />
+                  <div className="w-2 h-8 rounded-full shrink-0" style={{ backgroundColor: accent }} />
                   <div>
                     <p className="font-mono font-bold text-sm" style={{ color: accent }}>AFTERNOON</p>
                     <p className="font-mono text-xs" style={{ color: gray }}>Refine & Validate</p>
                   </div>
-                  <span className="ml-auto font-mono text-xs" style={{ color: gray }}>13:30 – 17:30</span>
+                  <span className="ml-auto font-mono text-xs shrink-0" style={{ color: gray }}>13:30 – 17:30</span>
                 </div>
               </FadeIn>
               {[
