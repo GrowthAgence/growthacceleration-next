@@ -763,15 +763,15 @@ export function EuropAssistanceProposalEN() {
             <SectionLabel>cat deliverables.md</SectionLabel>
             <SectionTitle>What EA walks away <span style={{ color: accent }}>with</span></SectionTitle>
           </FadeIn>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-6 items-stretch">
             {[
               { icon: Users, color: blue, title: "100 trained AI builders", desc: "Every manager builds a working agent — not a demo, not a slide. Something real they can use the next day." },
               { icon: Layers, color: purple, title: "4 domains covered", desc: "Auto, Travel, Health, Coordination — each session produces tested agents on a specific EA business challenge." },
               { icon: BookOpen, color: accent, title: "AI Solutions Playbook", desc: "After all sessions: best prompts, best agent designs, tool recommendations, and a deployment plan." },
               { icon: Sparkles, color: green, title: "Upskilling app (yours to keep)", desc: "The interactive pre-training app stays with Europ Assistance for future cohorts and new employee onboarding." },
             ].map((item, i) => (
-              <FadeIn key={item.title} delay={i * 0.1}>
-                <Card className="flex gap-4 items-start">
+              <FadeIn key={item.title} delay={i * 0.1} className="h-full">
+                <Card className="flex gap-4 items-start h-full">
                   <div className="w-12 h-12 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: `${item.color}15` }}>
                     <item.icon className="w-6 h-6" style={{ color: item.color }} />
                   </div>
