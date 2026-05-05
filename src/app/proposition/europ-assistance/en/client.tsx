@@ -8,7 +8,6 @@ import {
   UtensilsCrossed, CakeSlice, Users, Rocket, CheckCircle,
   Shield, GraduationCap, CalendarDays, Bot,
   Globe, Sparkles, Server, Layers, BookOpen, Gauge, Code,
-  Building2,
 } from "lucide-react";
 
 const accent = "#E07A5F";
@@ -717,117 +716,44 @@ export function EuropAssistanceProposalEN() {
         <div className="max-w-5xl mx-auto">
           <FadeIn>
             <SectionLabel>cat venue.md</SectionLabel>
-            <SectionTitle>Two premium spaces. <span style={{ color: accent }}>One address.</span></SectionTitle>
-            <p className="text-lg mb-12" style={{ color: cream }}>
-              No beige meeting rooms. No fluorescent lighting. Two unique Paris venues — both at 231 rue Saint-Honoré — designed for creativity, focus, and impact.
+            <SectionTitle>The <span style={{ color: accent }}>setting</span> changes everything</SectionTitle>
+            <p className="text-lg mb-10" style={{ color: cream }}>
+              No beige meeting rooms. No fluorescent lighting. A unique Paris venue designed for creativity, focus, and real work.
             </p>
           </FadeIn>
 
-          {/* Chez Les Plombiers */}
           <FadeIn>
-            <div className="mb-14">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="font-mono text-xs px-3 py-1 rounded-full font-bold"
-                  style={{ backgroundColor: `${accent}18`, color: accent }}>SPACE 01</span>
-                <h3 className="font-mono font-bold text-2xl" style={{ color: offWhite }}>Chez Les Plombiers</h3>
-                <span className="font-mono text-xs" style={{ color: gray }}>— 231 rue Saint-Honoré, Paris 1er</span>
+            <motion.div className="rounded-lg overflow-hidden relative mb-8"
+              style={{ height: "400px" }}
+              whileHover={{ scale: 1.01 }} transition={{ duration: 0.3 }}>
+              <Image src="/venues/clp-hero.png" alt="Chez Les Plombiers — main space"
+                fill className="object-cover" />
+              <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${charcoal}90 0%, transparent 55%)` }} />
+              <div className="absolute bottom-6 left-6">
+                <p className="font-mono font-bold text-2xl mb-1" style={{ color: offWhite }}>Chez Les Plombiers</p>
+                <p className="font-mono text-sm" style={{ color: accent }}>231 rue Saint-Honoré, Paris 1er</p>
               </div>
+            </motion.div>
 
-              {/* Photo CLP */}
-              <motion.div className="rounded-lg overflow-hidden relative mb-6"
-                style={{ height: "360px" }}
-                whileHover={{ scale: 1.01 }} transition={{ duration: 0.3 }}>
-                <Image src="/venues/clp-hero.png" alt="Chez Les Plombiers — main space"
-                  fill className="object-cover" />
-                <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${charcoal}80 0%, transparent 50%)` }} />
-              </motion.div>
-
-              <div className="grid md:grid-cols-2 gap-6">
-                <p style={{ color: gray }}>
-                  An industrial-chic venue in the heart of the 1st arrondissement. Raw concrete, warm lighting, flexible layout. Brands like Prada, Porsche, CNN, and New Balance have used this space. Far from the corporate seminar aesthetic — by design.
-                </p>
-                <div className="space-y-3">
-                  {[
-                    { icon: Coffee, label: "Welcome breakfast", time: "9:00 – 9:30" },
-                    { icon: UtensilsCrossed, label: "Catered lunch", time: "12:30 – 1:30" },
-                    { icon: CakeSlice, label: "Afternoon snack + coffee/tea", time: "3:00 – 3:15" },
-                  ].map((m) => (
-                    <div key={m.label} className="flex items-center gap-3">
-                      <m.icon className="w-4 h-4 shrink-0" style={{ color: accent }} />
-                      <div className="flex-1 flex justify-between">
-                        <p className="font-mono text-sm" style={{ color: offWhite }}>{m.label}</p>
-                        <p className="text-xs" style={{ color: gray }}>{m.time}</p>
-                      </div>
+            <div className="grid md:grid-cols-2 gap-8">
+              <p style={{ color: gray }}>
+                An industrial-chic venue in the heart of the 1st arrondissement. Raw concrete, warm lighting, flexible layout. Brands like Prada, Porsche, CNN, and New Balance have used this space. Far from the corporate seminar aesthetic — by design.
+              </p>
+              <div className="space-y-3">
+                {[
+                  { icon: Coffee, label: "Welcome breakfast", time: "9:00 – 9:30" },
+                  { icon: UtensilsCrossed, label: "Catered lunch", time: "12:30 – 1:30" },
+                  { icon: CakeSlice, label: "Afternoon snack + coffee/tea", time: "3:00 – 3:15" },
+                ].map((m) => (
+                  <div key={m.label} className="flex items-center gap-3">
+                    <m.icon className="w-4 h-4 shrink-0" style={{ color: accent }} />
+                    <div className="flex-1 flex justify-between">
+                      <p className="font-mono text-sm" style={{ color: offWhite }}>{m.label}</p>
+                      <p className="text-xs" style={{ color: gray }}>{m.time}</p>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
-            </div>
-          </FadeIn>
-
-          {/* Divider */}
-          <div className="border-t border-dashed mb-14" style={{ borderColor: `${accent}25` }} />
-
-          {/* Appartement Rose */}
-          <FadeIn delay={0.1}>
-            <div className="mb-12">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="font-mono text-xs px-3 py-1 rounded-full font-bold"
-                  style={{ backgroundColor: `${purple}18`, color: purple }}>SPACE 02</span>
-                <h3 className="font-mono font-bold text-2xl" style={{ color: offWhite }}>L&apos;Appartement Rose</h3>
-                <span className="font-mono text-xs" style={{ color: gray }}>— même adresse, étage supérieur</span>
-              </div>
-
-              {/* Photo grid Appartement */}
-              <div className="grid grid-cols-3 gap-2 mb-6" style={{ height: "280px" }}>
-                <motion.div className="col-span-2 rounded-lg overflow-hidden relative"
-                  whileHover={{ scale: 1.01 }} transition={{ duration: 0.3 }}>
-                  <Image src="/venues/appart-hero.png" alt="Appartement Rose — living space"
-                    fill className="object-cover" />
-                  <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${charcoal}80 0%, transparent 60%)` }} />
-                </motion.div>
-                <motion.div className="rounded-lg overflow-hidden relative"
-                  whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
-                  <Image src="/venues/appart-detail.png" alt="Appartement Rose — detail"
-                    fill className="object-cover" />
-                </motion.div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-6">
-                <p style={{ color: gray }}>
-                  A fully furnished apartment upstairs — kitchen, lounge, bedrooms. Ideal for jury deliberations, VIP breakouts, or hosting the lead trainer team during the 2 days. A domestic, non-corporate atmosphere that encourages real conversation.
-                </p>
-                <div className="space-y-2">
-                  {[
-                    "Private jury deliberation room",
-                    "Trainer & coordination base",
-                    "Kitchen + lounge for informal breaks",
-                    "Exclusive access for the 2-day program",
-                  ].map((item) => (
-                    <div key={item} className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 shrink-0" style={{ color: purple }} />
-                      <p className="text-sm" style={{ color: cream }}>{item}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </FadeIn>
-
-          {/* Novotel */}
-          <FadeIn delay={0.2}>
-            <div className="rounded-lg border border-dashed p-5 flex flex-col md:flex-row md:items-center gap-4"
-              style={{ borderColor: `${blue}30`, backgroundColor: `${blue}06` }}>
-              <Building2 className="w-6 h-6 shrink-0" style={{ color: blue }} />
-              <div className="flex-1">
-                <p className="font-mono font-bold text-sm" style={{ color: offWhite }}>
-                  Novotel Paris Les Halles — 100m away
-                </p>
-                <p className="text-sm" style={{ color: gray }}>
-                  8 Pl. Marguerite de Navarre, 75001 · 4 stars · 4.3/5 (7,400+ reviews) — recommended for teams coming from outside Paris
-                </p>
-              </div>
-              <CheckCircle className="w-5 h-5 shrink-0" style={{ color: blue }} />
             </div>
           </FadeIn>
         </div>
