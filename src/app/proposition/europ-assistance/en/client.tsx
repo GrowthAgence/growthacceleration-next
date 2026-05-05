@@ -433,45 +433,140 @@ export function EuropAssistanceProposalEN() {
         <div className="max-w-5xl mx-auto">
           <FadeIn>
             <SectionLabel>cat pre-training.md</SectionLabel>
-            <SectionTitle>Ready on <span style={{ color: accent }}>Day 1.</span></SectionTitle>
-            <p className="text-lg mb-10" style={{ color: cream }}>
-              15 days before each session, participants receive an interactive web app — 5 modules, ~4h, self-paced. Every manager arrives at the same level.
+            <SectionTitle>A dedicated platform — <span style={{ color: accent }}>built for EA.</span></SectionTitle>
+            <p className="text-lg mb-4" style={{ color: cream }}>
+              15 days before each session, every participant gets access to a custom-built web app. 5 modules, ~4h, self-paced. But the real value isn&apos;t just the training.
+            </p>
+            <p className="text-lg mb-10 font-mono" style={{ color: accent }}>
+              The platform detects each participant&apos;s level — and groups them into batches accordingly.
             </p>
           </FadeIn>
-          <div className="grid md:grid-cols-2 gap-10 items-center">
-            <FadeIn>
-              <div className="space-y-5">
-                {[
-                  { label: "Module 1 — AI Fundamentals (no jargon)", pct: 100, color: blue },
-                  { label: "Module 2 — Prompt Engineering", pct: 100, color: accent },
-                  { label: "Module 3 — Anatomy of an AI Agent", pct: 100, color: purple },
-                  { label: "Module 4 — Dust walkthrough + sandbox", pct: 100, color: green },
-                  { label: "Module 5 — Mini-challenge: your first agent", pct: 100, color: amber },
-                ].map((m, i) => (
-                  <ProgressBar key={m.label} label={m.label} pct={m.pct} delay={i * 0.2} color={m.color} />
-                ))}
+
+          {/* Dashboard mockup */}
+          <FadeIn>
+            <div className="rounded-xl overflow-hidden border border-dashed mb-10"
+              style={{ borderColor: `${accent}30`, backgroundColor: "#0D0D0D" }}>
+
+              {/* App bar */}
+              <div className="flex items-center justify-between px-5 py-3 border-b"
+                style={{ borderColor: `${accent}18`, backgroundColor: "#111" }}>
+                <div className="flex items-center gap-3">
+                  <div className="flex gap-1.5">
+                    <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "#FF5F57" }} />
+                    <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "#FFBD2E" }} />
+                    <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "#28C840" }} />
+                  </div>
+                  <p className="font-mono text-xs" style={{ color: gray }}>EA AI Readiness — Cohort 1 · J-12</p>
+                </div>
+                <span className="font-mono text-xs px-2 py-0.5 rounded-full"
+                  style={{ backgroundColor: `${green}15`, color: green }}>● LIVE</span>
               </div>
-            </FadeIn>
-            <FadeIn delay={0.2}>
-              <div className="space-y-4">
+
+              {/* Stats row */}
+              <div className="grid grid-cols-4 border-b" style={{ borderColor: `${accent}12` }}>
                 {[
-                  { icon: BookOpen, title: "~4h total", desc: "Self-paced, 24/7, on any device" },
-                  { icon: Gauge, title: "Progress tracked", desc: "Completion dashboard visible to the coordinator" },
-                  { icon: Code, title: "Includes a Dust sandbox", desc: "Module 4 lets participants try Dust before Day 1 — no surprises on the morning" },
-                  { icon: CheckCircle, title: "EA retains the app", desc: "The upskilling app stays with Europ Assistance for future cohorts" },
-                ].map((item) => (
-                  <div key={item.title} className="flex gap-3 items-start">
-                    <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: `${accent}15` }}>
-                      <item.icon className="w-4 h-4" style={{ color: accent }} />
-                    </div>
-                    <div>
-                      <p className="font-mono font-bold text-sm" style={{ color: offWhite }}>{item.title}</p>
-                      <p className="text-sm" style={{ color: gray }}>{item.desc}</p>
-                    </div>
+                  { label: "Completed", value: "14 / 20", color: green },
+                  { label: "Avg. score", value: "72%", color: blue },
+                  { label: "In progress", value: "4", color: amber },
+                  { label: "Not started", value: "2", color: gray },
+                ].map((stat) => (
+                  <div key={stat.label} className="p-4 border-r last:border-r-0" style={{ borderColor: `${accent}12` }}>
+                    <p className="font-mono text-xs mb-1" style={{ color: gray }}>{stat.label}</p>
+                    <p className="font-mono font-bold text-xl" style={{ color: stat.color }}>{stat.value}</p>
                   </div>
                 ))}
               </div>
-            </FadeIn>
+
+              {/* Participant table */}
+              <div className="p-4">
+                <p className="font-mono text-xs uppercase tracking-wider mb-3" style={{ color: gray }}>Participants · Level detection</p>
+                <div className="space-y-2">
+                  {[
+                    { name: "M. Dupont", dept: "Auto Claims",    pct: 94, level: "Advanced",     lc: green  },
+                    { name: "S. Laurent", dept: "Travel Ops",    pct: 88, level: "Advanced",     lc: green  },
+                    { name: "A. Martin", dept: "HR",             pct: 76, level: "Advanced",     lc: green  },
+                    { name: "C. Bernard", dept: "Customer Svc",  pct: 61, level: "Intermediate", lc: blue   },
+                    { name: "P. Moreau", dept: "Finance",        pct: 55, level: "Intermediate", lc: blue   },
+                    { name: "L. Thomas", dept: "IT",             pct: 48, level: "Intermediate", lc: blue   },
+                    { name: "E. Petit", dept: "Legal",           pct: 32, level: "Beginner",     lc: amber  },
+                    { name: "F. Simon", dept: "Operations",      pct: 18, level: "Beginner",     lc: amber  },
+                  ].map((p, i) => (
+                    <motion.div key={p.name}
+                      initial={{ opacity: 0, x: -8 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.1 + i * 0.07, duration: 0.3 }}
+                      className="flex items-center gap-3 rounded-lg px-3 py-2"
+                      style={{ backgroundColor: `${accent}05` }}>
+                      <div className="w-7 h-7 rounded-full flex items-center justify-center font-mono text-xs font-bold shrink-0"
+                        style={{ backgroundColor: `${p.lc}18`, color: p.lc }}>
+                        {p.name[0]}
+                      </div>
+                      <div className="w-28 shrink-0">
+                        <p className="font-mono text-xs font-bold" style={{ color: offWhite }}>{p.name}</p>
+                        <p className="font-mono text-xs" style={{ color: gray }}>{p.dept}</p>
+                      </div>
+                      <div className="flex-1 h-1.5 rounded-full overflow-hidden" style={{ backgroundColor: `${p.lc}18` }}>
+                        <motion.div className="h-full rounded-full"
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${p.pct}%` }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.2 + i * 0.07, duration: 0.8, ease: "easeOut" }}
+                          style={{ backgroundColor: p.lc }} />
+                      </div>
+                      <span className="font-mono text-xs w-8 text-right shrink-0" style={{ color: p.lc }}>{p.pct}%</span>
+                      <span className="font-mono text-xs px-2 py-0.5 rounded-full shrink-0"
+                        style={{ backgroundColor: `${p.lc}15`, color: p.lc }}>{p.level}</span>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Batch formation */}
+                <div className="mt-4 pt-4 border-t border-dashed" style={{ borderColor: `${accent}15` }}>
+                  <p className="font-mono text-xs uppercase tracking-wider mb-3" style={{ color: accent }}>
+                    ↳ Suggested batch assignment for September
+                  </p>
+                  <div className="grid grid-cols-3 gap-3">
+                    {[
+                      { label: "Batch A — Advanced",      count: "3 managers", color: green,  desc: "Challenge difficulty: MAX" },
+                      { label: "Batch B — Intermediate",  count: "3 managers", color: blue,   desc: "Challenge difficulty: MED" },
+                      { label: "Batch C — Beginner",      count: "2 managers", color: amber,  desc: "Challenge difficulty: BASE" },
+                    ].map((batch) => (
+                      <div key={batch.label} className="rounded-lg p-3"
+                        style={{ backgroundColor: `${batch.color}0C`, border: `1px solid ${batch.color}25` }}>
+                        <p className="font-mono text-xs font-bold mb-1" style={{ color: batch.color }}>{batch.label}</p>
+                        <p className="font-mono text-xs" style={{ color: offWhite }}>{batch.count}</p>
+                        <p className="font-mono text-xs" style={{ color: gray }}>{batch.desc}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
+
+          {/* Features */}
+          <div className="grid md:grid-cols-2 gap-5">
+            {[
+              { icon: Gauge, color: blue, title: "Automatic level detection", desc: "Each module ends with a scored exercise. The platform computes a readiness score per participant and assigns a level: Beginner, Intermediate, or Advanced." },
+              { icon: Users, color: green, title: "Smart batch formation", desc: "Based on detected levels, the coordinator gets a suggested batch assignment. Advanced managers tackle harder challenges — beginners get extra scaffolding." },
+              { icon: Code, color: purple, title: "Dust sandbox included", desc: "Module 4 is a live Dust walkthrough. Participants configure a first assistant before Day 1 — no one is blocked on the morning." },
+              { icon: BookOpen, color: accent, title: "EA retains the platform", desc: "After all sessions, the upskilling app stays with Europ Assistance. Use it for future cohorts, new hires, or ongoing AI skill development." },
+            ].map((item, i) => (
+              <FadeIn key={item.title} delay={i * 0.08}>
+                <div className="flex gap-4 items-start p-4 rounded-lg border border-dashed"
+                  style={{ borderColor: `${item.color}25`, backgroundColor: `${item.color}06` }}>
+                  <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                    style={{ backgroundColor: `${item.color}15` }}>
+                    <item.icon className="w-4 h-4" style={{ color: item.color }} />
+                  </div>
+                  <div>
+                    <p className="font-mono font-bold text-sm mb-1" style={{ color: offWhite }}>{item.title}</p>
+                    <p className="text-sm" style={{ color: gray }}>{item.desc}</p>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
           </div>
         </div>
       </section>
