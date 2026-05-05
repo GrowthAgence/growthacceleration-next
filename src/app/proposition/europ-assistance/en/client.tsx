@@ -758,58 +758,33 @@ export function EuropAssistanceProposalEN() {
             </motion.div>
           </FadeIn>
 
-          {/* Schedule — two columns */}
+          {/* What the pilot validates */}
           <FadeIn delay={0.1}>
             <p className="font-mono text-sm font-bold uppercase tracking-wider mb-6" style={{ color: accent }}>
-              &gt; pilot --schedule --full
+              &gt; pilot --validates
             </p>
           </FadeIn>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* MORNING */}
-            <div>
-              <FadeIn delay={0.15}>
-                <div className="flex items-center gap-3 mb-5 pb-3 border-b border-dashed" style={{ borderColor: `${blue}30` }}>
-                  <div className="w-2 h-8 rounded-full shrink-0" style={{ backgroundColor: blue }} />
+          <div className="grid md:grid-cols-2 gap-4">
+            {[
+              { color: blue,   title: "Dust workspace setup",    desc: "Data sources load correctly, agent tools work, permissions are properly scoped per team." },
+              { color: purple, title: "Challenge briefs",        desc: "Each brief is clear enough for a non-technical manager to start building within 30 minutes." },
+              { color: green,  title: "Upskilling app",          desc: "Module 4 (Dust sandbox) gives enough foundation — no one is blocked on Day 1." },
+              { color: accent, title: "Timing",                  desc: "Sprints are correctly sized. Coaches can cover all teams. Pitches fit in the slot." },
+              { color: amber,  title: "Agent output quality",    desc: "Agents produce genuinely useful outputs — not just technically functional ones." },
+              { color: gray,   title: "Level detection accuracy",desc: "Platform-assigned levels match real participant readiness — batch grouping is optimal." },
+            ].map((item, i) => (
+              <FadeIn key={item.title} delay={0.15 + i * 0.06}>
+                <div className="flex gap-3 items-start p-4 rounded-lg border border-dashed"
+                  style={{ borderColor: `${item.color}25`, backgroundColor: `${item.color}06` }}>
+                  <div className="w-2 h-2 rounded-full shrink-0 mt-2" style={{ backgroundColor: item.color }} />
                   <div>
-                    <p className="font-mono font-bold text-sm" style={{ color: blue }}>MORNING</p>
-                    <p className="font-mono text-xs" style={{ color: gray }}>Discover & Configure</p>
+                    <p className="font-mono font-bold text-sm mb-0.5" style={{ color: offWhite }}>{item.title}</p>
+                    <p className="text-sm" style={{ color: gray }}>{item.desc}</p>
                   </div>
-                  <span className="ml-auto font-mono text-xs shrink-0" style={{ color: gray }}>9:00 – 12:30</span>
                 </div>
               </FadeIn>
-              {[
-                { time: "9:00",  title: "Welcome + breakfast",                                  tag: "WELCOME", tagColor: gray   },
-                { time: "9:30",  title: "Keynote — AI & Dust: what agents can do for EA",       tag: "KEYNOTE", tagColor: accent },
-                { time: "10:00", title: "Live demo — trainer builds a Dust agent in real time", tag: "DEMO",    tagColor: blue   },
-                { time: "10:30", title: "Teams formed + brief + Dust workspace access",         tag: "SETUP",   tagColor: purple },
-                { time: "11:00", title: "Sprint 1 — first Dust assistant on EA data",           tag: "BUILD",   tagColor: blue   },
-                { time: "12:30", title: "Lunch + informal coaching per table",                  tag: "BREAK",   tagColor: gray   },
-              ].map((s, i) => <TimelineSlot key={s.time} {...s} delay={0.2 + i * 0.04} />)}
-            </div>
-
-            {/* AFTERNOON */}
-            <div className="border-t md:border-t-0 md:border-l border-dashed pt-8 md:pt-0 md:pl-8"
-              style={{ borderColor: `${accent}20` }}>
-              <FadeIn delay={0.3}>
-                <div className="flex items-center gap-3 mb-5 pb-3 border-b border-dashed" style={{ borderColor: `${accent}30` }}>
-                  <div className="w-2 h-8 rounded-full shrink-0" style={{ backgroundColor: accent }} />
-                  <div>
-                    <p className="font-mono font-bold text-sm" style={{ color: accent }}>AFTERNOON</p>
-                    <p className="font-mono text-xs" style={{ color: gray }}>Refine & Validate</p>
-                  </div>
-                  <span className="ml-auto font-mono text-xs shrink-0" style={{ color: gray }}>13:30 – 17:30</span>
-                </div>
-              </FadeIn>
-              {[
-                { time: "13:30", title: "Sprint 2 — better prompts, edge cases, structured outputs", tag: "BUILD",    tagColor: accent  },
-                { time: "15:00", title: "Snack + trainer visits each team (10 min)",                 tag: "COACHING", tagColor: gray    },
-                { time: "15:15", title: "Sprint final — polish + 5-min pitch prep",                  tag: "POLISH",   tagColor: purple  },
-                { time: "16:15", title: "Pitches — 5 min/team + trainer Q&A",                        tag: "PITCH",    tagColor: accent  },
-                { time: "17:00", title: "Pilot debrief — what to adjust before September",           tag: "RETRO",    tagColor: blue    },
-                { time: "17:30", title: "Closing drinks",                                            tag: "DONE",     tagColor: green   },
-              ].map((s, i) => <TimelineSlot key={s.time} {...s} delay={0.35 + i * 0.04} />)}
-            </div>
+            ))}
           </div>
 
           {/* PILOT DELIVERABLE — full width */}
