@@ -522,6 +522,8 @@ export function EuropAssistanceProposalEN() {
       {/* PILOT */}
       <section className="py-16 px-4" style={{ backgroundColor: charcoalLight }}>
         <div className="max-w-5xl mx-auto">
+
+          {/* Header */}
           <FadeIn>
             <SectionLabel>cat pilot.md</SectionLabel>
             <SectionTitle>June pilot — <span style={{ color: accent }}>before we scale.</span></SectionTitle>
@@ -530,61 +532,146 @@ export function EuropAssistanceProposalEN() {
             </p>
           </FadeIn>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            <FadeIn>
-              <Card style={{ borderColor: `${green}40` }}>
-                <div className="flex items-start justify-between mb-4">
-                  <CalendarDays className="w-8 h-8" style={{ color: green }} />
-                  <span className="px-3 py-1 rounded-full text-sm font-mono font-bold" style={{ backgroundColor: `${green}15`, color: green }}>JUNE 2026</span>
+          {/* Banner JUNE 2026 — full width with green glow */}
+          <FadeIn>
+            <motion.div
+              className="rounded-xl border-2 border-dashed p-6 mb-10 relative overflow-hidden"
+              style={{ borderColor: `${green}50`, backgroundColor: charcoal }}
+              animate={{ boxShadow: [`0 0 0px ${green}00`, `0 0 32px ${green}22`, `0 0 0px ${green}00`] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            >
+              {/* Subtle green glow bg */}
+              <div className="absolute inset-0 pointer-events-none"
+                style={{ background: `radial-gradient(ellipse at 10% 50%, ${green}0C 0%, transparent 60%)` }} />
+
+              <div className="relative z-10 flex flex-col md:flex-row md:items-center gap-6">
+                {/* Left: title + badge */}
+                <div className="flex items-center gap-4 md:w-64 shrink-0">
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center"
+                    style={{ backgroundColor: `${green}15`, border: `1px solid ${green}30` }}>
+                    <CalendarDays className="w-6 h-6" style={{ color: green }} />
+                  </div>
+                  <div>
+                    <span className="font-mono text-xs font-bold px-2 py-0.5 rounded-full"
+                      style={{ backgroundColor: `${green}18`, color: green }}>JUNE 2026</span>
+                    <p className="font-mono font-bold text-lg mt-1" style={{ color: offWhite }}>Dress Rehearsal</p>
+                  </div>
                 </div>
-                <h3 className="font-mono font-bold text-xl mb-4" style={{ color: offWhite }}>Dress Rehearsal</h3>
-                <div className="space-y-3 mb-6">
+
+                {/* Divider */}
+                <div className="hidden md:block w-px self-stretch" style={{ backgroundColor: `${green}20` }} />
+
+                {/* Right: 4 stats in a row */}
+                <div className="flex-1 grid grid-cols-2 md:grid-cols-4 gap-4">
                   {[
-                    { label: "Participants", value: "20 EA early adopters" },
-                    { label: "Format", value: "Full 1-day program" },
-                    { label: "Platform", value: "Dust — real config" },
-                    { label: "Deliverable", value: "Validation report + adjustments" },
-                  ].map((row) => (
-                    <div key={row.label} className="flex justify-between border-b border-dashed pb-2" style={{ borderColor: `${green}20` }}>
-                      <span className="font-mono text-sm" style={{ color: gray }}>{row.label}</span>
-                      <span className="font-mono text-sm" style={{ color: cream }}>{row.value}</span>
+                    { label: "Participants", value: "20 managers" },
+                    { label: "Format", value: "1 full day" },
+                    { label: "Platform", value: "Dust (real)" },
+                    { label: "Output", value: "Validation report" },
+                  ].map((item) => (
+                    <div key={item.label}>
+                      <p className="font-mono text-xs uppercase tracking-wider mb-1" style={{ color: gray }}>{item.label}</p>
+                      <p className="font-mono font-bold text-sm" style={{ color: offWhite }}>{item.value}</p>
                     </div>
                   ))}
                 </div>
-                <p className="text-sm" style={{ color: gray }}>If anything needs adjusting before September, we fix it in June — not in front of a live cohort.</p>
-              </Card>
-            </FadeIn>
-
-            <FadeIn delay={0.1}>
-              <div>
-                <p className="font-mono text-sm font-bold uppercase tracking-wider mb-4" style={{ color: accent }}>Pilot schedule</p>
-                <p className="font-mono text-xs font-bold mb-3" style={{ color: blue }}>MORNING — Discover & Configure</p>
-                {[
-                  { time: "9:00", title: "Welcome + breakfast", tag: "WELCOME", tagColor: gray },
-                  { time: "9:30", title: "Keynote — AI & Dust: what agents can do for EA", tag: "KEYNOTE", tagColor: accent },
-                  { time: "10:00", title: "Live demo — trainer builds a Dust agent in real time on EA data", tag: "DEMO", tagColor: blue },
-                  { time: "10:30", title: "Teams formed + challenge brief + Dust workspace access granted", tag: "SETUP", tagColor: purple },
-                  { time: "11:00", title: "Sprint 1 — configure first Dust assistant, test basic queries", tag: "BUILD", tagColor: blue },
-                  { time: "12:30", title: "Lunch + informal coaching per table", tag: "BREAK", tagColor: gray },
-                ].map((s, i) => <TimelineSlot key={s.time} {...s} delay={i * 0.04} />)}
-
-                <p className="font-mono text-xs font-bold mb-3 mt-2" style={{ color: accent }}>AFTERNOON — Refine & Validate</p>
-                {[
-                  { time: "13:30", title: "Sprint 2 — refine agent: better prompts, edge cases, structured outputs", tag: "BUILD", tagColor: accent },
-                  { time: "15:00", title: "Snack + trainer visits each team (10 min)", tag: "COACHING", tagColor: gray },
-                  { time: "15:15", title: "Sprint final — polish + 5-min pitch preparation", tag: "POLISH", tagColor: purple },
-                  { time: "16:15", title: "Pitches — 5 min/team + trainer Q&A", tag: "PITCH", tagColor: accent },
-                  { time: "17:00", title: "Pilot debrief — what worked, what to adjust before September", tag: "RETRO", tagColor: blue },
-                  { time: "17:30", title: "Closing drinks", tag: "DONE", tagColor: green },
-                ].map((s, i) => <TimelineSlot key={s.time} {...s} delay={i * 0.04} />)}
-
-                <div className="mt-4 p-4 rounded-lg border border-dashed" style={{ borderColor: `${green}30`, backgroundColor: `${green}06` }}>
-                  <p className="font-mono text-xs font-bold mb-2" style={{ color: green }}>PILOT DELIVERABLE</p>
-                  <p className="text-sm" style={{ color: gray }}>Full validation report: Dust config issues, brief clarity, timing adjustments, agent output quality. Everything fixed before the first real cohort.</p>
-                </div>
               </div>
-            </FadeIn>
+
+              <p className="relative z-10 font-mono text-xs mt-5 pt-4 border-t border-dashed" style={{ borderColor: `${green}20`, color: gray }}>
+                ↳ If anything needs adjusting before September, we fix it in June — not in front of a live cohort.
+              </p>
+            </motion.div>
+          </FadeIn>
+
+          {/* Schedule — two columns */}
+          <FadeIn delay={0.1}>
+            <p className="font-mono text-sm font-bold uppercase tracking-wider mb-6" style={{ color: accent }}>
+              &gt; pilot --schedule --full
+            </p>
+          </FadeIn>
+
+          <div className="grid md:grid-cols-2 gap-0 md:gap-8">
+            {/* MORNING */}
+            <div>
+              <FadeIn delay={0.15}>
+                <div className="flex items-center gap-3 mb-5 pb-3 border-b border-dashed" style={{ borderColor: `${blue}30` }}>
+                  <div className="w-2 h-8 rounded-full" style={{ backgroundColor: blue }} />
+                  <div>
+                    <p className="font-mono font-bold text-sm" style={{ color: blue }}>MORNING</p>
+                    <p className="font-mono text-xs" style={{ color: gray }}>Discover & Configure</p>
+                  </div>
+                  <span className="ml-auto font-mono text-xs" style={{ color: gray }}>9:00 – 12:30</span>
+                </div>
+              </FadeIn>
+              {[
+                { time: "9:00",  title: "Welcome + breakfast",                                    tag: "WELCOME", tagColor: gray    },
+                { time: "9:30",  title: "Keynote — AI & Dust: what agents can do for EA",          tag: "KEYNOTE", tagColor: accent  },
+                { time: "10:00", title: "Live demo — trainer builds a Dust agent in real time",    tag: "DEMO",    tagColor: blue    },
+                { time: "10:30", title: "Teams formed + brief + Dust workspace access",            tag: "SETUP",   tagColor: purple  },
+                { time: "11:00", title: "Sprint 1 — first Dust assistant on EA data",              tag: "BUILD",   tagColor: blue    },
+                { time: "12:30", title: "Lunch + informal coaching per table",                     tag: "BREAK",   tagColor: gray    },
+              ].map((s, i) => <TimelineSlot key={s.time} {...s} delay={0.2 + i * 0.04} />)}
+            </div>
+
+            {/* Vertical separator desktop */}
+            <div className="hidden md:flex justify-center">
+              <div className="w-px" style={{ backgroundColor: `${accent}18` }} />
+            </div>
+
+            {/* Mobile separator */}
+            <div className="md:hidden border-t border-dashed my-6" style={{ borderColor: `${accent}20` }} />
+
+            {/* AFTERNOON */}
+            <div>
+              <FadeIn delay={0.3}>
+                <div className="flex items-center gap-3 mb-5 pb-3 border-b border-dashed" style={{ borderColor: `${accent}30` }}>
+                  <div className="w-2 h-8 rounded-full" style={{ backgroundColor: accent }} />
+                  <div>
+                    <p className="font-mono font-bold text-sm" style={{ color: accent }}>AFTERNOON</p>
+                    <p className="font-mono text-xs" style={{ color: gray }}>Refine & Validate</p>
+                  </div>
+                  <span className="ml-auto font-mono text-xs" style={{ color: gray }}>13:30 – 17:30</span>
+                </div>
+              </FadeIn>
+              {[
+                { time: "13:30", title: "Sprint 2 — better prompts, edge cases, structured outputs", tag: "BUILD",    tagColor: accent  },
+                { time: "15:00", title: "Snack + trainer visits each team (10 min)",                 tag: "COACHING", tagColor: gray    },
+                { time: "15:15", title: "Sprint final — polish + 5-min pitch prep",                  tag: "POLISH",   tagColor: purple  },
+                { time: "16:15", title: "Pitches — 5 min/team + trainer Q&A",                        tag: "PITCH",    tagColor: accent  },
+                { time: "17:00", title: "Pilot debrief — what to adjust before September",           tag: "RETRO",    tagColor: blue    },
+                { time: "17:30", title: "Closing drinks",                                            tag: "DONE",     tagColor: green   },
+              ].map((s, i) => <TimelineSlot key={s.time} {...s} delay={0.35 + i * 0.04} />)}
+            </div>
           </div>
+
+          {/* PILOT DELIVERABLE — full width */}
+          <FadeIn delay={0.5}>
+            <div className="mt-10 rounded-xl p-6 flex flex-col md:flex-row md:items-center gap-5 relative overflow-hidden"
+              style={{ backgroundColor: `${accent}0D`, border: `2px dashed ${accent}50` }}>
+              <div className="absolute inset-0 pointer-events-none"
+                style={{ background: `radial-gradient(ellipse at 0% 50%, ${accent}10 0%, transparent 60%)` }} />
+              <div className="relative z-10 w-12 h-12 rounded-lg flex items-center justify-center shrink-0"
+                style={{ backgroundColor: `${accent}18`, border: `1px solid ${accent}35` }}>
+                <CheckCircle className="w-6 h-6" style={{ color: accent }} />
+              </div>
+              <div className="relative z-10 flex-1">
+                <p className="font-mono font-bold text-sm uppercase tracking-wider mb-1" style={{ color: accent }}>
+                  Pilot Deliverable
+                </p>
+                <p style={{ color: cream }}>
+                  Full validation report covering Dust configuration, brief clarity, timing, and agent output quality.{" "}
+                  <span className="font-mono" style={{ color: accent }}>Everything fixed before the first real cohort.</span>
+                </p>
+              </div>
+              <div className="relative z-10 shrink-0">
+                <span className="font-mono text-xs px-3 py-1.5 rounded-lg"
+                  style={{ backgroundColor: `${accent}15`, color: accent, border: `1px solid ${accent}30` }}>
+                  → September-ready
+                </span>
+              </div>
+            </div>
+          </FadeIn>
+
         </div>
       </section>
 
