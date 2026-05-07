@@ -4,7 +4,7 @@ import { motion, useInView } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import {
-  Car, Plane, Headphones, Network, MapPin, Coffee,
+  BarChart2, MessageSquare, UserCheck, FileSearch, MapPin, Coffee,
   UtensilsCrossed, CakeSlice, Users, Rocket, CheckCircle,
   Shield, GraduationCap, CalendarDays, Bot,
   Globe, Sparkles, Server, Layers, BookOpen, Gauge, Code,
@@ -114,13 +114,13 @@ function TypingText({ text, speed = 60, delay = 0 }: { text: string; speed?: num
 const TERM_LINES: Array<{ text: string; type: "cmd" | "ok" | "data" | "done" }> = [
   { text: "$ dust connect --workspace europ-assistance-training", type: "cmd" },
   { text: "[OK] Dust workspace connected", type: "ok" },
-  { text: "[OK] Data sources loaded: 4 domains available", type: "ok" },
+  { text: "[OK] Data sources loaded: 4 management challenges", type: "ok" },
   { text: "[OK] Agent builder: ready", type: "ok" },
-  { text: "$ dust agent create --domain auto --brief claims-accelerator", type: "cmd" },
-  { text: '{"agent":"Claims Accelerator","status":"configured","tools":["search","classify","draft"]}', type: "data" },
-  { text: "$ dust agent run --input fake-dossiers/AUT-2847.pdf", type: "cmd" },
-  { text: '{"priority":"HIGH","type":"breakdown","draft":"Bonjour M. Dupont, nous avons bien reçu..."}', type: "data" },
-  { text: "[DONE] Agent processed 47 dossiers — 12 auto-resolved — 0 errors", type: "done" },
+  { text: "$ dust agent create --domain decision --brief executive-brief", type: "cmd" },
+  { text: '{"agent":"Decision Brief","status":"configured","tools":["search","synthesize","structure"]}', type: "data" },
+  { text: "$ dust agent run --input reports/Q1-results-market-brief.pdf", type: "cmd" },
+  { text: '{"recommendation":"Accelerate digital claims","confidence":"HIGH","actions":["Reallocate budget Q3","Align Legal by May 30"]}', type: "data" },
+  { text: "[DONE] Decision brief generated — 3 prioritized actions — ready to share", type: "done" },
 ];
 
 function AnimatedTerminal() {
@@ -266,7 +266,7 @@ export function EuropAssistanceProposalEN() {
             {[
               { label: "20 managers / session", icon: Users },
               { label: "1 day intensive", icon: CalendarDays },
-              { label: "4 EA domains", icon: Layers },
+              { label: "4 management challenges", icon: Layers },
               { label: "Dust.tt platform", icon: Bot },
               { label: "Paris 1er", icon: MapPin },
             ].map(({ label, icon: Icon }, i) => (
@@ -292,7 +292,7 @@ export function EuropAssistanceProposalEN() {
             {[
               { value: 20, suffix: "", label: "Managers per session" },
               { value: 1, suffix: " day", label: "Per cohort" },
-              { value: 4, suffix: "", label: "Business domains" },
+              { value: 4, suffix: "", label: "Management challenges" },
               { value: 5, suffix: " sessions", label: "To reach 100 managers" },
             ].map((s, i) => (
               <FadeIn key={s.label} delay={i * 0.1} className="text-center">
@@ -344,17 +344,17 @@ export function EuropAssistanceProposalEN() {
         <div className="max-w-5xl mx-auto">
           <FadeIn>
             <SectionLabel>ls challenges/</SectionLabel>
-            <SectionTitle>4 domains. 4 <span style={{ color: accent }}>real challenges.</span></SectionTitle>
+            <SectionTitle>4 management challenges. <span style={{ color: accent }}>Built to matter.</span></SectionTitle>
             <p className="text-lg mb-10" style={{ color: cream }}>
-              Each session focuses on one domain. Teams attack a real EA problem — with realistic data, a clear brief, and a working agent to deliver by end of day.
+              Each session is pre-assigned a challenge based on the function mix of the group. Teams tackle a real management problem — the kind that costs executives hours every week.
             </p>
           </FadeIn>
           <div className="grid md:grid-cols-2 gap-6">
             {[
-              { icon: Car, color: blue, domain: "AUTO ASSISTANCE", challenge: "Claims Accelerator", desc: "Build an agent that triages, summarizes, and auto-responds to car assistance claims.", input: "50 fake dossiers", output: "Classification + priority + draft response" },
-              { icon: Plane, color: purple, domain: "TRAVEL & REPATRIATION", challenge: "Emergency Intelligence", desc: "International emergency management across 200 simulated countries. Coordinate medical providers in real time.", input: "200-country virtual network", output: "Recommended actions + provider contact" },
-              { icon: Headphones, color: green, domain: "HEALTH & TELEMEDICINE", challenge: "Care Coordinator", desc: "Triage medical requests, match patients with the right remote doctor, and track consultation outcomes.", input: "500 fake patient requests + doctor network", output: "Triage score + doctor match + follow-up plan" },
-              { icon: Network, color: amber, domain: "PROVIDER COORDINATION", challenge: "Network Builder", desc: "Find and contact the right providers (doctors, mechanics, hotels) by geolocation and urgency level.", input: "12,400 fake partners database", output: "Optimized match + automated outreach" },
+              { icon: BarChart2, color: blue, domain: "DECISION INTELLIGENCE", challenge: "Decision Brief", desc: "Build an agent that reads multiple reports and produces a structured 1-page decision memo: situation, options, recommendation.", input: "5 synthetic EA documents (Q1 results, market brief, regulatory update)", output: "Decision memo + 3 prioritized action items" },
+              { icon: MessageSquare, color: purple, domain: "MEETING INTELLIGENCE", challenge: "Meeting Zero", desc: "Turn meeting notes into structured minutes, a decision log, and a ready-to-send follow-up email.", input: "2 synthetic meeting transcripts (leadership + project review)", output: "Minutes + decision log + draft follow-up email" },
+              { icon: UserCheck, color: green, domain: "PEOPLE INTELLIGENCE", challenge: "Manager Copilot", desc: "Build an agent connected to HR policies that drafts performance reviews, 1:1 talking points, and 30-60-90 development plans.", input: "Synthetic employee profiles + performance data + HR policy docs", output: "Performance review draft + 1:1 agenda + development plan" },
+              { icon: FileSearch, color: amber, domain: "CONTRACT & RISK", challenge: "Risk Radar", desc: "Analyze vendor proposals against internal policy, flag risks, and produce a comparison matrix with a recommended negotiation position.", input: "3 synthetic vendor proposals + procurement policy doc", output: "Comparison matrix + risk flags + negotiation position" },
             ].map((item, i) => (
               <FadeIn key={item.domain} delay={i * 0.1}>
                 <div style={{ perspective: "1000px" }}>
@@ -482,14 +482,14 @@ export function EuropAssistanceProposalEN() {
                 <p className="font-mono text-xs uppercase tracking-wider mb-3" style={{ color: gray }}>Participants · Level detection</p>
                 <div className="space-y-2">
                   {[
-                    { name: "M. Dupont", dept: "Auto Claims",    pct: 94, level: "Advanced",     lc: green  },
-                    { name: "S. Laurent", dept: "Travel Ops",    pct: 88, level: "Advanced",     lc: green  },
-                    { name: "A. Martin", dept: "HR",             pct: 76, level: "Advanced",     lc: green  },
-                    { name: "C. Bernard", dept: "Customer Svc",  pct: 61, level: "Intermediate", lc: blue   },
-                    { name: "P. Moreau", dept: "Finance",        pct: 55, level: "Intermediate", lc: blue   },
-                    { name: "L. Thomas", dept: "IT",             pct: 48, level: "Intermediate", lc: blue   },
-                    { name: "E. Petit", dept: "Legal",           pct: 32, level: "Beginner",     lc: amber  },
-                    { name: "F. Simon", dept: "Operations",      pct: 18, level: "Beginner",     lc: amber  },
+                    { name: "M. Dupont",  dept: "Finance",      pct: 94, level: "Advanced",     lc: green  },
+                    { name: "S. Laurent", dept: "Strategy",     pct: 88, level: "Advanced",     lc: green  },
+                    { name: "A. Martin",  dept: "HR",           pct: 76, level: "Advanced",     lc: green  },
+                    { name: "C. Bernard", dept: "Operations",   pct: 61, level: "Intermediate", lc: blue   },
+                    { name: "P. Moreau",  dept: "Procurement",  pct: 55, level: "Intermediate", lc: blue   },
+                    { name: "L. Thomas",  dept: "IT",           pct: 48, level: "Intermediate", lc: blue   },
+                    { name: "E. Petit",   dept: "Legal",        pct: 32, level: "Beginner",     lc: amber  },
+                    { name: "F. Simon",   dept: "Business Line",pct: 18, level: "Beginner",     lc: amber  },
                   ].map((p, i) => (
                     <motion.div key={p.name}
                       initial={{ opacity: 0, x: -8 }}
@@ -658,13 +658,13 @@ export function EuropAssistanceProposalEN() {
                 num: "01", time: "10:00 – 12:30", name: "First working agent",
                 color: blue, simple: false,
                 do: ["Connect Dust to EA data source", "Configure your first assistant", "Define instructions + test first queries"],
-                produce: "A Dust agent that reads, searches, and retrieves EA dossiers — live, in your workspace.",
+                produce: "A Dust agent that reads, searches, and synthesizes EA management documents — live, in your workspace.",
               },
               {
                 num: "02", time: "13:30 – 15:15", name: "Make it smart",
                 color: accent, simple: false,
                 do: ["Refine prompts for precision and reliability", "Handle edge cases and unexpected inputs", "Structure outputs in a usable format"],
-                produce: "An agent that classifies, prioritizes, and drafts responses automatically — without human intervention.",
+                produce: "An agent that structures, synthesizes, and produces decision-ready outputs automatically.",
               },
               {
                 num: "03", time: "15:15 – 16:15", name: "Ship it",
@@ -908,7 +908,7 @@ export function EuropAssistanceProposalEN() {
           <div className="grid md:grid-cols-2 gap-6 items-stretch">
             {[
               { icon: Users, color: blue, title: "100 trained AI builders", desc: "Every manager builds a working agent — not a demo, not a slide. Something real they can use the next day." },
-              { icon: Layers, color: purple, title: "4 domains covered", desc: "Auto, Travel, Health, Coordination — each session produces tested agents on a specific EA business challenge." },
+              { icon: Layers, color: purple, title: "4 management challenges covered", desc: "Decision-making, meetings, people management, contracts — each session produces tested agents on the challenges that cost managers the most time." },
               { icon: BookOpen, color: accent, title: "AI Solutions Playbook", desc: "After all sessions: best prompts, best agent designs, tool recommendations, and a deployment plan." },
               { icon: Sparkles, color: green, title: "Upskilling app (yours to keep)", desc: "The interactive pre-training app stays with Europ Assistance for future cohorts and new employee onboarding." },
             ].map((item, i) => (
