@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
-import { Lock, Loader2, Users, Download, RefreshCw, Trash2, Mail, Phone } from "lucide-react";
+import { Lock, Loader2, Users, Download, RefreshCw, Trash2, Mail, Phone, MessageSquare, ChevronDown, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface Lead {
@@ -17,13 +17,37 @@ interface Lead {
   created_at: string;
 }
 
+interface ChatMessage {
+  role: "user" | "assistant";
+  content: string;
+}
+
+interface Conversation {
+  id: string;
+  messages: ChatMessage[];
+  created_at: string;
+  updated_at: string;
+}
+
 export function AdminDashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [leads, setLeads] = useState<Lead[]>([]);
+  const [conversations, setConversations] = useState<Conversation[]>([]);
+  const [expandedConversation, setExpandedConversation] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<"leads" | "chats">("leads");
   const [isLoading, setIsLoading] = useState(false);
   const [stats, setStats] = useState({ total: 0, today: 0, thisWeek: 0 });
+
+  // Le mot de passe est conserve en sessionStorage et envoye en header
+  // sur chaque requete admin (les endpoints le verifient cote serveur).
+  const getStoredPassword = () =>
+    typeof window !== "undefined" ? sessionStorage.getItem("admin_pw") ?? "" : "";
+
+  const authHeaders = (): Record<string, string> => ({
+    "x-admin-password": getStoredPassword(),
+  });
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,18 +60,29 @@ export function AdminDashboard() {
     });
 
     if (response.ok) {
+      sessionStorage.setItem("admin_pw", password);
       setIsAuthenticated(true);
-      localStorage.setItem("admin_auth", "true");
       fetchLeads();
+      fetchConversations();
     } else {
       setError("Mot de passe incorrect");
+    }
+  };
+
+  const fetchConversations = async () => {
+    try {
+      const response = await fetch("/api/conversations", { headers: authHeaders() });
+      const data = await response.json();
+      setConversations(data.conversations || []);
+    } catch (err) {
+      console.error("Error fetching conversations:", err);
     }
   };
 
   const fetchLeads = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("/api/leads");
+      const response = await fetch("/api/leads", { headers: authHeaders() });
       const data = await response.json();
       setLeads(data.leads || []);
 
@@ -78,7 +113,7 @@ export function AdminDashboard() {
   const deleteLead = async (id: number) => {
     if (!confirm("Supprimer ce lead ?")) return;
 
-    await fetch(`/api/leads/${id}`, { method: "DELETE" });
+    await fetch(`/api/leads/${id}`, { method: "DELETE", headers: authHeaders() });
     fetchLeads();
   };
 
@@ -103,11 +138,15 @@ export function AdminDashboard() {
   };
 
   useEffect(() => {
-    const auth = localStorage.getItem("admin_auth");
-    if (auth === "true") {
+    // Migration : on ne fait plus confiance au flag localStorage seul —
+    // il faut le mot de passe en sessionStorage pour appeler les endpoints.
+    localStorage.removeItem("admin_auth");
+    if (sessionStorage.getItem("admin_pw")) {
       setIsAuthenticated(true);
       fetchLeads();
+      fetchConversations();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!isAuthenticated) {
@@ -151,21 +190,130 @@ export function AdminDashboard() {
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-mono font-bold text-[#FAFAFA]">Leads</h1>
-            <p className="text-[#A9A9A9]">Gestion des contacts</p>
+            <h1 className="text-3xl font-mono font-bold text-[#FAFAFA]">
+              {activeTab === "leads" ? "Leads" : "Conversations"}
+            </h1>
+            <p className="text-[#A9A9A9]">
+              {activeTab === "leads" ? "Gestion des contacts" : "Historique du chatbot"}
+            </p>
           </div>
           <div className="flex gap-2">
-            <Button variant="outline" size="sm" onClick={fetchLeads} disabled={isLoading}>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => {
+                fetchLeads();
+                fetchConversations();
+              }}
+              disabled={isLoading}
+            >
               <RefreshCw className={`w-4 h-4 mr-2 ${isLoading ? "animate-spin" : ""}`} />
               Actualiser
             </Button>
-            <Button variant="outline" size="sm" onClick={exportCSV}>
-              <Download className="w-4 h-4 mr-2" />
-              Export CSV
-            </Button>
+            {activeTab === "leads" && (
+              <Button variant="outline" size="sm" onClick={exportCSV}>
+                <Download className="w-4 h-4 mr-2" />
+                Export CSV
+              </Button>
+            )}
           </div>
         </div>
 
+        {/* Tabs */}
+        <div className="flex gap-2 mb-8">
+          <button
+            onClick={() => setActiveTab("leads")}
+            className={`flex items-center gap-2 px-4 py-2 rounded font-mono text-sm cursor-pointer transition-colors ${
+              activeTab === "leads"
+                ? "bg-[#E07A5F] text-[#1E1E1E]"
+                : "bg-[#2D2A2E] text-[#A9A9A9] hover:text-[#F4F1DE]"
+            }`}
+          >
+            <Users className="w-4 h-4" />
+            Leads ({leads.length})
+          </button>
+          <button
+            onClick={() => setActiveTab("chats")}
+            className={`flex items-center gap-2 px-4 py-2 rounded font-mono text-sm cursor-pointer transition-colors ${
+              activeTab === "chats"
+                ? "bg-[#E07A5F] text-[#1E1E1E]"
+                : "bg-[#2D2A2E] text-[#A9A9A9] hover:text-[#F4F1DE]"
+            }`}
+          >
+            <MessageSquare className="w-4 h-4" />
+            Conversations ({conversations.length})
+          </button>
+        </div>
+
+        {activeTab === "chats" ? (
+          conversations.length === 0 ? (
+            <div className="text-center py-12 bg-[#2D2A2E]/50 rounded-lg border border-[#FAFAFA]/10">
+              <MessageSquare className="w-12 h-12 text-[#A9A9A9] mx-auto mb-4" />
+              <p className="text-[#A9A9A9]">Aucune conversation pour le moment</p>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              {conversations.map((conv) => {
+                const isExpanded = expandedConversation === conv.id;
+                const firstUserMessage =
+                  conv.messages.find((m) => m.role === "user")?.content ?? "—";
+                return (
+                  <div
+                    key={conv.id}
+                    className="bg-[#2D2A2E] border border-[#FAFAFA]/10 rounded-lg overflow-hidden"
+                  >
+                    <button
+                      onClick={() =>
+                        setExpandedConversation(isExpanded ? null : conv.id)
+                      }
+                      className="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-[#FAFAFA]/5 cursor-pointer"
+                    >
+                      {isExpanded ? (
+                        <ChevronDown className="w-4 h-4 text-[#E07A5F] flex-shrink-0" />
+                      ) : (
+                        <ChevronRight className="w-4 h-4 text-[#A9A9A9] flex-shrink-0" />
+                      )}
+                      <span className="text-[#F4F1DE] text-sm flex-1 truncate">
+                        {firstUserMessage}
+                      </span>
+                      <span className="text-[#A9A9A9] text-xs font-mono flex-shrink-0">
+                        {conv.messages.length} msg
+                      </span>
+                      <span className="text-[#A9A9A9] text-xs flex-shrink-0">
+                        {new Date(conv.updated_at).toLocaleDateString("fr-FR", {
+                          day: "numeric",
+                          month: "short",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </span>
+                    </button>
+                    {isExpanded && (
+                      <div className="border-t border-[#FAFAFA]/10 p-4 space-y-3 font-mono text-sm">
+                        {conv.messages.map((m, i) => (
+                          <div key={i} className="leading-relaxed whitespace-pre-wrap">
+                            {m.role === "user" ? (
+                              <p className="text-[#A9A9A9]">
+                                <span className="text-[#98C379]">$ </span>
+                                {m.content}
+                              </p>
+                            ) : (
+                              <p className="text-[#F4F1DE]">
+                                <span className="text-[#E07A5F]">➜ </span>
+                                {m.content}
+                              </p>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )
+        ) : (
+          <>
         {/* Stats */}
         <div className="grid grid-cols-3 gap-4 mb-8">
           <div className="bg-[#2D2A2E] border border-[#FAFAFA]/10 rounded-lg p-4">
@@ -271,6 +419,8 @@ export function AdminDashboard() {
               </tbody>
             </table>
           </div>
+        )}
+          </>
         )}
       </div>
     </div>

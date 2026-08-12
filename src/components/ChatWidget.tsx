@@ -9,6 +9,23 @@ const WELCOME_MESSAGE =
   "Bonjour ! Je suis l'assistant IA de Growth Acceleration — construit avec Claude, comme ce qu'on enseigne ici. Vous cherchez quelle formation ?";
 
 const CALENDLY_URL = "https://calendly.com/fredericorlicki/15min";
+const STORAGE_ID_KEY = "ga-chat-id";
+const STORAGE_MESSAGES_KEY = "ga-chat-messages";
+
+// Identifiant de conversation stable pour la session de navigation :
+// permet la persistance cote serveur et la reprise apres navigation.
+function getConversationId(): string {
+  try {
+    let id = sessionStorage.getItem(STORAGE_ID_KEY);
+    if (!id) {
+      id = crypto.randomUUID();
+      sessionStorage.setItem(STORAGE_ID_KEY, id);
+    }
+    return id;
+  } catch {
+    return crypto.randomUUID();
+  }
+}
 
 function trackChatEvent(action: string) {
   if (typeof window !== "undefined" && typeof window.gtag === "function") {
@@ -54,6 +71,25 @@ export function ChatWidget() {
     return () => window.removeEventListener("open-ga-chat", openChat);
   }, []);
 
+  // Restaure la conversation de la session apres une navigation
+  useEffect(() => {
+    try {
+      const saved = sessionStorage.getItem(STORAGE_MESSAGES_KEY);
+      if (saved) setMessages(JSON.parse(saved));
+    } catch {
+      // sessionStorage indisponible : conversation ephemere
+    }
+  }, []);
+
+  useEffect(() => {
+    if (messages.length === 0) return;
+    try {
+      sessionStorage.setItem(STORAGE_MESSAGES_KEY, JSON.stringify(messages));
+    } catch {
+      // best-effort
+    }
+  }, [messages]);
+
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
@@ -79,7 +115,10 @@ export function ChatWidget() {
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: history }),
+        body: JSON.stringify({
+          messages: history,
+          conversationId: getConversationId(),
+        }),
       });
 
       if (!response.ok || !response.body) {

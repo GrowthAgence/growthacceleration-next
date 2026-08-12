@@ -239,6 +239,12 @@ src/
   - Bouton « Poser une question » du FinalCTA ouvre le widget via CustomEvent `open-ga-chat`
   - Tawk.to retiré (script layout + tawk.d.ts supprimés)
   - `ANTHROPIC_API_KEY` ajoutée sur Vercel (Production) — clé partagée avec Hermes VPS, prévoir une clé dédiée
+- **Historique + notifications du chatbot** (même jour) :
+  - Table Neon `chat_conversations` (id uuid, messages jsonb, created/updated_at) — créée sur les DB prod ET dev
+  - `/api/chat` persiste chaque échange (upsert par conversationId généré côté client, sessionStorage `ga-chat-id`) ; **email Resend à fredericorlicki@gmail.com à la première question** de chaque conversation
+  - `/api/conversations` (GET, admin) + onglet « Conversations » dans /admin avec transcripts dépliables
+  - Le widget restaure la conversation après navigation (sessionStorage `ga-chat-messages`)
+- **🔒 Faille corrigée** : `GET /api/leads` et `DELETE /api/leads/[id]` étaient publics (fuite emails/téléphones + suppression par n'importe qui). Désormais protégés par header `x-admin-password` (helper `src/lib/admin-auth.ts`), vérifié contre `ADMIN_PASSWORD`. Fallback mot de passe hardcodé `growth2024` retiré de /api/admin/auth. L'admin garde le mot de passe en sessionStorage et l'envoie sur chaque requête.
 
 ### 2026-08-12
 - 5e formation : **The Zero Employee Company avec Hermes** (`/zero-employee-company`)
