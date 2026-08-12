@@ -1,13 +1,13 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Terminal, Cpu, Search, Zap, CheckCircle, Users, MapPin, Clock, Euro } from "lucide-react";
+import { Terminal, Cpu, Search, Zap, Bot, CheckCircle, Users, MapPin, Clock, Euro } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Instructor } from "@/components/Instructor";
 
 export const metadata: Metadata = {
-  title: "4 Formations IA a Paris - Programme complet",
+  title: "5 Formations IA a Paris - Programme complet",
   description:
-    "4 formations IA en presentiel a Paris. Claude Code, GEO, Agents IA, N8N. 8h par formation, 900 EUR TTC. Entrepreneurs et managers.",
+    "5 formations IA en presentiel a Paris. Claude Code, GEO, Agents IA, N8N, Zero Employee Company. 8h par formation, des 350 EUR TTC. Entrepreneurs et managers.",
   keywords: [
     "formation intelligence artificielle",
     "formation IA",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     canonical: "/formation-intelligence-artificielle",
   },
   openGraph: {
-    title: "4 Formations IA a Paris | Growth Acceleration",
+    title: "5 Formations IA a Paris | Growth Acceleration",
     description: "Maitrisez l IA generative en 1 journee. Formation professionnelle pour entrepreneurs et managers.",
   },
 };
@@ -114,6 +114,16 @@ const formations = [
     description: "Maitrisez N8N et connectez vos outils metier avec des workflows IA intelligents.",
     icon: Zap,
     benefits: ["Automatiser sans coder", "Connecter vos outils", "Integrer l IA dans vos workflows"],
+  },
+  {
+    slug: "zero-employee-company",
+    title: "The Zero Employee Company",
+    subtitle: "Entreprise geree par des agents IA",
+    description: "Deleguez veille, contenu, prospection et admin a des agents IA orchestres avec Hermes. Repartez avec une instance operationnelle et un workflow en production.",
+    icon: Bot,
+    benefits: ["Installer et configurer Hermes", "Deleguer l operationnel a des agents", "Mettre un workflow en production"],
+    promoPrice: "350 EUR TTC",
+    oldPrice: "900 EUR",
   },
 ];
 
@@ -221,11 +231,12 @@ export default function FormationIAPage() {
       <section id="formations" className="py-16 px-4">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl font-mono font-bold text-[#FAFAFA] mb-4 text-center">
-            Nos 4 formations en intelligence artificielle
+            Nos 5 formations en intelligence artificielle
           </h2>
           <p className="text-[#A9A9A9] text-center mb-12 max-w-2xl mx-auto">
             Chaque formation est independante et peut etre suivie separement.
-            Toutes sont en presentiel a Paris, durent 8 heures, et coutent 900 EUR TTC.
+            Toutes sont en presentiel a Paris, durent 8 heures, et coutent 900 EUR TTC
+            — sauf The Zero Employee Company, en offre de lancement a 350 EUR TTC.
           </p>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -258,7 +269,14 @@ export default function FormationIAPage() {
                   </ul>
 
                   <div className="flex items-center justify-between">
-                    <span className="text-[#FAFAFA] font-mono font-bold">900 EUR TTC</span>
+                    {f.promoPrice ? (
+                      <span className="font-mono font-bold">
+                        <span className="text-[#A9A9A9] line-through text-sm mr-2">{f.oldPrice}</span>
+                        <span className="text-[#E07A5F]">{f.promoPrice}</span>
+                      </span>
+                    ) : (
+                      <span className="text-[#FAFAFA] font-mono font-bold">900 EUR TTC</span>
+                    )}
                     <Button variant="outline" size="sm" asChild>
                       <Link href={`/${f.slug}`}>En savoir plus</Link>
                     </Button>

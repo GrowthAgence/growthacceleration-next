@@ -29,6 +29,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date("2026-02-24"),
     },
     {
+      url: `${baseUrl}/zero-employee-company`,
+      lastModified: new Date("2026-08-12"),
+    },
+    {
       url: `${baseUrl}/ressources`,
       lastModified: new Date("2026-02-24"),
     },

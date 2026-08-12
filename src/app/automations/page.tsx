@@ -332,7 +332,7 @@ export default function AutomationsPage() {
           <h2 className="text-xl font-mono font-bold text-[#FAFAFA] mb-6 text-center">
             Nos autres formations
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <Link href="/claude-code" className="bg-[#2D2A2E]/50 border border-[#FAFAFA]/10 rounded-lg p-4 hover:border-[#E07A5F]/50 transition-all">
               <p className="text-[#FAFAFA] font-mono font-bold mb-1">Claude Code</p>
               <p className="text-[#A9A9A9] text-sm">De l idee au MVP en une journee</p>
@@ -344,6 +344,10 @@ export default function AutomationsPage() {
             <Link href="/agents-ai" className="bg-[#2D2A2E]/50 border border-[#FAFAFA]/10 rounded-lg p-4 hover:border-[#E07A5F]/50 transition-all">
               <p className="text-[#FAFAFA] font-mono font-bold mb-1">Agents.AI</p>
               <p className="text-[#A9A9A9] text-sm">Concevez et deployez des agents IA autonomes</p>
+            </Link>
+            <Link href="/zero-employee-company" className="bg-[#2D2A2E]/50 border border-[#FAFAFA]/10 rounded-lg p-4 hover:border-[#E07A5F]/50 transition-all">
+              <p className="text-[#FAFAFA] font-mono font-bold mb-1">Zero Employee Company</p>
+              <p className="text-[#A9A9A9] text-sm">Votre entreprise geree par des agents IA — 350 EUR</p>
             </Link>
           </div>
         </div>

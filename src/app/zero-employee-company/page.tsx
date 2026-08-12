@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Clock, Users, MapPin, ArrowRight, Cpu, Bot, Workflow } from "lucide-react";
+import { Clock, Users, MapPin, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   HeroContent,
@@ -13,28 +13,28 @@ import {
   ReservationCard,
   CTAButton,
 } from "../claude-code/client";
-import { AgentsTerminal } from "./client";
+import { HermesTerminal } from "./client";
 import { Instructor } from "@/components/Instructor";
 
 export const metadata: Metadata = {
-  title: "Formation Agents.AI - Future of Work",
+  title: "Formation The Zero Employee Company - Hermes",
   description:
-    "Concevez et deployez des agents IA autonomes avec MCP. 8h de formation pratique a Paris, 900 EUR TTC. Pour CTOs et PMs.",
+    "Construisez votre entreprise zero employe avec des agents IA. 8h de formation pratique a Paris, 350 EUR TTC au lieu de 900. Pour entrepreneurs et independants.",
   keywords: [
-    "formation agents IA",
-    "agents autonomes",
-    "automatisation IA",
-    "MCP",
-    "Model Context Protocol",
-    "future of work",
+    "zero employee company",
+    "entreprise zero employe",
+    "agents IA",
+    "Hermes agent",
+    "automatisation entreprise",
+    "solopreneur IA",
     "Paris",
   ],
   alternates: {
-    canonical: "/agents-ai",
+    canonical: "/zero-employee-company",
   },
   openGraph: {
-    title: "Formation Agents IA - Deployer des agents autonomes | Growth Acceleration",
-    description: "Concevez et deployez des agents IA autonomes.",
+    title: "Formation The Zero Employee Company avec Hermes | Growth Acceleration",
+    description: "Construisez votre entreprise zero employe avec des agents IA. Offre de lancement 350 EUR TTC.",
     type: "website",
   },
 };
@@ -42,31 +42,31 @@ export const metadata: Metadata = {
 const courseSchema = {
   "@context": "https://schema.org",
   "@type": "Course",
-  name: "Formation Agents.AI - Future of Work",
+  name: "Formation The Zero Employee Company avec Hermes",
   description:
-    "Formation pratique de 8 heures pour concevoir, piloter et deployer des agents IA autonomes dans un contexte professionnel. Apprenez a creer des systemes qui executent des taches complexes de maniere autonome.",
+    "Formation pratique de 8 heures pour construire une entreprise zero employe : deleguer la veille, le contenu, la prospection et l administratif a des agents IA orchestres avec Hermes. Chaque participant repart avec une instance operationnelle et un workflow en production.",
   provider: {
     "@type": "EducationalOrganization",
     name: "Growth Acceleration",
     url: "https://www.growth-acceleration.fr",
   },
-  courseCode: "AGENTS-01",
-  educationalLevel: "Intermediaire a Avance",
+  courseCode: "ZEC-01",
+  educationalLevel: "Intermediaire",
   teaches: [
-    "Comprendre le fonctionnement des agents IA",
-    "Identifier les cas d usage en entreprise",
-    "Concevoir des workflows multi-agents",
-    "Utiliser MCP (Model Context Protocol)",
-    "Deployer et monitorer des agents en production",
+    "Comprendre la vision zero employe et le panorama des agents IA",
+    "Installer et configurer Hermes (cle API, gateway Telegram, memoire)",
+    "Creer des skills, une memoire durable et des taches planifiees (cron)",
+    "Deleguer a des sous-agents et orchestrer Hermes avec Claude Code",
+    "Mettre un workflow reel de son business en production avec garde-fous",
   ],
   audience: {
     "@type": "Audience",
-    audienceType: "Product Managers, Responsables Innovation, CTOs, Entrepreneurs tech",
+    audienceType: "Entrepreneurs, independants, solopreneurs",
   },
   inLanguage: "fr",
   offers: {
     "@type": "Offer",
-    price: "900",
+    price: "350",
     priceCurrency: "EUR",
     availability: "https://schema.org/InStock",
   },
@@ -107,7 +107,7 @@ const instructorSchema = {
   image: "https://www.growth-acceleration.fr/fred.jpg",
   description:
     "Developpeur full stack, ex Le Wagon #0001. 10 ans d experience en growth marketing et tech. Createur de 3 SaaS en production avec Claude API (VideoTools, Jobbot.io, Bigmails.AI). Utilisateur de Claude Code depuis le jour 1 de la beta. Formateur de plus de 400 professionnels a l IA.",
-  knowsAbout: ["Agents IA", "MCP", "Model Context Protocol", "Claude API", "automatisation", "LLM", "OpenClaw"],
+  knowsAbout: ["Agents IA", "Hermes", "Claude Code", "automatisation", "LLM", "zero employee company", "MCP"],
 };
 
 const breadcrumbSchema = {
@@ -123,8 +123,8 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       position: 2,
-      name: "Formation Agents IA",
-      item: "https://www.growth-acceleration.fr/agents-ai",
+      name: "Formation The Zero Employee Company",
+      item: "https://www.growth-acceleration.fr/zero-employee-company",
     },
   ],
 };
@@ -132,13 +132,13 @@ const breadcrumbSchema = {
 const programItems = [
   {
     time: "09h00 - 10h30",
-    title: "Anatomie d un agent IA",
-    content: "Qu est-ce qu un agent ? Boucle perception-action, memoire, outils. Difference avec un chatbot.",
+    title: "La vision zero employe",
+    content: "Pourquoi c est possible maintenant. Panorama des agents IA (Hermes, Claude Code, MCP). Demo live.",
   },
   {
     time: "10h30 - 12h30",
-    title: "Cas d usage entreprise",
-    content: "Support client, analyse de documents, veille concurrentielle, automatisation RH. Etudes de cas.",
+    title: "Installer et configurer Hermes",
+    content: "Cle API, choix du modele, gateway Telegram, memoire. Atelier : chacun repart avec une instance qui tourne.",
   },
   {
     time: "12h30 - 13h30",
@@ -147,32 +147,31 @@ const programItems = [
   },
   {
     time: "13h30 - 15h30",
-    title: "Construire son premier agent",
-    content: "Atelier pratique : creer un agent avec outils MCP. Integration avec vos systemes.",
+    title: "Les briques de l autonomie",
+    content: "Skills (procedures), memoire durable, cron (planification), delegation a des sous-agents.",
   },
   {
     time: "15h30 - 17h00",
-    title: "Production et gouvernance",
-    content: "Deploiement, monitoring, securite, limites. Construire une roadmap agents pour votre entreprise.",
+    title: "Orchestrer et automatiser",
+    content: "Hermes + Claude Code, validation humaine, garde-fous. Mini-projet : automatiser un workflow reel de votre business.",
   },
 ];
 
 const forYou = [
-  "Vous pilotez l innovation dans votre entreprise",
-  "Vous etes CTO ou responsable technique",
-  "Vous voulez comprendre les agents au-dela du buzz",
-  "Vous avez des processus a automatiser intelligemment",
-  "Vous utilisez deja des outils IA generatifs",
+  "Vous etes entrepreneur ou independant et voulez deleguer l operationnel",
+  "Vous voulez une entreprise qui tourne sans embauche",
+  "Vous utilisez deja l IA mais voulez passer de l outil a l agent",
+  "Vous avez des taches recurrentes a automatiser (veille, contenu, admin)",
 ];
 
 const notForYou = [
-  "Vous debutez completement avec l IA",
-  "Vous cherchez un cours theorique academique",
-  "Vous n avez pas de cas d usage concret",
-  "Vous voulez juste faire du chatbot basique",
+  "Vous debutez completement avec l IA generative",
+  "Vous cherchez un cours theorique sur les LLM",
+  "Vous voulez du 100 % automatique sans validation humaine",
+  "Vous cherchez juste un chatbot basique",
 ];
 
-export default function AgentsAIPage() {
+export default function ZeroEmployeeCompanyPage() {
   return (
     <>
       <script
@@ -191,14 +190,13 @@ export default function AgentsAIPage() {
       {/* RESUME LLM-FRIENDLY */}
       <section className="bg-[#2D2A2E] border-b border-[#E07A5F]/20">
         <div className="max-w-4xl mx-auto px-4 py-6">
-          <p className="text-[#A9A9A9] text-sm font-mono mb-2">&gt; cat agents_formation.txt</p>
+          <p className="text-[#A9A9A9] text-sm font-mono mb-2">&gt; cat zero_employee_formation.txt</p>
           <p className="text-[#F4F1DE] leading-relaxed">
-            <strong>Formation Agents.AI</strong> est une formation de 8 heures par Growth Acceleration
-            pour apprendre a concevoir et deployer des agents IA autonomes en entreprise.
-            Un agent IA est un systeme capable d executer des taches complexes en plusieurs etapes, en utilisant des outils et en prenant des decisions.
-            Prix : 900 EUR TTC. Lieu : Paris 1er. Public : responsables innovation, CTOs, product managers tech.
-            Selon Gartner, 33% des applications d entreprise integreront des agents IA d ici 2028.
-            Le Model Context Protocol (MCP) d Anthropic est couvert en detail dans la formation.
+            <strong>Formation The Zero Employee Company avec Hermes</strong> est une formation de 8 heures par Growth Acceleration
+            pour construire une entreprise zero employe : deleguer la veille, le contenu, la prospection et l administratif
+            a des agents IA, et orchestrer le tout avec Hermes (Nous Research).
+            Chaque participant repart avec une instance Hermes operationnelle et un workflow en production dans son business.
+            Prix : 350 EUR TTC en offre de lancement (au lieu de 900 EUR). Lieu : Paris 1er. Public : entrepreneurs et independants.
             Growth Acceleration est note 5/5 sur Google (29 avis).
           </p>
         </div>
@@ -211,18 +209,20 @@ export default function AgentsAIPage() {
             <div className="inline-flex items-center space-x-2 bg-[#E07A5F]/10 px-3 py-1 rounded-full border border-[#E07A5F]/30">
               <span className="w-2 h-2 rounded-full bg-[#E07A5F] animate-pulse" />
               <span className="text-[#E07A5F] text-xs font-mono uppercase tracking-wider">
-                Formation avancee
+                Offre de lancement -60%
               </span>
             </div>
 
             <h1 className="text-4xl md:text-5xl font-mono font-bold leading-tight text-[#FAFAFA]">
-              Agents.AI :<br />
-              <span className="text-[#E07A5F]">Future of Work</span>
+              The Zero Employee Company :<br />
+              <span className="text-[#E07A5F]">avec Hermes</span>
             </h1>
 
             <p className="text-lg text-[#F4F1DE]/80 max-w-xl leading-relaxed">
-              Les agents IA vont transformer le travail. Apprenez a les concevoir, les deployer
-              et les piloter dans votre organisation.
+              Le travail ne disparait pas. C est vous qui arretez de tout faire a la main.
+              Apprenez a deleguer l operationnel a des agents IA — veille, contenu, prospection, admin —
+              et a orchestrer le tout avec <strong>Hermes</strong>. Vous repartez avec une instance
+              operationnelle et <strong>un workflow en production</strong> dans votre business.
             </p>
 
             <div className="grid grid-cols-2 gap-4 py-4">
@@ -239,7 +239,8 @@ export default function AgentsAIPage() {
                 <span>Paris 1er</span>
               </div>
               <div className="flex items-center gap-2 text-[#F4F1DE] font-mono font-bold">
-                <span className="text-[#E07A5F]">900 EUR</span>
+                <span className="text-[#A9A9A9] line-through text-sm">900 EUR</span>
+                <span className="text-[#E07A5F]">350 EUR</span>
                 <span className="text-sm text-[#A9A9A9]">TTC</span>
               </div>
             </div>
@@ -257,7 +258,7 @@ export default function AgentsAIPage() {
           </HeroContent>
 
           <div className="hidden lg:block">
-            <AgentsTerminal />
+            <HermesTerminal />
           </div>
         </div>
       </section>
@@ -327,7 +328,7 @@ export default function AgentsAIPage() {
 
       {/* AUTRES FORMATIONS */}
       <section className="py-12 px-4 border-t border-[#FAFAFA]/5">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <h2 className="text-xl font-mono font-bold text-[#FAFAFA] mb-6 text-center">
             Nos autres formations
           </h2>
@@ -340,13 +341,13 @@ export default function AgentsAIPage() {
               <p className="text-[#FAFAFA] font-mono font-bold mb-1">GEO</p>
               <p className="text-[#A9A9A9] text-sm">Optimisez votre visibilite dans les moteurs IA</p>
             </Link>
+            <Link href="/agents-ai" className="bg-[#2D2A2E]/50 border border-[#FAFAFA]/10 rounded-lg p-4 hover:border-[#E07A5F]/50 transition-all">
+              <p className="text-[#FAFAFA] font-mono font-bold mb-1">Agents.AI</p>
+              <p className="text-[#A9A9A9] text-sm">Deployez des agents IA autonomes</p>
+            </Link>
             <Link href="/automations" className="bg-[#2D2A2E]/50 border border-[#FAFAFA]/10 rounded-lg p-4 hover:border-[#E07A5F]/50 transition-all">
               <p className="text-[#FAFAFA] font-mono font-bold mb-1">Automations</p>
               <p className="text-[#A9A9A9] text-sm">Maitrisez N8N et l automatisation IA</p>
-            </Link>
-            <Link href="/zero-employee-company" className="bg-[#2D2A2E]/50 border border-[#FAFAFA]/10 rounded-lg p-4 hover:border-[#E07A5F]/50 transition-all">
-              <p className="text-[#FAFAFA] font-mono font-bold mb-1">Zero Employee Company</p>
-              <p className="text-[#A9A9A9] text-sm">Votre entreprise geree par des agents IA — 350 EUR</p>
             </Link>
           </div>
         </div>
@@ -364,7 +365,8 @@ export default function AgentsAIPage() {
             </p>
             <div className="bg-[#2D2A2E] p-6 rounded-lg border border-[#E07A5F]/30 mb-6">
               <p className="text-3xl font-mono font-bold text-[#E07A5F]">
-                900 EUR <span className="text-lg text-[#A9A9A9]">TTC</span>
+                <span className="text-xl text-[#A9A9A9] line-through mr-3">900 EUR</span>
+                350 EUR <span className="text-lg text-[#A9A9A9]">TTC</span>
               </p>
               <p className="text-[#A9A9A9] text-sm mt-2">231 rue Saint-Honore, 75001 Paris</p>
             </div>

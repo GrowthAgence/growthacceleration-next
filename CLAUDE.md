@@ -27,6 +27,7 @@ Créer le site de référence francophone pour les formations IA pratiques, opti
 | GEO | 8h | 900€ TTC | Marketers, SEOs, responsables contenu |
 | Agents.AI | 8h | 900€ TTC | CTOs, responsables innovation, PMs tech |
 | Automations | 8h | 900€ TTC | Ops, marketing, entrepreneurs |
+| The Zero Employee Company (Hermes) | 8h | **350€ TTC promo** (au lieu de 900€) | Entrepreneurs, indépendants, solopreneurs |
 
 ### Lieu
 231 rue Saint-Honoré, 75001 Paris
@@ -230,14 +231,27 @@ src/
 
 ## Updates & Changelog
 
+### 2026-08-12
+- 5e formation : **The Zero Employee Company avec Hermes** (`/zero-employee-company`)
+  - Brief transmis par Hermes via `/opt/data/claude-handoff/BRIEF.md` (VPS)
+  - Prix promo 350€ TTC affiché avec 900€ barré (fiche + CTA + cartes home/hub)
+  - Gabarit identique aux 4 fiches : résumé LLM, hero + HermesTerminal, pour qui, programme, bio (inchangée), autres formations, CTA Calendly
+  - Schemas : Course (price 350) + Person + BreadcrumbList
+  - Mises à jour : Navbar (./zero-employee, badge PROMO), Footer, homepage (5 formations, carte + résumé LLM), hub formation-intelligence-artificielle (5 formations, carte promo), llms.txt (bloc #5 + exception prix), sitemap (15 URLs), cartes croisées sur les 4 fiches (grille 4 colonnes)
+
+### 2026-05-11
+- Europ Assistance — deal en attente (Matteo a envoyé un email "nous reverrons si fit")
+  - Use cases pivotés : 4 domaines opérationnels → 4 challenges management (Decision Brief, Meeting Zero, Manager Copilot, Risk Radar)
+  - `/dust-informations` : questionnaire Typeform-like (9 questions, noindex) pour l'équipe Dust EA
+  - `/api/dust-submit` : envoie les réponses à fredericorlicki@gmail.com via Resend
+  - `RESEND_API_KEY` ajoutée sur Vercel (même clé que planctolab.com)
+
 ### 2026-04-20
 - Pages proposition Europ Assistance (FR + EN) — noindex, privées
   - `/proposition/europ-assistance` (FR) + `/proposition/europ-assistance/en` (EN)
-  - 2 formats : ACCESS (1 jour, 7h) et FULL PACK (2 jours, 15h, lieu + catering inclus)
-  - Contenu original (copywriting rewrité, pas de copie France IA)
   - Logo EA dans `public/logos/europ-assistance.png`
-  - Concept retenu : "AI Solutions Lab" — hackathon gamifié, 5 équipes, mêmes challenges, compétition + livrables business
-  - Deal : 100 cadres sup, 5 groupes de 20, 5 formateurs, septembre 2026, anglais
+  - Concept : "AI Solutions Lab" — sessions de 20 managers, 1 journée, Dust.tt
+  - Deal : 100 cadres sup, 5 groupes de 20, septembre 2026, anglais
   - Dossier complet : `documents/europ-assistance/AI-SOLUTIONS-LAB.md`
 
 ### 2026-02-26

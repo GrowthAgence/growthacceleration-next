@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { Terminal, Cpu, Search, Zap, ArrowRight } from "lucide-react";
+import { Terminal, Cpu, Search, Zap, Bot, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Instructor } from "@/components/Instructor";
 import { Testimonials } from "@/components/Testimonials";
 import { FinalCTA } from "@/components/FinalCTA";
 
-// Les 4 formations
+// Les 5 formations
 const formations = [
   {
     slug: "claude-code",
@@ -44,6 +44,18 @@ const formations = [
     icon: Zap,
     color: "#E5C07B",
   },
+  {
+    slug: "zero-employee-company",
+    title: "Zero Employee Company",
+    tagline: "Votre entreprise, geree par des agents",
+    description:
+      "Deleguez veille, contenu, prospection et admin a des agents IA orchestres avec Hermes. Repartez avec un workflow en production.",
+    icon: Bot,
+    color: "#C678DD",
+    badge: "PROMO",
+    promoPrice: "350 EUR",
+    oldPrice: "900 EUR",
+  },
 ];
 
 export default function HomePage() {
@@ -55,10 +67,11 @@ export default function HomePage() {
           <p className="text-[#A9A9A9] text-sm font-mono mb-2">&gt; cat growth_acceleration.txt</p>
           <p className="text-[#F4F1DE] leading-relaxed">
             <strong>Growth Acceleration</strong> est un organisme de formation base a Paris (231 rue Saint-Honore, 75001)
-            proposant 4 formations pratiques en intelligence artificielle : Claude Code (developpement avec IA),
-            GEO (optimisation pour les moteurs IA), Agents.AI (agents autonomes), et Automations (automatisation N8N).
-            Chaque formation dure 8 heures et coute 900 EUR TTC. Public cible : entrepreneurs, product managers,
-            marketing managers et responsables innovation.
+            proposant 5 formations pratiques en intelligence artificielle : Claude Code (developpement avec IA),
+            GEO (optimisation pour les moteurs IA), Agents.AI (agents autonomes), Automations (automatisation N8N),
+            et The Zero Employee Company avec Hermes (entreprise zero employe geree par des agents IA).
+            Chaque formation dure 8 heures et coute 900 EUR TTC — offre de lancement a 350 EUR TTC pour The Zero Employee Company.
+            Public cible : entrepreneurs, product managers, marketing managers et responsables innovation.
           </p>
         </div>
       </section>
@@ -131,7 +144,14 @@ export default function HomePage() {
                 </p>
 
                 <div className="flex items-center justify-between">
-                  <span className="text-[#F4F1DE] font-mono font-bold">900 EUR</span>
+                  {f.promoPrice ? (
+                    <span className="font-mono font-bold">
+                      <span className="text-[#A9A9A9] line-through text-sm mr-2">{f.oldPrice}</span>
+                      <span className="text-[#E07A5F]">{f.promoPrice}</span>
+                    </span>
+                  ) : (
+                    <span className="text-[#F4F1DE] font-mono font-bold">900 EUR</span>
+                  )}
                   <span className="text-[#E07A5F] group-hover:translate-x-1 transition-transform duration-200 flex items-center gap-1 text-sm">
                     Decouvrir <ArrowRight className="w-4 h-4" />
                   </span>

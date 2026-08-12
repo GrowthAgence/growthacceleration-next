@@ -28,6 +28,7 @@ export function Footer() {
               <li><Link href="/geo" className="hover:text-[#E07A5F] block py-2">GEO</Link></li>
               <li><Link href="/agents-ai" className="hover:text-[#E07A5F] block py-2">Agents.AI</Link></li>
               <li><Link href="/automations" className="hover:text-[#E07A5F] block py-2">Automations</Link></li>
+              <li><Link href="/zero-employee-company" className="hover:text-[#E07A5F] block py-2">Zero Employee Company</Link></li>
             </ul>
           </div>
 

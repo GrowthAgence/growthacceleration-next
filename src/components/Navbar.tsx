@@ -11,6 +11,7 @@ const formations = [
   { href: "/geo", label: "GEO", badge: "NEW" },
   { href: "/agents-ai", label: "Agents.AI", badge: null },
   { href: "/automations", label: "Automations", badge: null },
+  { href: "/zero-employee-company", label: "Zero Employee", badge: "PROMO" },
 ];
 
 export function Navbar() {
