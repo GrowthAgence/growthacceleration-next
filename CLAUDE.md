@@ -144,7 +144,7 @@ Les sections visuelles incluent du contenu caché accessible aux crawlers :
 - **Icons** : Lucide React
 - **UI Components** : shadcn/ui
 - **Analytics** : Google Analytics 4 (G-KN9FKJ6S0R) via next/script
-- **Chat** : Tawk.to (widget global via next/script)
+- **Chat** : chatbot Claude maison (ChatWidget.tsx + /api/chat, streaming, claude-opus-5, ANTHROPIC_API_KEY sur Vercel)
 - **Design skill** : ui-ux-pro-max (.claude/skills/ui-ux-pro-max/)
 - **Déploiement** : Vercel (auto-deploy sur push main)
 
@@ -154,7 +154,7 @@ Les sections visuelles incluent du contenu caché accessible aux crawlers :
 src/
 ├── app/
 │   ├── page.tsx                    # Homepage (FAQPage schema)
-│   ├── layout.tsx                  # Layout global (Organization schema, GA4, Tawk.to)
+│   ├── layout.tsx                  # Layout global (Organization schema, GA4, ChatWidget)
 │   ├── sitemap.ts                  # Sitemap dynamique
 │   ├── claude-code/
 │   │   ├── page.tsx                # Formation (Course + Person + AggregateRating + FAQ schemas)
@@ -230,6 +230,15 @@ src/
 ---
 
 ## Updates & Changelog
+
+### 2026-08-12 (bis)
+- **Chatbot Claude maison** remplace Tawk.to (qui était un live chat humain sans personne pour répondre)
+  - `src/components/ChatWidget.tsx` : widget flottant style terminal (barre zsh, ➜/$, palette du site), streaming, liens Calendly cliquables, événements GA4 `chat_open`/`chat_message_sent`
+  - `src/app/api/chat/route.ts` : route streaming claude-opus-5 (SDK @anthropic-ai/sdk), system prompt caché (prompt caching), rate limit 25 req/5min/IP, validation stricte des messages, max_tokens 1024
+  - `src/lib/chatbot-prompt.ts` : system prompt = les 5 formations + prix (promo ZEC 350€) + Calendly + garde-fous (hors-sujet décliné, financement → appel, aucune invention, anti prompt-injection). Français avec accents (humain-facing, contrairement au contenu GEO)
+  - Bouton « Poser une question » du FinalCTA ouvre le widget via CustomEvent `open-ga-chat`
+  - Tawk.to retiré (script layout + tawk.d.ts supprimés)
+  - `ANTHROPIC_API_KEY` ajoutée sur Vercel (Production) — clé partagée avec Hermes VPS, prévoir une clé dédiée
 
 ### 2026-08-12
 - 5e formation : **The Zero Employee Company avec Hermes** (`/zero-employee-company`)

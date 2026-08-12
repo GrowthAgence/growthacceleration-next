@@ -89,8 +89,8 @@ export function FinalCTA({
                   className="text-base px-8 cursor-pointer"
                   style={{ borderColor: accentColor, color: accentColor }}
                   onClick={() => {
-                    if (typeof window !== "undefined" && window.Tawk_API) {
-                      window.Tawk_API.maximize();
+                    if (typeof window !== "undefined") {
+                      window.dispatchEvent(new CustomEvent("open-ga-chat"));
                     }
                   }}
                 >
