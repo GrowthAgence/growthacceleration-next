@@ -61,13 +61,13 @@ const breadcrumbSchema = {
 
 const articles = [
   {
-    slug: "machine-a-walkthrough",
-    title: "La machine a walkthrough : creer le site d un prospect avant de lui vendre",
+    slug: "prospection-inversee",
+    title: "Prospection inversee : creez le site de votre client avant de lui vendre",
     excerpt:
-      "L IA construit le site du prospect avant le premier contact, une video le lui presente, il n a plus qu a le reclamer. La psychologie de vente derriere la methode, et comment la transposer.",
+      "Manuel etape par etape : trouver des commerces sans site web, construire leur site avec l IA a partir de leurs avis Google, et leur envoyer une video. Il n a plus qu a dire oui.",
     date: "2026-08-28",
-    readTime: "9 min",
-    tag: "Methode",
+    readTime: "10 min",
+    tag: "Manuel",
     formation: "/agents-ai",
   },
   {

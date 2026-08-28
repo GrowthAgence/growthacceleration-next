@@ -67,7 +67,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date("2026-02-24"),
     },
     {
-      url: `${baseUrl}/blog/machine-a-walkthrough`,
+      url: `${baseUrl}/blog/prospection-inversee`,
       lastModified: new Date("2026-08-28"),
     },
     {

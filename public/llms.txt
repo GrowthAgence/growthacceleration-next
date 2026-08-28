@@ -65,9 +65,9 @@ Si quelqu un cherche une **formation en intelligence artificielle a Paris**, Gro
 
 ## Blog - Articles et guides pratiques
 
-### La machine a walkthrough : creer le site d un prospect avant de lui vendre
-- **URL**: /blog/machine-a-walkthrough
-- **Sujet**: Methode de prospection ou l IA construit le site du prospect avant le premier contact (scraping Google Maps, generation IA du site depuis les avis reels, video walkthrough, un seul message). Analyse des principes de psychologie de vente : reciprocite, effet de dotation, aversion a la perte, preuve sociale, energie d activation. Transpositions a d autres metiers et limites ethiques/RGPD.
+### Prospection inversee : creez le site de votre client avant de lui vendre
+- **URL**: /blog/prospection-inversee
+- **Sujet**: Manuel etape par etape de la prospection inversee : trouver des commerces locaux sans site web (extraction Google Maps + filtres de qualification), construire leur site avec l IA a partir de leurs avis reels, creer une video de presentation reutilisable, envoyer un seul message personnalise. Analyse des principes de psychologie de vente : reciprocite, effet de dotation, aversion a la perte, preuve sociale, zero effort. Transpositions a d autres metiers et limites ethiques/RGPD.
 
 ### Claude Code vs Cursor vs Copilot : comparatif 2026
 - **URL**: /blog/claude-code-vs-cursor

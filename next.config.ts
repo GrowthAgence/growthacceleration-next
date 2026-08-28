@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/blog/machine-a-walkthrough",
+        destination: "/blog/prospection-inversee",
+        permanent: true,
+      },
+      {
         source: "/:path*",
         has: [{ type: "host", value: "(.+)\\.vercel\\.app" }],
         destination: "https://www.growth-acceleration.fr/:path*",
