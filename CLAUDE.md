@@ -231,6 +231,16 @@ src/
 
 ## Updates & Changelog
 
+### 2026-08-28
+- **Leads → Mautic** : chaque lead capturé sur /ressources est poussé vers Mautic (https://mautic.growth-acceleration.fr) en plus de Neon
+  - `src/lib/mautic.ts` : `pushLeadToMautic()` — basic auth, timeout 8s, ne bloque jamais la capture (Neon = source de vérité)
+  - Contact Mautic : email/phone/firstname/lastname/company + champs custom `resource_requested` et `lead_source` + tag `site-ga` → segment « Leads site GA » (id 1, rempli par cron)
+  - Déduplication par email côté Mautic (2 téléchargements = 1 contact mis à jour)
+  - Env Vercel prod : `MAUTIC_URL`, `MAUTIC_API_USER` (api-site-ga, rôle limité contacts/segments), `MAUTIC_API_PASSWORD`
+  - Backfill des 7 leads Neon historiques fait le 28/08 (3 contacts uniques)
+  - Mention de consentement renforcée sur la modale /ressources (désinscription à tout moment)
+  - Fix build local : init Resend paresseuse dans /api/dust-submit (la clé n'existe que sur Vercel)
+
 ### 2026-08-12 (bis)
 - **Chatbot Claude maison** remplace Tawk.to (qui était un live chat humain sans personne pour répondre)
   - `src/components/ChatWidget.tsx` : widget flottant style terminal (barre zsh, ➜/$, palette du site), streaming, liens Calendly cliquables, événements GA4 `chat_open`/`chat_message_sent`
