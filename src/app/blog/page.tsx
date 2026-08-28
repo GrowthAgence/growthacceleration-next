@@ -61,6 +61,16 @@ const breadcrumbSchema = {
 
 const articles = [
   {
+    slug: "machine-a-walkthrough",
+    title: "La machine a walkthrough : creer le site d un prospect avant de lui vendre",
+    excerpt:
+      "L IA construit le site du prospect avant le premier contact, une video le lui presente, il n a plus qu a le reclamer. La psychologie de vente derriere la methode, et comment la transposer.",
+    date: "2026-08-28",
+    readTime: "9 min",
+    tag: "Methode",
+    formation: "/agents-ai",
+  },
+  {
     slug: "claude-code-vs-cursor",
     title: "Claude Code vs Cursor vs Copilot : comparatif 2026",
     excerpt:
