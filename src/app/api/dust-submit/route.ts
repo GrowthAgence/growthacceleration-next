@@ -1,7 +1,8 @@
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Init paresseuse : la cle n'existe que sur Vercel, un import au build local ne doit pas planter
+const getResend = () => new Resend(process.env.RESEND_API_KEY);
 
 const QUESTION_LABELS: Record<string, string> = {
   knowledge_bases: "Knowledge Bases — Can trainers pre-load documents?",
@@ -50,7 +51,7 @@ export async function POST(request: NextRequest) {
         </p>
       </div>`;
 
-    await resend.emails.send({
+    await getResend().emails.send({
       from: "Dust Setup <noreply@planctolab.com>",
       to: "fredericorlicki@gmail.com",
       subject: "✅ Dust Setup — Réponses reçues (Europ Assistance)",

@@ -1,6 +1,7 @@
 import { neon } from "@neondatabase/serverless";
 import { NextRequest, NextResponse } from "next/server";
 import { isAdminRequest } from "@/lib/admin-auth";
+import { pushLeadToMautic } from "@/lib/mautic";
 
 const sql = neon(process.env.DATABASE_URL!);
 
@@ -24,6 +25,9 @@ export async function POST(request: NextRequest) {
       VALUES (${email}, ${phone}, ${firstName || null}, ${lastName || null}, ${company || null}, ${resourceRequested || null}, ${source || 'website'})
       RETURNING id, email, resource_requested
     `;
+
+    // Copie marketing vers Mautic — ne bloque jamais la capture du lead
+    await pushLeadToMautic({ email, phone, firstName, lastName, company, resourceRequested, source });
 
     return NextResponse.json({
       success: true,

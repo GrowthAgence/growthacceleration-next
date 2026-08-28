@@ -264,7 +264,8 @@ function ResourceCard({ resource }: { resource: Resource }) {
 
                     <p className="text-[#A9A9A9] text-xs text-center">
                       En soumettant ce formulaire, vous acceptez de recevoir
-                      des informations sur nos formations.
+                      des informations sur nos formations et ressources IA.
+                      Desinscription possible a tout moment en un clic.
                     </p>
                   </form>
                 </>
