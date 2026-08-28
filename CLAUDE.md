@@ -231,6 +231,13 @@ src/
 
 ## Updates & Changelog
 
+### 2026-08-28 (bis) — Machine à fiches (phase 1)
+- **Bot Telegram** @GA_Lead_Magnet_creator_bot → `/api/machine/telegram` (webhook, secret header, dédup `machine_updates`, owner lock : le 1er chat qui écrit devient propriétaire, les autres sont ignorés)
+- Flow : Fred envoie un post LinkedIn/X (texte ou lien) → source en base (`machine_sources`) → génération claude-sonnet-5 au gabarit recette/fiche/checklist (charte `~/contenu/positionnement-tone-of-voice.md` distillée dans `src/lib/machine/fiche.ts`) → brouillon Telegram avec boutons ✅ Publier / 🔄 Autre angle / ❌ Rejeter → publication sur `/fiches/[slug]`
+- **Section /fiches** : pages DB-driven (Neon, `force-dynamic`), résumé citation-ready, JSON-LD HowTo + BreadcrumbList, CTA formations, liens navbar/footer, sitemap dynamique
+- Env : `TELEGRAM_BOT_TOKEN`, `TELEGRAM_WEBHOOK_SECRET` (Vercel prod + .env.local)
+- À venir : phase 2 = veille FreshRSS comme source auto, phase 3 = compilation lead magnets + newsletter Mautic (bloquée par le choix SMTP)
+
 ### 2026-08-28
 - **Leads → Mautic** : chaque lead capturé sur /ressources est poussé vers Mautic (https://mautic.growth-acceleration.fr) en plus de Neon
   - `src/lib/mautic.ts` : `pushLeadToMautic()` — basic auth, timeout 8s, ne bloque jamais la capture (Neon = source de vérité)
