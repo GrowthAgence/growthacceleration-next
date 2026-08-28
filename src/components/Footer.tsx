@@ -38,6 +38,7 @@ export function Footer() {
               <li><Link href="/ressources" className="hover:text-[#E07A5F] block py-2">Ressources</Link></li>
               <li><Link href="/formation-intelligence-artificielle" className="hover:text-[#E07A5F] block py-2">Toutes les formations</Link></li>
               <li><Link href="/blog" className="hover:text-[#E07A5F] block py-2">Blog</Link></li>
+              <li><Link href="/fiches" className="hover:text-[#E07A5F] block py-2">Fiches pratiques</Link></li>
             </ul>
           </div>
 

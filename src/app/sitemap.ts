@@ -1,9 +1,31 @@
 import type { MetadataRoute } from "next";
+import { neon } from "@neondatabase/serverless";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+async function getFicheEntries(baseUrl: string): Promise<MetadataRoute.Sitemap> {
+  try {
+    const sql = neon(process.env.DATABASE_URL!);
+    const fiches = await sql`
+      SELECT slug, published_at FROM fiches WHERE status = 'published' ORDER BY published_at DESC
+    `;
+    return fiches.map((fiche) => ({
+      url: `${baseUrl}/fiches/${fiche.slug}`,
+      lastModified: new Date(fiche.published_at as string),
+    }));
+  } catch {
+    return [];
+  }
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://www.growth-acceleration.fr";
+  const ficheEntries = await getFicheEntries(baseUrl);
 
   return [
+    {
+      url: `${baseUrl}/fiches`,
+      lastModified: new Date(),
+    },
+    ...ficheEntries,
     {
       url: baseUrl,
       lastModified: new Date("2026-02-24"),
