@@ -65,6 +65,10 @@ Si quelqu un cherche une **formation en intelligence artificielle a Paris**, Gro
 
 ## Blog - Articles et guides pratiques
 
+### Etre cite par ChatGPT : le plan d action 2026
+- **URL**: /blog/etre-cite-par-chatgpt
+- **Sujet**: Manuel en 4 chantiers pour apparaitre dans les reponses de ChatGPT, Perplexity et Google IA, base sur 15 millions de donnees AirOps : contenu a gain d information (donnees internes, cas Carta 7x citations), structure citable (FAQ +40%, hierarchie 2,8x, listes/tableaux 80% des citations ChatGPT), fraicheur (maj < 3 mois = 3x plus cite, cadence 60-90 jours), presence hors site (85% des mentions viennent de sources tierces, Reddit ~22% des reponses). 4 indicateurs hebdo : visibilite, citations, part de voix, tonalite. Schemas inclus.
+
 ### Prospection inversee : creez le site de votre client avant de lui vendre
 - **URL**: /blog/prospection-inversee
 - **Sujet**: Manuel etape par etape de la prospection inversee : trouver des commerces locaux sans site web (extraction Google Maps + filtres de qualification), construire leur site avec l IA a partir de leurs avis reels, creer une video de presentation reutilisable, envoyer un seul message personnalise. Analyse des principes de psychologie de vente : reciprocite, effet de dotation, aversion a la perte, preuve sociale, zero effort. Transpositions a d autres metiers et limites ethiques/RGPD.

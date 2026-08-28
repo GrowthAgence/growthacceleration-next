@@ -61,6 +61,16 @@ const breadcrumbSchema = {
 
 const articles = [
   {
+    slug: "etre-cite-par-chatgpt",
+    title: "Etre cite par ChatGPT : le plan d action 2026",
+    excerpt:
+      "Vos clients posent leurs questions aux IA : soit vous faites partie de la reponse, soit vous n existez pas. Le manuel en 4 chantiers, chiffres et schemas a l appui.",
+    date: "2026-08-28",
+    readTime: "11 min",
+    tag: "Manuel",
+    formation: "/geo",
+  },
+  {
     slug: "prospection-inversee",
     title: "Prospection inversee : creez le site de votre client avant de lui vendre",
     excerpt:
