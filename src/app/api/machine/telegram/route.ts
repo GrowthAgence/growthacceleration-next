@@ -8,6 +8,7 @@ import {
   sendTelegramMessage,
 } from "@/lib/machine/telegram";
 import { generateFiche, uniqueSlug, type FicheDraft } from "@/lib/machine/fiche";
+import { postLinkedinReply } from "@/lib/machine/licomments";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -158,6 +159,44 @@ async function handleCallback(update: NonNullable<TelegramUpdate["callback_query
 
   if (!chatId || !messageId || !Number.isInteger(ficheId)) {
     await answerCallbackQuery(update.id);
+    return;
+  }
+
+  // Boutons de la boucle commentaires LinkedIn (licpub/licign, id = li_comment_queue)
+  if (action === "licpub" || action === "licign") {
+    const queueRows = await sql`
+      SELECT id, activity_urn, comment_urn, draft_reply, status FROM li_comment_queue WHERE id = ${ficheId}
+    `;
+    const item = queueRows[0];
+    if (!item || item.status !== "pending" || !item.draft_reply) {
+      await answerCallbackQuery(update.id, "Deja traite ou introuvable");
+      return;
+    }
+
+    if (action === "licign") {
+      await sql`UPDATE li_comment_queue SET status = 'ignored' WHERE id = ${ficheId}`;
+      await answerCallbackQuery(update.id, "Ignore");
+      await editTelegramMessage(chatId, messageId, `🙈 <b>Commentaire ignore</b> (pas de reponse publiee).`);
+      return;
+    }
+
+    const posted = await postLinkedinReply(
+      item.activity_urn as string,
+      item.comment_urn as string,
+      item.draft_reply as string,
+    );
+    if (posted) {
+      await sql`UPDATE li_comment_queue SET status = 'posted', posted_at = now() WHERE id = ${ficheId}`;
+      await answerCallbackQuery(update.id, "Reponse publiee !");
+      await editTelegramMessage(
+        chatId,
+        messageId,
+        `✅ <b>Reponse publiee sur LinkedIn :</b>\n${escapeHtml(item.draft_reply as string)}`,
+      );
+    } else {
+      await answerCallbackQuery(update.id, "Echec de publication");
+      await sendTelegramMessage(chatId, "❌ La publication de la reponse a echoue (token LinkedIn ?). Reessaie plus tard ou reponds a la main.");
+    }
     return;
   }
 
