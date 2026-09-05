@@ -40,3 +40,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .env.local
+
+# LinkedIn skills : le template est versionne, les vraies cles ne le sont jamais
+!.claude/.env.example

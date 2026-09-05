@@ -146,6 +146,7 @@ Les sections visuelles incluent du contenu caché accessible aux crawlers :
 - **Analytics** : Google Analytics 4 (G-KN9FKJ6S0R) via next/script
 - **Chat** : chatbot Claude maison (ChatWidget.tsx + /api/chat, streaming, claude-opus-5, ANTHROPIC_API_KEY sur Vercel)
 - **Design skill** : ui-ux-pro-max (.claude/skills/ui-ux-pro-max/)
+- **Skills LinkedIn** : 11 skills linkedin-* (.claude/skills/linkedin-*/), pack sergebulaev/linkedin-skills v1.0.30
 - **Déploiement** : Vercel (auto-deploy sur push main)
 
 ### Structure des fichiers
@@ -230,6 +231,17 @@ src/
 ---
 
 ## Updates & Changelog
+
+### 2026-09-05 — Pack LinkedIn Skills (11 skills)
+- Installation du pack [sergebulaev/linkedin-skills](https://github.com/sergebulaev/linkedin-skills) v1.0.30 (MIT) dans `.claude/skills/`, versionne dans le repo pour etre disponible dans toutes les sessions Claude Code sur ce projet (meme emplacement que ui-ux-pro-max, auto-decouvert, zero config)
+- **Les 11 skills** : linkedin-post-writer, linkedin-comment-drafter, linkedin-reply-handler, linkedin-humanizer, linkedin-hook-extractor, linkedin-repurposer, linkedin-profile-optimizer, linkedin-content-planner, linkedin-employee-advocacy, linkedin-thread-monitor, linkedin-engager-analytics
+- Arborescence partagee vendoree au meme niveau pour que les chemins `../../references/` des SKILL.md resolvent :
+  - `.claude/references/` (8 fichiers : hook-formulas, voice-profile, voice-rules, algorithm-heuristics, founder-topics, untrusted-content, industry-benchmarks, engagement-metrics-taxonomy)
+  - `.claude/lib/` (client Apify / Publora / Pixfaro, parser d'URL, carte d'approbation)
+  - `.claude/scripts/` (post_comment.py, schedule_post.py)
+- **Mode par defaut = brouillon.** Rien n'est publie sans cle API ni sans approbation explicite. Pour activer la publication : copier `.claude/.env.example` vers `.claude/.env` (ignore par git) et renseigner `PUBLORA_API_KEY` / `LINKEDIN_PLATFORM_ID` ; `APIFY_TOKEN` sert a lire les posts et commentaires. Deps Python : `.claude/requirements.txt`
+- Verification : 11/11 frontmatter valides, 106/106 chemins references resolvent, tous les `.py` compilent
+- Repond au TODO « Poster les articles blog sur LinkedIn » (linkedin-repurposer prend une URL d'article et la reformate en post natif)
 
 ### 2026-08-28 (bis) — Machine à fiches (phase 1)
 - **Bot Telegram** @GA_Lead_Magnet_creator_bot → `/api/machine/telegram` (webhook, secret header, dédup `machine_updates`, owner lock : le 1er chat qui écrit devient propriétaire, les autres sont ignorés)
