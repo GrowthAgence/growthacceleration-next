@@ -1,7 +1,7 @@
 import { neon } from "@neondatabase/serverless";
 import { NextRequest, NextResponse } from "next/server";
 import { isAdminRequest } from "@/lib/admin-auth";
-import { draftCommentReply } from "@/lib/machine/licomments";
+import { draftCommentReply, postLinkedinReply } from "@/lib/machine/licomments";
 import { escapeHtml, sendTelegramMessage } from "@/lib/machine/telegram";
 
 export const runtime = "nodejs";
@@ -62,23 +62,46 @@ export async function POST(request: NextRequest) {
     const queueId = inserted[0].id as number;
     created++;
 
-    const draft = await draftCommentReply(comment.text, comment.postText);
-    if (!draft) {
+    const decision = await draftCommentReply(comment.text, comment.postText);
+    if (!decision) {
       await sql`UPDATE li_comment_queue SET status = 'draft_failed' WHERE id = ${queueId}`;
       continue;
     }
-    await sql`UPDATE li_comment_queue SET draft_reply = ${draft} WHERE id = ${queueId}`;
+    await sql`UPDATE li_comment_queue SET draft_reply = ${decision.reply} WHERE id = ${queueId}`;
+
+    // Mode automatique : les commentaires juges surs partent seuls, Fred est informe.
+    // Les cas sensibles (troll, juridique, presse, gros enjeu commercial) gardent la validation.
+    if (decision.auto) {
+      const posted = await postLinkedinReply(comment.activity, comment.urn, decision.reply);
+      if (posted) {
+        await sql`UPDATE li_comment_queue SET status = 'posted', posted_at = now() WHERE id = ${queueId}`;
+        if (ownerChatId) {
+          await sendTelegramMessage(
+            ownerChatId,
+            [
+              `🤖 <b>Reponse publiee automatiquement</b>`,
+              ``,
+              `💬 « ${escapeHtml(comment.text.slice(0, 600))} »`,
+              ``,
+              `↩️ ${escapeHtml(decision.reply)}`,
+            ].join("\n"),
+          );
+        }
+        continue;
+      }
+      // echec de publication : on retombe sur la validation manuelle
+    }
 
     if (ownerChatId) {
       await sendTelegramMessage(
         ownerChatId,
         [
-          `💬 <b>Nouveau commentaire LinkedIn</b>`,
+          `⚠️ <b>Commentaire sensible — validation requise</b>`,
           ``,
           `« ${escapeHtml(comment.text.slice(0, 800))} »`,
           ``,
           `✍️ <b>Reponse proposee :</b>`,
-          escapeHtml(draft),
+          escapeHtml(decision.reply),
         ].join("\n"),
         [
           [

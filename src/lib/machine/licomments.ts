@@ -16,21 +16,30 @@ REGLES :
 - Zero vente, zero lien, maximum 1 emoji, pas de hashtag.
 - N'invente aucun fait ni chiffre.
 - Si le commentaire est negatif ou piegeux : reste factuel et de bonne foi, jamais defensif.
-- Francais correct avec accents.
+- Francais correct avec accents (reponds en anglais si le commentaire est en anglais).
 
-Reponds UNIQUEMENT avec le texte de la reponse, rien d'autre.`;
+Tu decides aussi si la reponse peut partir AUTOMATIQUEMENT (auto=true) ou doit etre validee par Fred (auto=false).
+auto=false OBLIGATOIRE si : commentaire hostile/troll/moqueur, question juridique/fiscale/medicale precise, journaliste ou demande presse, opportunite commerciale a fort enjeu (demande de devis, proposition de partenariat), critique factuelle qui merite une vraie reponse d'expert, ou ambiguite forte sur l'intention.
+auto=true pour tout le reste : compliments, questions simples, reactions, temoignages, curiosite.
 
-export async function draftCommentReply(commentText: string, postContext?: string): Promise<string | null> {
+Reponds UNIQUEMENT avec un objet JSON valide : {"reponse": "texte de la reponse", "auto": true|false}`;
+
+export interface CommentDecision {
+  reply: string;
+  auto: boolean;
+}
+
+export async function draftCommentReply(commentText: string, postContext?: string): Promise<CommentDecision | null> {
   try {
     const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
     const response = await anthropic.messages.create({
       model: REPLY_MODEL,
-      max_tokens: 300,
+      max_tokens: 600,
       system: REPLY_SYSTEM_PROMPT,
       messages: [
         {
           role: "user",
-          content: `${postContext ? `POST CONCERNE :\n${postContext}\n\n` : ""}COMMENTAIRE RECU :\n${commentText}\n\nRedige la reponse.`,
+          content: `${postContext ? `POST CONCERNE :\n${postContext}\n\n` : ""}COMMENTAIRE RECU :\n${commentText}\n\nRedige la reponse en JSON.`,
         },
       ],
     });
@@ -39,7 +48,11 @@ export async function draftCommentReply(commentText: string, postContext?: strin
       .map((block) => block.text)
       .join("")
       .trim();
-    return text || null;
+    const jsonMatch = text.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) return null;
+    const parsed = JSON.parse(jsonMatch[0]) as { reponse?: string; auto?: boolean };
+    if (!parsed.reponse) return null;
+    return { reply: parsed.reponse, auto: parsed.auto === true };
   } catch (error) {
     console.error("draftCommentReply failed:", error instanceof Error ? error.message : error);
     return null;
