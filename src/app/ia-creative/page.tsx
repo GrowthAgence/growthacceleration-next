@@ -263,7 +263,7 @@ export default function IaCreativePage() {
       />
 
       {/* RESUME LLM-FRIENDLY */}
-      <section className="bg-[#2D2A2E] border-b border-[#61AFEF]/20">
+      <section className="bg-[#2D2A2E] border-b border-[#E07A5F]/20">
         <div className="max-w-4xl mx-auto px-4 py-6">
           <p className="text-[#A9A9A9] text-sm font-mono mb-2">&gt; cat ia_creative_formation.txt</p>
           <p className="text-[#F4F1DE] leading-relaxed">
@@ -284,16 +284,16 @@ export default function IaCreativePage() {
       <section className="pt-16 pb-12 px-4 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <HeroContent>
-            <div className="inline-flex items-center space-x-2 bg-[#61AFEF]/10 px-3 py-1 rounded-full border border-[#61AFEF]/30">
-              <span className="w-2 h-2 rounded-full bg-[#61AFEF] animate-pulse" />
-              <span className="text-[#61AFEF] text-xs font-mono uppercase tracking-wider">
+            <div className="inline-flex items-center space-x-2 bg-[#E07A5F]/10 px-3 py-1 rounded-full border border-[#E07A5F]/30">
+              <span className="w-2 h-2 rounded-full bg-[#E07A5F] animate-pulse" />
+              <span className="text-[#E07A5F] text-xs font-mono uppercase tracking-wider">
                 Nouvelle formation
               </span>
             </div>
 
             <h1 className="text-4xl md:text-5xl font-mono font-bold leading-tight text-[#FAFAFA]">
               IA generative pour les<br />
-              <span className="text-[#61AFEF]">creatifs et les marketeurs</span>
+              <span className="text-[#E07A5F]">creatifs et les marketeurs</span>
             </h1>
 
             <p className="text-lg text-[#F4F1DE]/80 max-w-xl leading-relaxed">
@@ -305,19 +305,19 @@ export default function IaCreativePage() {
 
             <div className="grid grid-cols-2 gap-4 py-4">
               <div className="flex items-center gap-2 text-[#F4F1DE]">
-                <Clock className="w-5 h-5 text-[#61AFEF]" />
+                <Clock className="w-5 h-5 text-[#E07A5F]" />
                 <span>8 heures</span>
               </div>
               <div className="flex items-center gap-2 text-[#F4F1DE]">
-                <Users className="w-5 h-5 text-[#61AFEF]" />
+                <Users className="w-5 h-5 text-[#E07A5F]" />
                 <span>12 participants max</span>
               </div>
               <div className="flex items-center gap-2 text-[#F4F1DE]">
-                <MapPin className="w-5 h-5 text-[#61AFEF]" />
+                <MapPin className="w-5 h-5 text-[#E07A5F]" />
                 <span>Paris 1er</span>
               </div>
               <div className="flex items-center gap-2 text-[#F4F1DE] font-mono font-bold">
-                <span className="text-[#61AFEF]">900 EUR</span>
+                <span className="text-[#E07A5F]">900 EUR</span>
                 <span className="text-sm text-[#A9A9A9]">TTC</span>
               </div>
             </div>
@@ -392,7 +392,7 @@ export default function IaCreativePage() {
           <ProgramList>
             {programItems.map((item, i) => (
               <ProgramItem key={i} index={i}>
-                <div className="text-[#61AFEF] font-mono text-sm whitespace-nowrap min-w-[120px]">
+                <div className="text-[#E07A5F] font-mono text-sm whitespace-nowrap min-w-[120px]">
                   {item.time}
                 </div>
                 <div className="flex-1">
@@ -418,7 +418,7 @@ export default function IaCreativePage() {
             {tools.map((tool) => (
               <div
                 key={tool.name}
-                className="border-l-2 border-[#61AFEF]/40 pl-4 py-1"
+                className="border-l-2 border-[#E07A5F]/40 pl-4 py-1"
               >
                 <dt className="text-[#FAFAFA] font-mono text-sm font-semibold">{tool.name}</dt>
                 <dd className="text-[#A9A9A9] text-sm mt-1">{tool.use}</dd>
@@ -441,7 +441,7 @@ export default function IaCreativePage() {
             {faqItems.map((item) => (
               <div key={item.question} className="border-b border-dashed border-[#FAFAFA]/10 pb-6">
                 <dt className="text-[#FAFAFA] font-mono text-base mb-2">
-                  <span className="text-[#61AFEF] mr-2">&gt;</span>
+                  <span className="text-[#E07A5F] mr-2">&gt;</span>
                   {item.question}
                 </dt>
                 <dd className="text-[#A9A9A9] leading-relaxed">{item.answer}</dd>

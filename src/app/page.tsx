@@ -23,7 +23,7 @@ const formations = [
     description:
       "Produisez images, packshots et videos au standard des marques premium. Fidelite produit, coherence de charte, chaine de production industrialisee.",
     icon: Palette,
-    color: "#61AFEF",
+    color: "#D278A8",
     badge: "NEW",
   },
   {

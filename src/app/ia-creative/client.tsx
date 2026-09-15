@@ -17,7 +17,7 @@ const lines = [
 
 export function CreativeTerminal() {
   return (
-    <div className="bg-[#1E1E1E] rounded-lg border border-[#61AFEF]/20 overflow-hidden shadow-2xl">
+    <div className="bg-[#1E1E1E] rounded-lg border border-[#E07A5F]/20 overflow-hidden shadow-2xl">
       <div className="flex items-center gap-2 px-4 py-3 bg-[#2D2A2E] border-b border-[#FAFAFA]/10">
         <motion.div className="w-3 h-3 rounded-full bg-[#E06C75]" whileHover={{ scale: 1.2 }} />
         <motion.div className="w-3 h-3 rounded-full bg-[#E5C07B]" whileHover={{ scale: 1.2 }} />
@@ -35,10 +35,10 @@ export function CreativeTerminal() {
             className={`
               ${line.type === "command" ? "text-[#F4F1DE]" : ""}
               ${line.type === "output" ? "text-[#A9A9A9]" : ""}
-              ${line.type === "success" ? "text-[#61AFEF]" : ""}
+              ${line.type === "success" ? "text-[#E07A5F]" : ""}
             `}
           >
-            {line.type === "command" && <span className="text-[#61AFEF]">➜ </span>}
+            {line.type === "command" && <span className="text-[#E07A5F]">➜ </span>}
             {line.text}
           </motion.div>
         ))}
@@ -49,11 +49,11 @@ export function CreativeTerminal() {
           transition={{ delay: lines.length * 0.4 }}
           className="flex items-center gap-1 text-[#F4F1DE]"
         >
-          <span className="text-[#61AFEF]">➜</span>
+          <span className="text-[#E07A5F]">➜</span>
           <motion.span
             animate={{ opacity: [1, 0, 1] }}
             transition={{ duration: 1, repeat: Infinity }}
-            className="inline-block w-2 h-4 bg-[#61AFEF]"
+            className="inline-block w-2 h-4 bg-[#E07A5F]"
           />
         </motion.div>
       </div>
