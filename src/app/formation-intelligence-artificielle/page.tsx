@@ -1,13 +1,13 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Terminal, Cpu, Search, Zap, Bot, CheckCircle, Users, MapPin, Clock, Euro } from "lucide-react";
+import { Terminal, Cpu, Search, Zap, Bot, Palette, CheckCircle, Users, MapPin, Clock, Euro } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Instructor } from "@/components/Instructor";
 
 export const metadata: Metadata = {
-  title: "5 Formations IA a Paris - Programme complet",
+  title: "6 Formations IA a Paris - Programme complet",
   description:
-    "5 formations IA en presentiel a Paris. Claude Code, GEO, Agents IA, N8N, Zero Employee Company. 8h par formation, des 350 EUR TTC. Entrepreneurs et managers.",
+    "6 formations IA en presentiel a Paris. Claude Code, IA Creative, GEO, Agents IA, N8N, Zero Employee Company. 8h par formation, des 350 EUR TTC. Createurs, entrepreneurs et managers.",
   keywords: [
     "formation intelligence artificielle",
     "formation IA",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     canonical: "/formation-intelligence-artificielle",
   },
   openGraph: {
-    title: "5 Formations IA a Paris | Growth Acceleration",
+    title: "6 Formations IA a Paris | Growth Acceleration",
     description: "Maitrisez l IA generative en 1 journee. Formation professionnelle pour entrepreneurs et managers.",
   },
 };
@@ -90,6 +90,14 @@ const formations = [
     description: "Creez des applications avec Claude comme pair-programmeur. Ideal pour lancer un MVP rapidement sans savoir coder.",
     icon: Terminal,
     benefits: ["Creer un MVP en une journee", "Coder sans experience", "Utiliser l IA comme assistant dev"],
+  },
+  {
+    slug: "ia-creative",
+    title: "IA Creative",
+    subtitle: "Production visuelle augmentee",
+    description: "Produisez images, packshots et videos au niveau de finition des marques premium, et industrialisez la declinaison multi-formats.",
+    icon: Palette,
+    benefits: ["Tenir la charte et la fidelite produit", "Generer et diriger de la video IA", "Industrialiser la declinaison"],
   },
   {
     slug: "geo",
@@ -231,7 +239,7 @@ export default function FormationIAPage() {
       <section id="formations" className="py-16 px-4">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl font-mono font-bold text-[#FAFAFA] mb-4 text-center">
-            Nos 5 formations en intelligence artificielle
+            Nos 6 formations en intelligence artificielle
           </h2>
           <p className="text-[#A9A9A9] text-center mb-12 max-w-2xl mx-auto">
             Chaque formation est independante et peut etre suivie separement.

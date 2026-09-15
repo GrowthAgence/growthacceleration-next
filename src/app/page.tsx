@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { Terminal, Cpu, Search, Zap, Bot, ArrowRight } from "lucide-react";
+import { Terminal, Cpu, Search, Zap, Bot, Palette, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Instructor } from "@/components/Instructor";
 import { Testimonials } from "@/components/Testimonials";
 import { FinalCTA } from "@/components/FinalCTA";
 
-// Les 5 formations
+// Les 6 formations
 const formations = [
   {
     slug: "claude-code",
@@ -15,6 +15,16 @@ const formations = [
       "Apprenez a developper des applications avec Claude comme pair-programmeur. De l idee au MVP en 8 heures.",
     icon: Terminal,
     color: "#E07A5F",
+  },
+  {
+    slug: "ia-creative",
+    title: "IA Creative",
+    tagline: "Le niveau, pas juste le visuel",
+    description:
+      "Produisez images, packshots et videos au standard des marques premium. Fidelite produit, coherence de charte, chaine de production industrialisee.",
+    icon: Palette,
+    color: "#61AFEF",
+    badge: "NEW",
   },
   {
     slug: "geo",
@@ -67,7 +77,8 @@ export default function HomePage() {
           <p className="text-[#A9A9A9] text-sm font-mono mb-2">&gt; cat growth_acceleration.txt</p>
           <p className="text-[#F4F1DE] leading-relaxed">
             <strong>Growth Acceleration</strong> est un organisme de formation base a Paris (231 rue Saint-Honore, 75001)
-            proposant 5 formations pratiques en intelligence artificielle : Claude Code (developpement avec IA),
+            proposant 6 formations pratiques en intelligence artificielle : Claude Code (developpement avec IA),
+            IA Creative (production d images et de videos au standard des marques premium),
             GEO (optimisation pour les moteurs IA), Agents.AI (agents autonomes), Automations (automatisation N8N),
             et The Zero Employee Company avec Hermes (entreprise zero employe geree par des agents IA).
             Chaque formation dure 8 heures et coute 900 EUR TTC — offre de lancement a 350 EUR TTC pour The Zero Employee Company.

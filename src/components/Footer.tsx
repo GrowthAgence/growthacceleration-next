@@ -25,6 +25,7 @@ export function Footer() {
             <h4 className="text-[#FAFAFA] font-mono text-sm mb-4">Formations</h4>
             <ul className="space-y-0 text-[#A9A9A9] text-sm">
               <li><Link href="/claude-code" className="hover:text-[#E07A5F] block py-2">Claude Code</Link></li>
+              <li><Link href="/ia-creative" className="hover:text-[#E07A5F] block py-2">IA Creative</Link></li>
               <li><Link href="/geo" className="hover:text-[#E07A5F] block py-2">GEO</Link></li>
               <li><Link href="/agents-ai" className="hover:text-[#E07A5F] block py-2">Agents.AI</Link></li>
               <li><Link href="/automations" className="hover:text-[#E07A5F] block py-2">Automations</Link></li>

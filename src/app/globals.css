@@ -18,10 +18,19 @@
   --font-mono: 'JetBrains Mono', monospace;
 }
 
+/* Les blocs animes au scroll partent avec un translateX : hors ecran, ils
+   depassent a droite et font scroller la page lateralement sur mobile.
+   `clip` coupe sans creer de conteneur de scroll (contrairement a `hidden`,
+   qui casserait le scroll vers les ancres). */
+html {
+  overflow-x: clip;
+}
+
 body {
   background-color: var(--color-charcoal);
   color: var(--color-cream);
   font-family: var(--font-sans);
+  overflow-x: clip;
 }
 
 h1, h2, h3, h4, h5, h6 {

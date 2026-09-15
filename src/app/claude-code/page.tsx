@@ -332,7 +332,11 @@ export default function ClaudeCodePage() {
           <h2 className="text-xl font-mono font-bold text-[#FAFAFA] mb-6 text-center">
             Nos autres formations
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            <Link href="/ia-creative" className="bg-[#2D2A2E]/50 border border-[#FAFAFA]/10 rounded-lg p-4 hover:border-[#E07A5F]/50 transition-all">
+              <p className="text-[#FAFAFA] font-mono font-bold mb-1">IA Creative</p>
+              <p className="text-[#A9A9A9] text-sm">Visuels et videos au standard des marques</p>
+            </Link>
             <Link href="/geo" className="bg-[#2D2A2E]/50 border border-[#FAFAFA]/10 rounded-lg p-4 hover:border-[#E07A5F]/50 transition-all">
               <p className="text-[#FAFAFA] font-mono font-bold mb-1">GEO</p>
               <p className="text-[#A9A9A9] text-sm">Optimisez votre visibilite dans les moteurs IA</p>

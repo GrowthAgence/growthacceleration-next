@@ -35,6 +35,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date("2026-02-24"),
     },
     {
+      url: `${baseUrl}/ia-creative`,
+      lastModified: new Date("2026-09-15"),
+    },
+    {
       url: `${baseUrl}/claude-code`,
       lastModified: new Date("2026-02-24"),
     },
