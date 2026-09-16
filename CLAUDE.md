@@ -24,6 +24,7 @@ Créer le site de référence francophone pour les formations IA pratiques, opti
 | Formation | Durée | Prix | Public cible |
 |-----------|-------|------|--------------|
 | Claude Code | 8h | 900€ TTC | Entrepreneurs, PMs, débutants motivés |
+| IA Creative | 8h | 900€ TTC | DA, designers, motion designers, marketeurs |
 | GEO | 8h | 900€ TTC | Marketers, SEOs, responsables contenu |
 | Agents.AI | 8h | 900€ TTC | CTOs, responsables innovation, PMs tech |
 | Automations | 8h | 900€ TTC | Ops, marketing, entrepreneurs |
@@ -143,9 +144,11 @@ Les sections visuelles incluent du contenu caché accessible aux crawlers :
 - **Animations** : Motion (Framer Motion)
 - **Icons** : Lucide React
 - **UI Components** : shadcn/ui
+- **Base de données** : Neon Postgres (leads, chat_conversations, fiches, machine_sources, li_comment_queue, machine_config)
 - **Analytics** : Google Analytics 4 (G-KN9FKJ6S0R) via next/script
 - **Chat** : chatbot Claude maison (ChatWidget.tsx + /api/chat, streaming, claude-opus-5, ANTHROPIC_API_KEY sur Vercel)
-- **Design skill** : ui-ux-pro-max (.claude/skills/ui-ux-pro-max/)
+- **CRM/emailing** : Mautic self-hosted (mautic.growth-acceleration.fr) — chaque lead y est poussé automatiquement
+- **Design** : voir [DESIGN.md](./DESIGN.md) (design system complet) + skill ui-ux-pro-max (.claude/skills/ui-ux-pro-max/)
 - **Déploiement** : Vercel (auto-deploy sur push main)
 
 ### Structure des fichiers
@@ -159,6 +162,9 @@ src/
 │   ├── claude-code/
 │   │   ├── page.tsx                # Formation (Course + Person + AggregateRating + FAQ schemas)
 │   │   └── client.tsx              # Composants animés partagés
+│   ├── ia-creative/
+│   │   ├── page.tsx                # Formation IA générative (Course + Person + FAQ schemas)
+│   │   └── client.tsx              # Composants animés
 │   ├── geo/
 │   │   ├── page.tsx                # Formation (Course + Person + AggregateRating + FAQ schemas)
 │   │   └── client.tsx              # GeoTerminal
@@ -170,6 +176,8 @@ src/
 │   │   └── client.tsx              # AutomationsTerminal
 │   ├── blog/
 │   │   ├── page.tsx                # Blog hub (CollectionPage schema)
+│   │   ├── etre-cite-par-chatgpt/            # Article + diagrams.tsx (5 schémas SVG inline)
+│   │   ├── prospection-inversee/page.tsx     # Article manuel (redirect 308 depuis machine-a-walkthrough)
 │   │   ├── claude-code-vs-cursor/page.tsx   # Article (BlogPosting schema)
 │   │   ├── guide-geo-2026/page.tsx          # Article (BlogPosting schema)
 │   │   ├── agents-ia-entreprise/page.tsx    # Article (BlogPosting schema)
@@ -177,6 +185,9 @@ src/
 │   │   └── n8n-vs-make-vs-zapier/page.tsx   # Article (BlogPosting schema)
 │   ├── formation-intelligence-artificielle/
 │   │   └── page.tsx                # Hub toutes formations
+│   ├── fiches/
+│   │   ├── page.tsx                # Hub fiches pratiques (DB-driven, force-dynamic)
+│   │   └── [slug]/page.tsx         # Fiche (JSON-LD HowTo + Breadcrumb, CTA formations)
 │   ├── ressources/
 │   │   ├── page.tsx                # Ressources gratuites (lead capture)
 │   │   └── client.tsx              # ResourcesGrid + formulaire
@@ -190,8 +201,23 @@ src/
 │   │           ├── page.tsx        # Proposition B2B EN (noindex)
 │   │           └── client.tsx      # Composants animés proposition EN
 │   └── admin/                      # Admin leads (protégé)
+│   └── api/
+│       ├── leads/                  # POST public (capture + push Mautic), GET/DELETE admin
+│       ├── chat/                   # Chatbot streaming
+│       ├── conversations/          # Transcripts chatbot (admin)
+│       └── machine/
+│           ├── telegram/route.ts   # Webhook bot (fiches + boutons commentaires)
+│           └── li-comments/route.ts # Ingestion commentaires LinkedIn (cron VPS)
+├── lib/
+│   ├── mautic.ts                   # pushLeadToMautic (best-effort, jamais bloquant)
+│   ├── machine/
+│   │   ├── telegram.ts             # Envoi/édition messages + boutons inline
+│   │   ├── fiche.ts                # Génération fiche (charte tone of voice) + slugs
+│   │   └── licomments.ts           # Rédaction réponse {reponse, auto} + publication LinkedIn
+│   ├── admin-auth.ts               # Garde x-admin-password
+│   └── chatbot-prompt.ts           # System prompt du chatbot
 ├── components/
-│   ├── Navbar.tsx                  # Navigation responsive
+│   ├── Navbar.tsx                  # Navigation responsive + menu déroulant formations
 │   ├── Footer.tsx                  # Footer avec liens
 │   ├── Instructor.tsx              # Section formateur
 │   ├── Testimonials.tsx            # 29 avis Google
@@ -229,7 +255,49 @@ src/
 
 ---
 
+## La Machine — contenu et publication automatisés
+
+Système de production de contenu qui enjambe **ce repo (Vercel/Neon)** et le **VPS Hostinger** (`srv1694415`, voir la mémoire `hermes-workspace`). Trois boucles, toutes avec un humain dans le circuit sauf mention contraire.
+
+### 1. Post LinkedIn du jour (7j/7)
+- **Où** : VPS, `/docker/machine/post-du-jour.py` + `/etc/cron.d/post-du-jour` (`0 6 * * *` UTC = 8h Paris en été — ⚠️ décale à 9h à l'heure d'hiver, cron à ajuster)
+- **Flux** : rotation éditoriale selon le jour (lun/jeu feuilleton · mar/ven « Hermes mode d'emploi » · mer/sam réaction veille via RSS Simon Willison + tldr.tech/api/rss/ai · dim récap de la semaine) → lit `llms.txt` + les posts Postiz de moins de 10 jours (anti-répétition) → génération claude-sonnet-5 → **brouillon** dans Postiz via l'API publique → notification Telegram à Fred
+- **Règles gravées dans le prompt** : jamais d'invention (fait absent du contexte = post plus général), et **jamais de mention d'une validation humaine** (le récit public est « la machine écrit et publie seule »)
+- **Config** : `/docker/machine/post-du-jour.env` (chmod 600)
+- ⚠️ La routine cloud équivalente (`trig_017FqJr1fgqUXJyJGmPWrb3q`) est **désactivée** : l'environnement cloud bloque l'egress réseau (Postiz, Telegram, RSS inaccessibles)
+
+### 2. Réponses aux commentaires LinkedIn (automatique + garde-fou)
+- **Où** : VPS `/docker/machine/li-comments-fetch.py` + `/etc/cron.d/li-comments` (horaire à :15) → `POST /api/machine/li-comments` (header `x-admin-password`)
+- **Flux** : token LinkedIn frais lu dans la base Postiz → commentaires des posts < 21 jours → dédup `li_comment_queue` → rédaction `{reponse, auto}` → **auto=true : publication immédiate** + notification Telegram informative ; **auto=false** (troll, juridique, presse, enjeu commercial, ambiguïté) : boutons ✅/🙈 sur Telegram
+- **API LinkedIn** : lecture `GET /v2/socialActions/{share-urn}/comments`, réponse `POST /v2/socialActions/{activity-urn}/comments` (`actor` = `urn:li:person:{internalId}`, `parentComment` = URN du commentaire)
+
+### 3. Fiches pratiques (bot Telegram → /fiches)
+- **Où** : `@GA_Lead_Magnet_creator_bot` → `/api/machine/telegram` (secret header, dédup `update_id`, owner lock sur le premier chat)
+- **Flux** : Fred colle un post LinkedIn/X ou un lien → `machine_sources` → génération au gabarit recette/fiche/checklist → brouillon Telegram avec boutons ✅ Publier / 🔄 Autre angle / ❌ Rejeter → publication sur `/fiches/[slug]`
+- ⚠️ LinkedIn et X bloquent la lecture serveur : le bot demande le copier-coller du texte si le lien seul ne se fetch pas
+
+### Publication LinkedIn (Postiz)
+- Postiz auto-hébergé (`postiz.growth-acceleration.fr`), 2 canaux : profil « Fréderic Orlicki » (`cmtlbp25r0005mw8w2dj6g1q7`) + page « Growth Acceleration »
+- API : `POST /api/public/v1/posts`, header `Authorization: <apiKey>` (colonne `apiKey` de la table `Organization`), payload `{type: now|schedule|draft, date ISO, posts[].value[]={content, image:[]}}`
+- ⚠️ L'app LinkedIn est **CMA-only** (règle « produit unique » qui persiste après approbation) : `openid`/`profile` impossibles à obtenir → les providers LinkedIn de Postiz sont **patchés** sur le VPS (`/docker/postiz/patches/`, montés en `:ro` via `docker-compose.override.yml`). À re-patcher après toute mise à jour d'image Postiz.
+
+---
+
 ## Updates & Changelog
+
+### 2026-09-16 — Passe de documentation
+- CLAUDE.md remis à jour (6 formations, architecture complète, section « La Machine »)
+- **DESIGN.md créé** : design system complet du site (palette, typographie, composants, gabarits de page, conventions GEO et éditoriales)
+
+### 2026-09-15 — 6e formation « IA Creative » (commits b943ca2 + 1df103b)
+- `/ia-creative` : formation IA générative pour créatifs et marketeurs (900 € TTC) — images/packshots au standard des marques, vidéo générative (keyframes), motion programmatique. Outils couverts : Higgsfield Soul, Nano Banana, GPT Image, Kling, Veo 3, Seedance, Remotion, HyperFrames, Topaz
+- **Navbar refondue** : menu déroulant `./formations` (6 entrées + taglines + badges NEW/PROMO, fermeture au clic extérieur et à Échap), liens secondaires ressources/blog/fiches, menu mobile scrollable
+- Accent terracotta conservé sur la fiche (le bleu introduit initialement cassait la charte)
+
+### 2026-09-04 → 09-10 — Publication LinkedIn automatisée
+- **Postiz connecté à LinkedIn** après 28 jours : CMA approuvée, diagnostic scope-par-scope, patch des providers (voir section « La Machine »)
+- `/api/machine/li-comments` + `src/lib/machine/licomments.ts` : boucle commentaires, d'abord semi-auto (boutons) puis **passée en automatique avec garde-fou** le 10/09 (commit 4d681ac)
+- Routine cloud du post quotidien rapatriée sur le VPS (egress bloqué côté cloud), passée en 7j/7 avec récap du dimanche
 
 ### 2026-08-28 (bis) — Machine à fiches (phase 1)
 - **Bot Telegram** @GA_Lead_Magnet_creator_bot → `/api/machine/telegram` (webhook, secret header, dédup `machine_updates`, owner lock : le 1er chat qui écrit devient propriétaire, les autres sont ignorés)
@@ -383,12 +451,20 @@ src/
 - [x] Meta descriptions optimisées (150-160 chars)
 - [x] Click tracking GA4 complet (6 événements, page context)
 - [x] generate_lead conversion dans GA4
-- [x] Blog avec 5 articles SEO longue traîne
+- [x] Blog avec 7 articles SEO longue traîne
 - [x] Mettre à jour llms.txt avec les URLs du blog
-- [ ] Soumettre les nouvelles URLs dans Google Search Console (blog articles = 0 vues)
-- [ ] Poster les articles blog sur LinkedIn (2e source de trafic)
-- [ ] Vérifier Measurement ID GA4 (G-KN9FKJ6S0R) dans la bonne propriété
-- [ ] Configurer SPF/DMARC/DKIM (DNS chez le registrar)
+- [x] Leads poussés automatiquement dans Mautic (+ backfill historique)
+- [x] Section /fiches alimentée par le bot Telegram
+- [x] Publication LinkedIn automatisée (Postiz) + réponses aux commentaires
+
+### Bloquants / actions Fred
+- [ ] **Clé Resend révoquée** → recréer sur resend.com et poser `RESEND_API_KEY` sur Vercel (sinon : plus de notification chatbot ni d'envoi du questionnaire Dust)
+- [ ] **SMTP Mautic à choisir** (Brevo / Resend / Gmail) — rien ne peut partir de la base tant que ce n'est pas fait
+- [ ] Trancher la mention « financement OPCO possible » (GA n'est pas Qualiopi)
+
+### À faire
+- [ ] Ajuster les crons du VPS au passage à l'heure d'hiver (fin octobre : `0 6` → `0 7`)
+- [ ] Soumettre les nouvelles URLs dans Google Search Console (fiches + 2 nouveaux articles)
+- [ ] Publier sur la page entreprise LinkedIn (canal connecté, jamais utilisé)
 - [ ] Monitorer citations LLM (Perplexity, ChatGPT)
 - [ ] Ajouter plus de témoignages quand disponibles
-- [ ] Re-audit GA4 dans 2 semaines pour mesurer impact refonte homepage (bounce rate baseline = 63%)
