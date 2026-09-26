@@ -112,7 +112,7 @@ const articles = [
   },
   {
     slug: "formation-ia-debutant",
-    title: "Formation IA : par ou commencer quand on est debutant",
+    title: "Formation IA debutant : par ou commencer en 2026",
     excerpt:
       "Le guide etape par etape pour se former a l intelligence artificielle sans background technique. Parcours, outils et ressources recommandes.",
     date: "2026-02-24",

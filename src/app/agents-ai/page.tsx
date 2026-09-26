@@ -17,11 +17,14 @@ import { AgentsTerminal } from "./client";
 import { Instructor } from "@/components/Instructor";
 
 export const metadata: Metadata = {
-  title: "Formation Agents.AI - Future of Work",
+  title: "Formation agent IA a Paris : creer des agents autonomes",
   description:
-    "Concevez et deployez des agents IA autonomes avec MCP. 8h de formation pratique a Paris, 900 EUR TTC. Pour CTOs et PMs.",
+    "Formation agent IA en presentiel a Paris : concevez, deployez et pilotez des agents IA autonomes avec MCP. 8h de pratique, 12 places, 900 EUR TTC.",
   keywords: [
+    "formation agent IA",
     "formation agents IA",
+    "formation agent IA Paris",
+    "apprendre a creer un agent IA",
     "agents autonomes",
     "automatisation IA",
     "MCP",
@@ -129,6 +132,47 @@ const breadcrumbSchema = {
   ],
 };
 
+const faqItems = [
+  {
+    question: "Qu est-ce qu un agent IA, concretement ?",
+    answer:
+      "Un agent IA est un programme qui recoit un objectif, decoupe le travail en etapes et les execute seul en utilisant des outils : lire un document, interroger une base, envoyer un email, mettre a jour un CRM. La ou un chatbot repond a une question, un agent accomplit une tache de bout en bout.",
+  },
+  {
+    question: "Quel niveau faut-il pour suivre la formation agents IA ?",
+    answer:
+      "Il faut deja utiliser des outils d IA generative au quotidien (ChatGPT, Claude, Copilot). Savoir coder n est pas obligatoire, mais la journee est dense : si vous debutez completement avec l IA, commencez par notre guide formation IA debutant.",
+  },
+  {
+    question: "Quels outils utilise-t-on pendant la journee ?",
+    answer:
+      "Claude et le Model Context Protocol (MCP) d Anthropic, qui permet de brancher un agent sur vos outils et vos donnees. Vous construisez un premier agent en atelier, puis vous travaillez le deploiement, le monitoring et la securite.",
+  },
+  {
+    question: "Je repars avec quoi a la fin de la formation ?",
+    answer:
+      "Avec un agent fonctionnel construit sur un cas d usage de votre entreprise, une methode pour identifier les processus a confier a des agents, et une roadmap agents IA pour votre organisation.",
+  },
+  {
+    question: "Ou et comment se deroule la formation ?",
+    answer:
+      "En presentiel, au 231 rue Saint-Honore a Paris 1er, sur une journee de 8 heures (9h-17h, dejeuner inclus dans le programme). 12 participants maximum par session. Tarif : 900 EUR TTC.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
+
 const programItems = [
   {
     time: "09h00 - 10h30",
@@ -187,6 +231,10 @@ export default function AgentsAIPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
 
       {/* RESUME LLM-FRIENDLY */}
       <section className="bg-[#2D2A2E] border-b border-[#E07A5F]/20">
@@ -216,7 +264,7 @@ export default function AgentsAIPage() {
             </div>
 
             <h1 className="text-4xl md:text-5xl font-mono font-bold leading-tight text-[#FAFAFA]">
-              Agents.AI :<br />
+              Formation agents IA :<br />
               <span className="text-[#E07A5F]">Future of Work</span>
             </h1>
 
@@ -304,7 +352,7 @@ export default function AgentsAIPage() {
       <section id="programme" className="py-16 px-4">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-mono font-bold text-[#FAFAFA] mb-8">
-            Programme de la journee
+            Programme de la formation agents IA
           </h2>
           <ProgramList>
             {programItems.map((item, i) => (
@@ -324,6 +372,36 @@ export default function AgentsAIPage() {
 
       {/* FORMATEUR */}
       <Instructor />
+
+      {/* FAQ */}
+      <section className="py-16 px-4 border-t border-[#FAFAFA]/5">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl font-mono font-bold text-[#FAFAFA] mb-8">
+            Questions frequentes sur la formation agents IA
+          </h2>
+          <dl className="space-y-6">
+            {faqItems.map((item) => (
+              <div key={item.question} className="border-b border-dashed border-[#FAFAFA]/10 pb-6">
+                <dt className="text-[#FAFAFA] font-mono text-base mb-2">
+                  <span className="text-[#E07A5F] mr-2">&gt;</span>
+                  {item.question}
+                </dt>
+                <dd className="text-[#A9A9A9] leading-relaxed">{item.answer}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="text-[#A9A9A9] text-sm mt-8">
+            Pour aller plus loin :{" "}
+            <Link href="/blog/agents-ia-entreprise" className="text-[#E07A5F] underline underline-offset-4">
+              les agents IA en entreprise, cas d usage et limites
+            </Link>{" "}
+            ·{" "}
+            <Link href="/blog/formation-ia-debutant" className="text-[#E07A5F] underline underline-offset-4">
+              formation IA debutant : par ou commencer
+            </Link>
+          </p>
+        </div>
+      </section>
 
       {/* AUTRES FORMATIONS */}
       <section className="py-12 px-4 border-t border-[#FAFAFA]/5">

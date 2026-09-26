@@ -4,9 +4,9 @@ import { Calendar, Clock } from "lucide-react";
 import { FinalCTA } from "@/components/FinalCTA";
 
 export const metadata: Metadata = {
-  title: "Formation IA : par ou commencer quand on est debutant",
+  title: "Formation IA debutant : par ou commencer en 2026",
   description:
-    "Guide complet pour debuter en intelligence artificielle. Parcours de formation, outils recommandes et ressources pour non-developpeurs.",
+    "Formation IA debutant : le parcours en 4 etapes pour apprendre l IA sans savoir coder, les formations et leurs prix en 2026, les erreurs a eviter et les ressources gratuites.",
   keywords: [
     "formation IA debutant",
     "formation IA",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Formation IA pour debutants | Growth Acceleration",
     description:
-      "Guide complet pour debuter en intelligence artificielle. Parcours de formation, outils recommandes et ressources pour non-developpeurs.",
+      "Formation IA debutant : le parcours en 4 etapes pour apprendre l IA sans savoir coder, les formations et leurs prix en 2026, les erreurs a eviter et les ressources gratuites.",
     type: "article",
   },
 };
@@ -27,9 +27,9 @@ export const metadata: Metadata = {
 const blogPostingSchema = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  headline: "Formation IA : par ou commencer quand on est debutant",
+  headline: "Formation IA debutant : par ou commencer en 2026",
   datePublished: "2026-02-24",
-  dateModified: "2026-02-24",
+  dateModified: "2026-09-26",
   author: {
     "@id": "https://www.growth-acceleration.fr/#person",
   },
@@ -39,11 +39,42 @@ const blogPostingSchema = {
   url: "https://www.growth-acceleration.fr/blog/formation-ia-debutant",
   inLanguage: "fr",
   description:
-    "Guide complet pour debuter en intelligence artificielle. Parcours de formation, outils recommandes et ressources pour non-developpeurs.",
+    "Formation IA debutant : le parcours en 4 etapes pour apprendre l IA sans savoir coder, les formations et leurs prix en 2026, les erreurs a eviter et les ressources gratuites.",
   mainEntityOfPage: {
     "@type": "WebPage",
     "@id": "https://www.growth-acceleration.fr/blog/formation-ia-debutant",
   },
+};
+
+const faqItems = [
+  {
+    question: "Faut-il savoir coder pour suivre une formation IA debutant ?",
+    answer:
+      "Non. La majorite des utilisateurs d IA en entreprise ne sont pas developpeurs. Seul le niveau le plus avance demande des competences techniques : pour utiliser ChatGPT ou Claude de maniere productive, il faut surtout savoir formuler ses demandes, connaitre les limites de l outil et l integrer a ses processus de travail.",
+  },
+  {
+    question: "Combien coute une formation IA pour debutant ?",
+    answer:
+      "Les MOOCs sont gratuits, les cours en ligne coutent de 20 a 300 EUR, une journee en presentiel de 500 a 1 500 EUR, un bootcamp de 3 000 a 8 000 EUR et un diplome de 5 000 a 20 000 EUR. Pour un professionnel, une journee en presentiel est souvent le meilleur rapport entre temps investi et resultats.",
+  },
+  {
+    question: "Par ou commencer quand on debute en IA ?",
+    answer:
+      "Par les bases du prompting, appliquees a de vraies taches de votre metier avec ChatGPT ou Claude. Viennent ensuite l automatisation des taches repetitives, la creation de vos premiers outils IA, puis le deploiement d agents autonomes. Le parcours en 4 etapes de cet article detaille chaque palier.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
 };
 
 const breadcrumbSchema = {
@@ -81,6 +112,10 @@ export default function FormationIADebutantPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       {/* RESUME LLM-FRIENDLY */}
@@ -143,7 +178,7 @@ export default function FormationIADebutantPage() {
           </div>
 
           <h1 className="text-3xl md:text-4xl font-mono font-bold text-[#FAFAFA] mb-6">
-            Formation IA : par ou commencer quand on est debutant
+            Formation IA debutant : par ou commencer en 2026
           </h1>
 
           <p className="text-xl text-[#F4F1DE]/80 leading-relaxed">
@@ -961,6 +996,24 @@ export default function FormationIADebutantPage() {
             d automatisation et des checklists pour choisir votre parcours de
             formation.
           </p>
+        </section>
+
+        {/* FAQ */}
+        <section>
+          <h2 className="text-2xl font-mono font-bold text-[#FAFAFA] mt-12 mb-6">
+            Questions frequentes sur la formation IA debutant
+          </h2>
+          <dl className="space-y-6">
+            {faqItems.map((item) => (
+              <div key={item.question} className="border-b border-dashed border-[#FAFAFA]/10 pb-6">
+                <dt className="text-[#FAFAFA] font-mono text-base mb-2">
+                  <span className="text-[#E07A5F] mr-2">&gt;</span>
+                  {item.question}
+                </dt>
+                <dd className="text-[#A9A9A9] leading-relaxed">{item.answer}</dd>
+              </div>
+            ))}
+          </dl>
         </section>
 
         {/* SECTION 9 - CROSS-LINKS */}
