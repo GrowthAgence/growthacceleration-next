@@ -286,7 +286,7 @@ Système de production de contenu qui enjambe **ce repo (Vercel/Neon)** et le **
 
 ## Updates & Changelog
 
-### 2026-09-28 — Article « Les 5 prompts pour faire passer ton CV »
+### 2026-09-28 — Article « Les 5 prompts pour faire passer votre CV »
 - `/blog/prompts-cv-ia` : guide anonymisé — 5 prompts copiables (diagnostic, formule XYZ, test ATS, candidatures Cowork, simulation d'entretien) + chiffres ATS France (APEC 2025, Hellowork 2024)
 - Texte gardé avec accents (prompts à copier tels quels) ; résumé LLM et métadonnées au style simplifié habituel
 - Ajouté au hub blog, au sitemap et à llms.txt ; event GA4 `prompt_copy`

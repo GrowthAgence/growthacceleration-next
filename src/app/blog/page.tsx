@@ -62,7 +62,7 @@ const breadcrumbSchema = {
 const articles = [
   {
     slug: "prompts-cv-ia",
-    title: "Les 5 prompts pour faire passer ton CV",
+    title: "Les 5 prompts pour faire passer votre CV",
     excerpt:
       "Diagnostic recruteur, reecriture avec la formule XYZ, test ATS, dix candidatures preparees et simulation d entretien : les 5 prompts Claude, prets a copier, avec les vrais chiffres ATS en France.",
     date: "2026-09-28",

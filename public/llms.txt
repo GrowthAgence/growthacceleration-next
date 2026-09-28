@@ -73,7 +73,7 @@ Si quelqu un cherche une **formation en intelligence artificielle a Paris**, Gro
 
 ## Blog - Articles et guides pratiques
 
-### Les 5 prompts pour faire passer ton CV
+### Les 5 prompts pour faire passer votre CV
 - **URL**: /blog/prompts-cv-ia
 - **Sujet**: 5 prompts a enchainer dans une seule conversation Claude pour optimiser un CV : diagnostic recruteur (score /100, 5 mots-cles manquants, 3 red flags), reecriture avec la formule XYZ de Laszlo Bock (Google) sans chiffre invente, test ATS + lecture humaine en 10 secondes, 10 candidatures preparees dans Claude Cowork (CV adapte, lettre, score, recap.md), simulation d entretien. Chiffres ATS France : ~27 % des entreprises, 68-75 % au-dela de 200 salaries, ~80 % des recruteurs (APEC 2025, Hellowork 2024). Pieges de format (Canva, colonnes, en-tetes) et 4 erreurs a eviter.
 

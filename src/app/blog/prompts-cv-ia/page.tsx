@@ -5,7 +5,7 @@ import { FinalCTA } from "@/components/FinalCTA";
 import { PromptBlock } from "./client";
 
 export const metadata: Metadata = {
-  title: "Les 5 prompts pour faire passer ton CV (Claude, ATS, entretien)",
+  title: "Les 5 prompts pour faire passer votre CV (Claude, ATS, entretien)",
   description:
     "5 prompts Claude pour optimiser son CV : diagnostic recruteur, reecriture formule XYZ, test ATS, candidatures preparees et simulation d entretien. Avec les chiffres ATS en France.",
   keywords: [
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     canonical: "/blog/prompts-cv-ia",
   },
   openGraph: {
-    title: "Les 5 prompts pour faire passer ton CV | Growth Acceleration",
+    title: "Les 5 prompts pour faire passer votre CV | Growth Acceleration",
     description:
       "Diagnostic recruteur, formule XYZ, test ATS, 10 candidatures preparees et simulation d entretien : les 5 prompts, prets a copier.",
     type: "article",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 const blogPostingSchema = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  headline: "Les 5 prompts pour faire passer ton CV",
+  headline: "Les 5 prompts pour faire passer votre CV",
   datePublished: "2026-09-28",
   dateModified: "2026-09-28",
   author: {
@@ -113,7 +113,7 @@ lit 200 CV d'affilée.
 3. Réécris ces sections pour qu'elles accrochent l'œil, sans
    rallonger le CV.`;
 
-const PROMPT_CANDIDATURES = `Voici 10 offres qui m'intéressent [colle les descriptions ou les liens].
+const PROMPT_CANDIDATURES = `Voici 10 offres qui m'intéressent [collez les descriptions ou les liens].
 
 Pour chacune :
 1. Adapte mon CV optimisé aux mots-clés de cette annonce précise.
@@ -162,7 +162,7 @@ export default function PromptsCvPage() {
             &gt; cat article.txt
           </p>
           <p className="text-[#F4F1DE] leading-relaxed">
-            <strong>Les 5 prompts pour faire passer ton CV</strong> est un
+            <strong>Les 5 prompts pour faire passer votre CV</strong> est un
             guide pratique pour optimiser un CV avec Claude (ou n importe quel
             assistant conversationnel), dans une seule conversation : 1.
             diagnostic recruteur (score sur 100, 5 mots-cles manquants, 3 red
@@ -218,7 +218,7 @@ export default function PromptsCvPage() {
         </div>
 
         <h1 className="text-3xl md:text-4xl font-mono font-bold text-[#FAFAFA] mb-6">
-          Les 5 prompts pour faire passer ton CV
+          Les 5 prompts pour faire passer votre CV
         </h1>
 
         <p className="text-lg text-[#F4F1DE]/80 leading-relaxed max-w-3xl">
@@ -236,10 +236,11 @@ export default function PromptsCvPage() {
             &gt; Avant de commencer
           </p>
           <p className="text-[#F4F1DE]/90 leading-relaxed">
-            Ouvre <strong>une seule conversation</strong> avec Claude et fais-y
-            les quatre premiers prompts à la suite. Chaque prompt s&apos;appuie
-            sur la réponse du précédent. Si tu ouvres une nouvelle conversation
-            à chaque fois, tu perds tout le contexte et les résultats
+            Ouvrez <strong>une seule conversation</strong> avec Claude et
+            faites-y les quatre premiers prompts à la suite. Chaque prompt
+            s&apos;appuie sur la réponse du précédent. Si vous ouvrez une
+            nouvelle conversation à chaque fois, vous perdez tout le contexte et
+            les résultats
             s&apos;effondrent.
           </p>
         </div>
@@ -247,31 +248,31 @@ export default function PromptsCvPage() {
         {/* --- PROMPT 1 --- */}
         <section>
           <h2 className={h2}>Prompt 1 — Le diagnostic</h2>
-          <p className={p}>Envoie ton CV et l&apos;offre à Claude, puis colle ceci.</p>
+          <p className={p}>Envoyez votre CV et l&apos;offre à Claude, puis collez ceci.</p>
           <PromptBlock title="Diagnostic recruteur" prompt={PROMPT_DIAGNOSTIC} />
           <p className={p}>
-            <strong>Pourquoi ça marche :</strong> tu forces Claude à adopter un
-            point de vue adverse. Sans ce cadrage, il te dira que ton CV est
-            très bien — ce qui ne t&apos;aide en rien.
+            <strong>Pourquoi ça marche :</strong> vous forcez Claude à adopter
+            un point de vue adverse. Sans ce cadrage, il vous dira que votre CV
+            est très bien — ce qui ne vous aide en rien.
           </p>
           <p className={p}>
-            <strong>Ce que tu fais de la réponse :</strong> ne corrige rien tout
-            de suite. Note le score de départ, tu le compareras à la fin. Et lis
-            les red flags deux fois : ce sont souvent des choses que tu savais
-            et que tu espérais faire passer.
+            <strong>Ce que vous faites de la réponse :</strong> ne corrigez
+            rien tout de suite. Notez le score de départ, vous le comparerez à
+            la fin. Et lisez les red flags deux fois : ce sont souvent des
+            choses que vous saviez et que vous espériez faire passer.
           </p>
         </section>
 
         {/* --- PROMPT 2 --- */}
         <section>
           <h2 className={h2}>Prompt 2 — La réécriture</h2>
-          <p className={p}>Reste dans la même conversation.</p>
+          <p className={p}>Restez dans la même conversation.</p>
           <PromptBlock title="Réécriture avec la formule XYZ" prompt={PROMPT_XYZ} />
           <p className={p}>
             <strong>La formule XYZ, expliquée :</strong> elle vient de Laszlo
             Bock, ancien responsable des ressources humaines de Google. Au lieu
             d&apos;écrire « responsable de la communication de
-            l&apos;association », tu écris « augmenté l&apos;audience de
+            l&apos;association », vous écrivez « augmenté l&apos;audience de
             l&apos;association de 40 % en six mois en lançant une newsletter
             hebdomadaire ». Même expérience, mais la seconde version prouve
             quelque chose.
@@ -279,8 +280,9 @@ export default function PromptsCvPage() {
           <p className={p}>
             <strong>Le garde-fou le plus important du guide :</strong> la
             consigne « ne l&apos;invente pas ». Sans elle, Claude comblera les
-            trous avec des chiffres plausibles — et tu te retrouveras en
-            entretien à défendre des résultats que tu n&apos;as jamais obtenus.
+            trous avec des chiffres plausibles — et vous vous retrouverez
+            en entretien à défendre des résultats que vous n&apos;avez jamais
+            obtenus.
             C&apos;est la faute qui coûte le plus cher.
           </p>
         </section>
@@ -293,7 +295,7 @@ export default function PromptsCvPage() {
           <h3 className={h3}>Ce que valent vraiment les ATS en France</h3>
           <p className={p}>
             On lit partout que « 75 % des CV sont rejetés par un robot ». En
-            France, la réalité est plus nuancée — et ça change ta stratégie.
+            France, la réalité est plus nuancée — et ça change votre stratégie.
           </p>
           <div className="overflow-x-auto mb-4">
             <table className="w-full text-sm border border-[#FAFAFA]/10">
@@ -308,7 +310,7 @@ export default function PromptsCvPage() {
                 <tr className="border-t border-[#FAFAFA]/10">
                   <td className="p-3">Toutes entreprises confondues</td>
                   <td className="p-3 font-mono text-[#E07A5F]">~27 %</td>
-                  <td className="p-3">Un humain lit souvent ton CV directement</td>
+                  <td className="p-3">Un humain lit souvent votre CV directement</td>
                 </tr>
                 <tr className="border-t border-[#FAFAFA]/10">
                   <td className="p-3">Plus de 200 salariés</td>
@@ -326,9 +328,10 @@ export default function PromptsCvPage() {
             </table>
           </div>
           <p className={p}>
-            <strong>Traduction concrète :</strong> si tu vises Goldman Sachs,
-            McKinsey ou un grand groupe, le prompt 3 est indispensable. Si tu
-            vises une startup de quinze personnes, ton CV sera lu par un humain
+            <strong>Traduction concrète :</strong> si vous visez Goldman Sachs,
+            McKinsey ou un grand groupe, le prompt 3 est indispensable. Si vous
+            visez une startup de quinze personnes, votre CV sera lu par un
+            humain
             — et une mise en page soignée compte plus que les mots-clés.
           </p>
           <p className="text-[#A9A9A9] text-sm mb-4">
@@ -341,18 +344,19 @@ export default function PromptsCvPage() {
             <li>
               <strong>Les CV créés sur Canva</strong> exportent souvent le texte
               dans des blocs que l&apos;ATS lit mal ou dans le désordre.
-              Vérifie en ouvrant ton PDF et en tentant de sélectionner ton
-              texte : s&apos;il ne se sélectionne pas ligne par ligne,
+              Vérifiez en ouvrant votre PDF et en tentant de sélectionner
+              votre texte : s&apos;il ne se sélectionne pas ligne par ligne,
               l&apos;ATS aura le même problème.
             </li>
             <li>
               <strong>Les colonnes et les tableaux</strong> sont lus de gauche à
-              droite d&apos;un bord à l&apos;autre. Ta colonne « compétences »
-              à gauche peut se retrouver mélangée à ton expérience de droite.
+              droite d&apos;un bord à l&apos;autre. Votre colonne
+              « compétences » à gauche peut se retrouver mélangée à votre
+              expérience de droite.
             </li>
             <li>
               <strong>Les informations en en-tête ou en pied de page</strong>{" "}
-              sont fréquemment ignorées. Ne mets jamais ton téléphone ou ton
+              sont fréquemment ignorées. Ne mettez jamais votre téléphone ou votre
               email à ces endroits.
             </li>
           </ul>
@@ -362,16 +366,16 @@ export default function PromptsCvPage() {
         <section>
           <h2 className={h2}>Prompt 4 — Les candidatures préparées</h2>
           <p className={p}>
-            Celui-ci se fait dans Claude Cowork, qui travaille avec tes
+            Celui-ci se fait dans Claude Cowork, qui travaille avec vos
             fichiers.
           </p>
           <PromptBlock title="Dix candidatures pendant la nuit" prompt={PROMPT_CANDIDATURES} />
           <p className={p}>
-            Tu te réveilles avec dix dossiers prêts, classés par probabilité.
-            Il te reste à relire et à envoyer.
+            Vous vous réveillez avec dix dossiers prêts, classés par
+            probabilité. Il vous reste à relire et à envoyer.
           </p>
           <p className={p}>
-            <strong>Pourquoi ne pas laisser l&apos;IA postuler à ta
+            <strong>Pourquoi ne pas laisser l&apos;IA postuler à votre
             place :</strong> les conditions d&apos;utilisation de LinkedIn
             interdisent explicitement l&apos;automatisation de la navigation.
             Un compte qui enchaîne dix candidatures au rythme d&apos;une
@@ -379,7 +383,7 @@ export default function PromptsCvPage() {
             temporaire au bannissement définitif. Perdre son compte LinkedIn
             pendant une recherche d&apos;emploi ou de stage, c&apos;est perdre son réseau et son
             historique. Le gain de temps réel est dans la personnalisation, pas
-            dans le clic final — garde-le pour toi.
+            dans le clic final — gardez-le pour vous.
           </p>
         </section>
 
@@ -392,7 +396,7 @@ export default function PromptsCvPage() {
           </p>
           <PromptBlock title="Simulation d'entretien" prompt={PROMPT_ENTRETIEN} />
           <p className={p}>
-            Fais-le à voix haute, en tapant tes réponses comme tu les dirais.
+            Faites-le à voix haute, en tapant vos réponses comme vous les diriez.
             L&apos;objectif n&apos;est pas d&apos;avoir les bonnes réponses
             écrites, c&apos;est d&apos;avoir déjà entendu les questions qui
             piquent.
@@ -405,18 +409,18 @@ export default function PromptsCvPage() {
           <ol className="list-decimal list-inside text-[#F4F1DE]/90 leading-relaxed mb-4 space-y-3">
             <li>
               <strong>Changer de conversation entre les prompts.</strong> Tout
-              le système repose sur le fait que Claude garde en mémoire ton CV,
+              le système repose sur le fait que Claude garde en mémoire votre CV,
               l&apos;offre et son propre diagnostic.
             </li>
             <li>
-              <strong>Accepter la première réécriture.</strong> Relance avec «
+              <strong>Accepter la première réécriture.</strong> Relancez avec «
               c&apos;est trop générique, sois plus précis sur [X] ». La
               deuxième version est presque toujours meilleure.
             </li>
             <li>
-              <strong>Laisser passer un chiffre inventé.</strong> Relis chaque
-              donnée de ton CV final. Si tu ne peux pas la défendre en
-              entretien, supprime-la.
+              <strong>Laisser passer un chiffre inventé.</strong> Relisez chaque
+              donnée de votre CV final. Si vous ne pouvez pas la défendre en
+              entretien, supprimez-la.
             </li>
             <li>
               <strong>Envoyer le même CV partout.</strong> Le prompt 1 se refait
