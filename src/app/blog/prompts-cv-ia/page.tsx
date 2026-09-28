@@ -209,7 +209,7 @@ export default function PromptsCvPage() {
           </span>
           <div className="flex items-center gap-1 text-[#A9A9A9] text-xs">
             <Calendar className="w-3 h-3" />
-            <span>À jour au 4 août 2026</span>
+            <span>28 septembre 2026</span>
           </div>
           <div className="flex items-center gap-1 text-[#A9A9A9] text-xs">
             <Clock className="w-3 h-3" />
@@ -222,10 +222,10 @@ export default function PromptsCvPage() {
         </h1>
 
         <p className="text-lg text-[#F4F1DE]/80 leading-relaxed max-w-3xl">
-          Dans la vidéo, je t&apos;ai montré trois prompts. Ici tu as les cinq,
-          avec ce qui ne rentrait pas dans une minute : quoi faire de chaque
-          réponse, les erreurs qui ruinent le résultat, et les chiffres réels
-          du marché français.
+          Cinq prompts prêts à copier pour passer de l&apos;offre à
+          l&apos;entretien, avec ce qu&apos;il faut faire de chaque réponse, les
+          erreurs qui ruinent le résultat, et les chiffres réels du marché
+          français.
         </p>
       </header>
 
@@ -371,13 +371,13 @@ export default function PromptsCvPage() {
             Il te reste à relire et à envoyer.
           </p>
           <p className={p}>
-            <strong>Pourquoi je ne te dis pas de laisser l&apos;IA postuler à
-            ta place :</strong> les conditions d&apos;utilisation de LinkedIn
+            <strong>Pourquoi ne pas laisser l&apos;IA postuler à ta
+            place :</strong> les conditions d&apos;utilisation de LinkedIn
             interdisent explicitement l&apos;automatisation de la navigation.
             Un compte qui enchaîne dix candidatures au rythme d&apos;une
             machine se fait repérer, et les sanctions vont de la restriction
             temporaire au bannissement définitif. Perdre son compte LinkedIn
-            pendant une recherche de stage, c&apos;est perdre son réseau et son
+            pendant une recherche d&apos;emploi ou de stage, c&apos;est perdre son réseau et son
             historique. Le gain de temps réel est dans la personnalisation, pas
             dans le clic final — garde-le pour toi.
           </p>
@@ -387,8 +387,8 @@ export default function PromptsCvPage() {
         <section>
           <h2 className={h2}>Prompt 5 — La préparation à l&apos;entretien</h2>
           <p className={p}>
-            Celui-là n&apos;était pas dans la vidéo. C&apos;est pourtant celui
-            qui transforme un entretien décroché en entretien réussi.
+            Le plus souvent oublié. C&apos;est pourtant celui qui transforme
+            un entretien décroché en entretien réussi.
           </p>
           <PromptBlock title="Simulation d'entretien" prompt={PROMPT_ENTRETIEN} />
           <p className={p}>
@@ -425,8 +425,8 @@ export default function PromptsCvPage() {
             </li>
           </ol>
           <p className="text-[#A9A9A9] text-sm mt-8">
-            Les chiffres sur les ATS ont été vérifiés le 4 août 2026 auprès des
-            études APEC 2025 et Hellowork 2024. La formule XYZ est attribuée à
+            Les chiffres sur les ATS sont issus des études APEC 2025 et
+            Hellowork 2024. La formule XYZ est attribuée à
             Laszlo Bock, ancien SVP People Operations de Google. Les prompts
             ont été écrits pour Claude mais fonctionnent avec n&apos;importe
             quel assistant conversationnel.
