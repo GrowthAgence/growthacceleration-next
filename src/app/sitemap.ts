@@ -71,6 +71,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date("2026-02-24"),
     },
     {
+      url: `${baseUrl}/blog/prompts-cv-ia`,
+      lastModified: new Date("2026-09-28"),
+    },
+    {
       url: `${baseUrl}/blog/etre-cite-par-chatgpt`,
       lastModified: new Date("2026-08-28"),
     },

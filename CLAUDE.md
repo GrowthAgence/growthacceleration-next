@@ -178,6 +178,7 @@ src/
 │   │   ├── page.tsx                # Blog hub (CollectionPage schema)
 │   │   ├── etre-cite-par-chatgpt/            # Article + diagrams.tsx (5 schémas SVG inline)
 │   │   ├── prospection-inversee/page.tsx     # Article manuel (redirect 308 depuis machine-a-walkthrough)
+│   │   ├── prompts-cv-ia/                    # Article « 5 prompts CV » + client.tsx (bouton Copier, event GA4 prompt_copy)
 │   │   ├── claude-code-vs-cursor/page.tsx   # Article (BlogPosting schema)
 │   │   ├── guide-geo-2026/page.tsx          # Article (BlogPosting schema)
 │   │   ├── agents-ia-entreprise/page.tsx    # Article (BlogPosting schema)
@@ -284,6 +285,11 @@ Système de production de contenu qui enjambe **ce repo (Vercel/Neon)** et le **
 ---
 
 ## Updates & Changelog
+
+### 2026-09-28 — Article « Les 5 prompts pour faire passer votre CV »
+- `/blog/prompts-cv-ia` : guide anonymisé — 5 prompts copiables (diagnostic, formule XYZ, test ATS, candidatures Cowork, simulation d'entretien) + chiffres ATS France (APEC 2025, Hellowork 2024)
+- Texte gardé avec accents (prompts à copier tels quels) ; résumé LLM et métadonnées au style simplifié habituel
+- Ajouté au hub blog, au sitemap et à llms.txt ; event GA4 `prompt_copy`
 
 ### 2026-09-16 — Passe de documentation
 - CLAUDE.md remis à jour (6 formations, architecture complète, section « La Machine »)
