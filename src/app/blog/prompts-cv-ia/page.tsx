@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Calendar, Clock, User } from "lucide-react";
+import { Calendar, Clock } from "lucide-react";
 import { FinalCTA } from "@/components/FinalCTA";
 import { PromptBlock } from "./client";
 
@@ -36,8 +36,7 @@ const blogPostingSchema = {
   datePublished: "2026-09-28",
   dateModified: "2026-09-28",
   author: {
-    "@type": "Person",
-    name: "Vadim",
+    "@id": "https://www.growth-acceleration.fr/#person",
   },
   publisher: {
     "@id": "https://www.growth-acceleration.fr/#organization",
@@ -208,10 +207,6 @@ export default function PromptsCvPage() {
           <span className="px-2 py-0.5 bg-[#E07A5F]/20 text-[#E07A5F] text-xs font-mono rounded">
             Prompts
           </span>
-          <div className="flex items-center gap-1 text-[#A9A9A9] text-xs">
-            <User className="w-3 h-3" />
-            <span>Par Vadim</span>
-          </div>
           <div className="flex items-center gap-1 text-[#A9A9A9] text-xs">
             <Calendar className="w-3 h-3" />
             <span>À jour au 4 août 2026</span>
