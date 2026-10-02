@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { ArrowRight, Check, Loader2 } from "lucide-react";
 
-type Status = "idle" | "loading" | "success" | "error";
+type Status = "idle" | "loading" | "pending" | "success" | "error";
 
 export function NewsletterSignup({ placement }: { placement: string }) {
   const [email, setEmail] = useState("");
@@ -35,7 +35,8 @@ export function NewsletterSignup({ placement }: { placement: string }) {
         setStatus("error");
         return;
       }
-      setStatus("success");
+      // pending = mail de confirmation envoye (double opt-in) ; sinon deja inscrit.
+      setStatus(data.status === "pending" ? "pending" : "success");
       window.gtag?.("event", "generate_lead", { lead_type: "newsletter", placement });
     } catch {
       setError("Connexion impossible, verifiez votre reseau et reessayez.");
@@ -65,7 +66,18 @@ export function NewsletterSignup({ placement }: { placement: string }) {
           spam. Desinscription en un clic.
         </p>
 
-        {status === "success" ? (
+        {status === "pending" ? (
+          <div role="status" className="space-y-1">
+            <p className="flex items-center gap-2 font-mono text-[#98C379] text-sm md:text-base">
+              <Check className="w-5 h-5" />
+              Presque fini{firstName ? `, ${firstName.trim()}` : ""} : verifiez votre boite mail.
+            </p>
+            <p className="text-[#A9A9A9] text-sm">
+              Cliquez sur le lien de confirmation, la derniere newsletter part aussitot. Rien recu
+              dans 2 minutes ? Regardez les spams ou promotions.
+            </p>
+          </div>
+        ) : status === "success" ? (
           <p
             role="status"
             className="flex items-center gap-2 font-mono text-[#98C379] text-sm md:text-base"

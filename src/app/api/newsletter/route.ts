@@ -1,7 +1,10 @@
-import { neon } from "@neondatabase/serverless";
 import { NextRequest, NextResponse } from "next/server";
-import { pushLeadToMautic } from "@/lib/mautic";
 import { validateNewsletterSignup } from "@/lib/newsletter";
+import { sendConfirmation } from "@/lib/newsletter-mailing";
+import { startSubscription } from "@/lib/newsletter-subscriptions";
+
+// Creation du contact + envoi Mautic : quelques appels de 5 s au pire.
+export const maxDuration = 30;
 
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const RATE_LIMIT_MAX_REQUESTS = 5;
@@ -22,6 +25,9 @@ function isRateLimited(ip: string): boolean {
   return bucket.count > RATE_LIMIT_MAX_REQUESTS;
 }
 
+// status renvoye au formulaire :
+// - "pending"   : mail de confirmation envoye, la personne doit cliquer le lien
+// - "confirmed" : deja inscrite, ou confirmee sans lien (repli)
 export async function POST(request: NextRequest) {
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
   if (isRateLimited(ip)) {
@@ -41,7 +47,7 @@ export async function POST(request: NextRequest) {
   // Champ piege invisible : un humain le laisse vide, un robot le remplit.
   // On repond "succes" pour ne pas lui apprendre a contourner le piege.
   if (typeof body === "object" && body !== null && (body as Record<string, unknown>).website) {
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true, status: "pending" });
   }
 
   const validation = validateNewsletterSignup(body);
@@ -51,21 +57,30 @@ export async function POST(request: NextRequest) {
   const { email, firstName } = validation.value;
 
   try {
-    const sql = neon(process.env.DATABASE_URL!);
-    await sql`
-      INSERT INTO leads (email, first_name, resource_requested, source)
-      VALUES (${email}, ${firstName}, ${"newsletter"}, ${SOURCE})
-    `;
+    const start = await startSubscription(email, firstName, SOURCE);
+    if (start.action === "already-confirmed") {
+      return NextResponse.json({ success: true, status: "confirmed" });
+    }
+    if (start.action === "recently-sent") {
+      return NextResponse.json({ success: true, status: "pending" });
+    }
+
+    const outcome = await sendConfirmation(start.subscription);
+    if (outcome === "failed") {
+      return NextResponse.json(
+        { error: "Inscription impossible pour le moment, reessayez plus tard." },
+        { status: 502 },
+      );
+    }
+    return NextResponse.json({
+      success: true,
+      status: outcome === "confirmation-sent" ? "pending" : "confirmed",
+    });
   } catch (error) {
-    console.error("Newsletter signup: Neon insert failed", { error });
+    console.error("Newsletter signup failed", { error });
     return NextResponse.json(
       { error: "Inscription impossible pour le moment, reessayez plus tard." },
       { status: 500 },
     );
   }
-
-  // Copie marketing vers Mautic (tag site-ga => segment de la newsletter). Ne bloque jamais.
-  await pushLeadToMautic({ email, firstName, resourceRequested: "newsletter", source: SOURCE });
-
-  return NextResponse.json({ success: true });
 }

@@ -288,6 +288,16 @@ Système de production de contenu qui enjambe **ce repo (Vercel/Neon)** et le **
 
 ## Updates & Changelog
 
+### 2026-10-02 (quinquies) : Double opt-in + envoi de la dernière newsletter à l'inscription
+- Table Neon `newsletter_subscriptions` (pending/confirmed, `confirm_token`, `confirmation_sent_at`, `confirmed_at`, `welcome_email_id/name/sent_at`) — `src/lib/newsletter-subscriptions.ts`
+- `POST /api/newsletter` → contact Mautic tagué `newsletter-attente` (hors segment) + mail de confirmation (email Mautic template `NEWSLETTER_CONFIRM_EMAIL_ID`, jeton API `{confirm_url}`, lien en `mautic:disable-tracking`) — `src/lib/newsletter-mailing.ts`
+- `/newsletter/confirmer?t=…` : la confirmation se fait **au clic sur un bouton (server action), jamais à l'ouverture du lien** (les antispams suivent les liens). Puis : lead Neon, tags `site-ga` / `-newsletter-attente`, envoi immédiat de la dernière newsletter (email Mautic de type liste publié et déjà envoyé) si pas déjà reçue, noté dans la table. Les suivantes partent avec le segment
+- Repli : sans `NEWSLETTER_CONFIRM_EMAIL_ID` ou si le mail ne part pas, inscription confirmée directement (logué)
+- Lien valable 7 jours, pas de renvoi avant 5 min ; admin onglet Newsletter : tableau « Inscriptions » + mention « envoyée à l'inscription »
+- Permissions requises sur le rôle Mautic « API Site GA » : Emails voir/créer/modifier (lecture des emails, envoi à un contact)
+- Dates Mautic = heure de Paris (pas UTC) : l'admin les affiche telles quelles
+- Gabarits mail : `~/contenu/newsletter-blocs/` (`whoami.html` à mettre en bas de chaque newsletter, `confirmation.html`)
+
 ### 2026-10-02 (quater) : Bouton Newsletter « NOUVEAU » sur tout le site
 - Page `/newsletter` (résumé LLM, 3 promesses, formulaire, dernier numéro) ajoutée au sitemap et à llms.txt
 - Tag vert `src/components/NewBadge.tsx` (vert succès, distinct des badges terracotta NEW/PROMO des formations)

@@ -3,6 +3,9 @@
 import { Fragment, useState } from "react";
 import { ChevronDown, ChevronRight, Loader2, Mail } from "lucide-react";
 import type { NewsletterCampaign, RecipientStatus } from "@/lib/newsletter-stats";
+import type { NewsletterSubscription } from "@/lib/newsletter-subscriptions";
+
+export type AdminSubscription = Omit<NewsletterSubscription, "confirm_token">;
 
 const STATUS_LABELS: Record<RecipientStatus, { label: string; className: string }> = {
   clicked: { label: "A clique", className: "text-[#98C379]" },
@@ -20,10 +23,11 @@ const DATE_FORMAT: Intl.DateTimeFormatOptions = {
   minute: "2-digit",
 };
 
-// Mautic renvoie "2026-10-02 16:42:01" en UTC, sans fuseau.
+// Mautic renvoie "2026-10-02 16:42:01" a l heure de Paris, sans fuseau : on affiche
+// l heure telle quelle (lecture en UTC des deux cotes = aucune conversion).
 function formatMauticDate(value: string | null): string {
   if (!value) return "—";
-  return new Date(`${value.replace(" ", "T")}Z`).toLocaleString("fr-FR", DATE_FORMAT);
+  return new Date(`${value.replace(" ", "T")}Z`).toLocaleString("fr-FR", { ...DATE_FORMAT, timeZone: "UTC" });
 }
 
 function rate(count: number, total: number): string {
@@ -33,13 +37,20 @@ function rate(count: number, total: number): string {
 
 const TH = "text-left text-[#A9A9A9] text-xs font-mono uppercase px-4 py-3";
 
+// Dates Neon (timestamptz ISO) : conversion normale vers l heure locale.
+function formatIsoDate(value: string | null): string {
+  if (!value) return "—";
+  return new Date(value).toLocaleString("fr-FR", DATE_FORMAT);
+}
+
 interface Props {
+  subscriptions: AdminSubscription[];
   campaigns: NewsletterCampaign[];
   isLoading: boolean;
   error: string;
 }
 
-export function NewsletterPanel({ campaigns, isLoading, error }: Props) {
+export function NewsletterPanel({ campaigns, subscriptions, isLoading, error }: Props) {
   // null = rien choisi : la newsletter la plus recente est depliee par defaut.
   const [expanded, setExpanded] = useState<string | null>(null);
   const openId = expanded ?? campaigns[0]?.emailId ?? null;
@@ -128,6 +139,8 @@ export function NewsletterPanel({ campaigns, isLoading, error }: Props) {
         </table>
       </div>
 
+      <SubscriptionsTable subscriptions={subscriptions} />
+
       <p className="text-xs text-[#A9A9A9] leading-relaxed max-w-3xl">
         Une ouverture compte quand une vraie messagerie charge l image de suivi. Les chargements
         automatiques sont ecartes : Brevo telecharge les images de chaque mail juste apres l envoi,
@@ -161,6 +174,9 @@ function RecipientsTable({ campaign }: { campaign: NewsletterCampaign }) {
               <td className={`py-2 pr-4 text-sm font-mono ${status.className}`}>
                 {status.label}
                 {r.humanOpens > 1 && <span className="text-[#A9A9A9]"> · {r.humanOpens} fois</span>}
+                {r.sentOnSignup && (
+                  <span className="block text-xs text-[#A9A9A9]">envoyee a l inscription</span>
+                )}
               </td>
               <td className="py-2 text-sm text-[#A9A9A9]">{formatMauticDate(r.firstOpenAt)}</td>
             </tr>
@@ -168,5 +184,66 @@ function RecipientsTable({ campaign }: { campaign: NewsletterCampaign }) {
         })}
       </tbody>
     </table>
+  );
+}
+
+function SubscriptionsTable({ subscriptions }: { subscriptions: AdminSubscription[] }) {
+  const pending = subscriptions.filter((s) => s.status === "pending").length;
+  return (
+    <div className="pt-6">
+      <h2 className="text-lg font-mono font-bold text-[#FAFAFA]">Inscriptions</h2>
+      <p className="text-[#A9A9A9] text-sm mb-3">
+        {subscriptions.length - pending} confirmee(s), {pending} en attente du clic sur le lien
+      </p>
+      {subscriptions.length === 0 ? (
+        <p className="text-[#A9A9A9] text-sm font-mono">Aucune inscription pour le moment.</p>
+      ) : (
+        <div className="bg-[#2D2A2E] border border-[#FAFAFA]/10 rounded-lg overflow-x-auto">
+          <table className="w-full min-w-[720px]">
+            <thead className="bg-[#1E1E1E] border-b border-[#FAFAFA]/10">
+              <tr>
+                <th className={TH}>Contact</th>
+                <th className={TH}>Inscription</th>
+                <th className={TH}>Confirmation</th>
+                <th className={TH}>Derniere newsletter envoyee</th>
+              </tr>
+            </thead>
+            <tbody>
+              {subscriptions.map((s) => (
+                <tr key={s.id} className="border-b border-[#FAFAFA]/5 last:border-0">
+                  <td className="px-4 py-3">
+                    <p className="text-[#FAFAFA] text-sm">{s.first_name || "—"}</p>
+                    <p className="text-[#A9A9A9] text-xs">{s.email}</p>
+                  </td>
+                  <td className="px-4 py-3 text-sm text-[#A9A9A9]">{formatIsoDate(s.created_at)}</td>
+                  <td className="px-4 py-3 text-sm font-mono">
+                    {s.status === "confirmed" ? (
+                      <span className="text-[#98C379]">{formatIsoDate(s.confirmed_at)}</span>
+                    ) : (
+                      <span className="text-[#A9A9A9]">
+                        En attente
+                        {s.confirmation_sent_at && (
+                          <span className="block text-xs">lien envoye {formatIsoDate(s.confirmation_sent_at)}</span>
+                        )}
+                      </span>
+                    )}
+                  </td>
+                  <td className="px-4 py-3 text-sm">
+                    {s.welcome_sent_at ? (
+                      <>
+                        <p className="text-[#F4F1DE]">{s.welcome_email_name}</p>
+                        <p className="text-[#A9A9A9] text-xs">{formatIsoDate(s.welcome_sent_at)}</p>
+                      </>
+                    ) : (
+                      <span className="text-[#A9A9A9]">—</span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
   );
 }

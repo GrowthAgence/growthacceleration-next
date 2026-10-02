@@ -19,6 +19,7 @@ export interface MauticEmailStat {
   date_sent: string | null;
   is_failed: string;
   open_details: string | null;
+  source: string | null;
 }
 
 export interface MauticPageHit {
@@ -45,6 +46,8 @@ export interface NewsletterRecipient {
   firstOpenAt: string | null;
   humanOpens: number;
   machineOpens: number;
+  // Envoye a l'unite par l'API (a la confirmation d'inscription), pas avec le segment.
+  sentOnSignup: boolean;
 }
 
 export interface NewsletterCampaign {
@@ -104,6 +107,7 @@ function toRecipient(
     firstOpenAt: humanOpens[0]?.datetime ?? null,
     humanOpens: humanOpens.length,
     machineOpens,
+    sentOnSignup: stat.source === "api",
   };
 }
 

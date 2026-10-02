@@ -7,6 +7,7 @@ import {
   type MauticPageHit,
   type NewsletterContact,
 } from "@/lib/newsletter-stats";
+import { listSubscriptions } from "@/lib/newsletter-subscriptions";
 
 // Deux vagues d'appels en parallele, 4 s chacune : tient sous les 10 s de la fonction.
 const MAUTIC_CALL_TIMEOUT_MS = 4000;
@@ -92,7 +93,10 @@ export async function GET(request: NextRequest) {
     const emailIds = [...new Set(stats.map((s) => s.email_id).filter((id): id is string => Boolean(id)))];
     const [contacts, emailNames] = await Promise.all([fetchContacts(leadIds), fetchEmailNames(emailIds)]);
 
-    return NextResponse.json({ campaigns: buildCampaigns(stats, hits, contacts, emailNames) });
+    // Le jeton de confirmation ne sort jamais du serveur, meme vers l'admin.
+    const subscriptions = (await listSubscriptions()).map((s) => ({ ...s, confirm_token: undefined }));
+
+    return NextResponse.json({ campaigns: buildCampaigns(stats, hits, contacts, emailNames), subscriptions });
   } catch (error) {
     console.error("Newsletter admin: Mautic fetch failed", { error });
     return NextResponse.json(

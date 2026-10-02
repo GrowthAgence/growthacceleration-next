@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import { Lock, Loader2, Users, Download, RefreshCw, Trash2, Mail, Phone, MessageSquare, ChevronDown, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { NewsletterCampaign } from "@/lib/newsletter-stats";
-import { NewsletterPanel } from "./newsletter-panel";
+import { NewsletterPanel, type AdminSubscription } from "./newsletter-panel";
 
 interface Lead {
   id: number;
@@ -50,6 +50,7 @@ export function AdminDashboard() {
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [expandedConversation, setExpandedConversation] = useState<string | null>(null);
   const [campaigns, setCampaigns] = useState<NewsletterCampaign[]>([]);
+  const [subscriptions, setSubscriptions] = useState<AdminSubscription[]>([]);
   const [newsletterError, setNewsletterError] = useState("");
   const [isNewsletterLoading, setIsNewsletterLoading] = useState(false);
   const [activeTab, setActiveTab] = useState<"leads" | "chats" | "newsletter">("leads");
@@ -105,6 +106,7 @@ export function AdminDashboard() {
         return;
       }
       setCampaigns(data.campaigns || []);
+      setSubscriptions(data.subscriptions || []);
     } catch (err) {
       console.error("Error fetching newsletter stats:", err);
       setNewsletterError("Connexion impossible, reessayez.");
@@ -290,6 +292,7 @@ export function AdminDashboard() {
         {activeTab === "newsletter" ? (
           <NewsletterPanel
             campaigns={campaigns}
+            subscriptions={subscriptions}
             isLoading={isNewsletterLoading}
             error={newsletterError}
           />
