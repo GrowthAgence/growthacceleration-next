@@ -79,7 +79,7 @@ export async function sendConfirmation(subscription: NewsletterSubscription): Pr
 /** Derniere newsletter partie (email de type liste, publie, deja envoye). */
 export async function findLatestNewsletter(): Promise<{ id: number; name: string } | null> {
   const data = await mauticGet<{ emails?: Record<string, MauticEmailSummary> | MauticEmailSummary[] }>(
-    "/emails?limit=50&orderBy=id&orderByDir=DESC&minimal=true",
+    "/emails?limit=50&orderBy=id&orderByDir=DESC",
     CALL_TIMEOUT_MS,
   );
   const latest = Object.values(data.emails ?? {})
