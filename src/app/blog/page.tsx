@@ -61,6 +61,16 @@ const breadcrumbSchema = {
 
 const articles = [
   {
+    slug: "jarvis-claude-code-fish-audio",
+    title: "Votre Jarvis personnel : un assistant vocal avec Claude Code et une voix realiste",
+    excerpt:
+      "Manuel en trois etapes : installer Jarvis, l assistant vocal dont le cerveau est Claude Code, et lui donner une vraie voix avec Fish Audio. Un seul prompt, aucune ligne de code.",
+    date: "2026-10-02",
+    readTime: "9 min",
+    tag: "Manuel",
+    formation: "/claude-code",
+  },
+  {
     slug: "prompts-cv-ia",
     title: "Les 5 prompts pour faire passer votre CV",
     excerpt:

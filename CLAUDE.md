@@ -178,6 +178,7 @@ src/
 │   │   ├── page.tsx                # Blog hub (CollectionPage schema)
 │   │   ├── etre-cite-par-chatgpt/            # Article + diagrams.tsx (5 schémas SVG inline)
 │   │   ├── prospection-inversee/page.tsx     # Article manuel (redirect 308 depuis machine-a-walkthrough)
+│   │   ├── jarvis-claude-code-fish-audio/    # Article manuel Jarvis + Fish Audio (4 vidéos Remotion dans public/blog/jarvis)
 │   │   ├── prompts-cv-ia/                    # Article « 5 prompts CV » + client.tsx (bouton Copier, event GA4 prompt_copy)
 │   │   ├── claude-code-vs-cursor/page.tsx   # Article (BlogPosting schema)
 │   │   ├── guide-geo-2026/page.tsx          # Article (BlogPosting schema)
@@ -285,6 +286,11 @@ Système de production de contenu qui enjambe **ce repo (Vercel/Neon)** et le **
 ---
 
 ## Updates & Changelog
+
+### 2026-10-02 : Article « Jarvis + Fish Audio »
+- `/blog/jarvis-claude-code-fish-audio` : manuel anonymisé (aucun lien affilié) pour installer Jarvis (assistant vocal, cerveau Claude Code) et remplacer sa voix par Fish Audio (`s2.1-pro-free`, vérifié sur docs.fish.audio) en un prompt
+- 4 illustrations animées Remotion (WebM + MP4 + affiche) dans `public/blog/jarvis/` ; sources du projet Remotion : `~/contenu/blog-growth-acceleration/jarvis-remotion/`
+- Texte au style simplifié habituel (sans accents) ; ajouté au hub blog, au sitemap et à llms.txt
 
 ### 2026-09-28 — Article « Les 5 prompts pour faire passer votre CV »
 - `/blog/prompts-cv-ia` : guide anonymisé — 5 prompts copiables (diagnostic, formule XYZ, test ATS, candidatures Cowork, simulation d'entretien) + chiffres ATS France (APEC 2025, Hellowork 2024)

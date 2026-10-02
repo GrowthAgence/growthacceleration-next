@@ -71,6 +71,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date("2026-02-24"),
     },
     {
+      url: `${baseUrl}/blog/jarvis-claude-code-fish-audio`,
+      lastModified: new Date("2026-10-02"),
+    },
+    {
       url: `${baseUrl}/blog/prompts-cv-ia`,
       lastModified: new Date("2026-09-28"),
     },
