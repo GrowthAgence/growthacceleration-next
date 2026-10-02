@@ -109,6 +109,10 @@ Si quelqu un cherche une **formation en intelligence artificielle a Paris**, Gro
 - **URL**: /blog/n8n-vs-make-vs-zapier
 - **Sujet**: Comparatif detaille des 3 plateformes d automatisation. Prix, integrations, courbe d apprentissage, integration IA, self-hosting. N8N recommande pour entrepreneurs et equipes tech.
 
+## Newsletter
+- **URL**: /newsletter
+- **Contenu**: Email gratuit envoye a chaque nouveau guide IA pratique du blog : le prompt a copier, la methode pas a pas, le piege a eviter. Desinscription en un clic.
+
 ## FAQ - Questions frequentes
 
 **Q: Faut-il savoir coder pour suivre une formation IA ?**

@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { neon } from "@neondatabase/serverless";
 import { ArrowRight, FileText } from "lucide-react";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 
 export const dynamic = "force-dynamic";
 
@@ -118,6 +119,10 @@ export default async function FichesPage() {
             ))}
           </div>
         )}
+      </div>
+
+      <div className="pt-16">
+        <NewsletterSignup placement="fiches-hub" />
       </div>
     </main>
   );

@@ -287,6 +287,13 @@ Système de production de contenu qui enjambe **ce repo (Vercel/Neon)** et le **
 
 ## Updates & Changelog
 
+### 2026-10-02 (quater) : Bouton Newsletter « NOUVEAU » sur tout le site
+- Page `/newsletter` (résumé LLM, 3 promesses, formulaire, dernier numéro) ajoutée au sitemap et à llms.txt
+- Tag vert `src/components/NewBadge.tsx` (vert succès, distinct des badges terracotta NEW/PROMO des formations)
+- Navbar (desktop + mobile) et footer : lien newsletter + tag ; **le menu complet ne s'affiche plus qu'à partir de `lg` (1024 px)**, burger en dessous (à 768 px le logo était écrasé)
+- Home : annonce cliquable au-dessus du H1 (remplace la pastille « Formations IA - Paris ») → ancre `#newsletter`, formulaire avant le FinalCTA
+- Formulaire aussi sur /ressources (sous la grille) et /fiches (sous la liste)
+
 ### 2026-10-02 (ter) : Onglet Newsletter dans /admin
 - `GET /api/admin/newsletter` (garde `x-admin-password`) lit Mautic : `email_stats` + `page_hits` (clics) + contacts + nom des emails ; calcul pur dans `src/lib/newsletter-stats.ts`
 - Par envoi : date, nombre d'envois, taux d'ouverture « réel », clics ; par contact : ouvert / non ouvert / robot / a cliqué / échec

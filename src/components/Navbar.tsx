@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "./ui/button";
+import { NewBadge } from "./NewBadge";
 
 const formations = [
   { href: "/claude-code", label: "Claude Code", tagline: "Ship ton produit en une journee", badge: null },
@@ -19,6 +20,7 @@ const secondaryLinks = [
   { href: "/ressources", label: "./ressources" },
   { href: "/blog", label: "./blog" },
   { href: "/fiches", label: "./fiches" },
+  { href: "/newsletter", label: "./newsletter", isNew: true },
 ];
 
 export function Navbar() {
@@ -61,7 +63,7 @@ export function Navbar() {
             />
           </Link>
 
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden lg:flex items-center space-x-6">
             <div className="relative" ref={formationsRef}>
               <button
                 type="button"
@@ -116,9 +118,10 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-[#F4F1DE] hover:text-[#E07A5F] font-mono text-sm transition-colors"
+                className="flex items-center gap-1.5 text-[#F4F1DE] hover:text-[#E07A5F] font-mono text-sm transition-colors"
               >
                 {link.label}
+                {link.isNew && <NewBadge />}
               </Link>
             ))}
 
@@ -129,7 +132,7 @@ export function Navbar() {
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-3 min-w-[48px] min-h-[48px] flex items-center justify-center text-[#F4F1DE] hover:text-[#E07A5F]"
+            className="lg:hidden p-3 min-w-[48px] min-h-[48px] flex items-center justify-center text-[#F4F1DE] hover:text-[#E07A5F]"
             aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -138,7 +141,7 @@ export function Navbar() {
       </div>
 
       {isOpen && (
-        <div className="md:hidden bg-[#1E1E1E] border-b border-[#FAFAFA]/5 px-4 py-4 space-y-2 max-h-[calc(100vh-4rem)] overflow-y-auto">
+        <div className="lg:hidden bg-[#1E1E1E] border-b border-[#FAFAFA]/5 px-4 py-4 space-y-2 max-h-[calc(100vh-4rem)] overflow-y-auto">
           <p className="text-[#A9A9A9] text-xs font-mono pt-1">&gt; ls formations/</p>
           {formations.map((f) => (
             <Link
@@ -160,10 +163,11 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="block text-[#F4F1DE] hover:text-[#E07A5F] font-mono py-2"
+                className="flex items-center gap-2 text-[#F4F1DE] hover:text-[#E07A5F] font-mono py-2"
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
+                {link.isNew && <NewBadge />}
               </Link>
             ))}
           </div>

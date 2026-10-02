@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { FileText, Download } from "lucide-react";
 import { ResourcesGrid } from "./client";
 import { Instructor } from "@/components/Instructor";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 
 export const metadata: Metadata = {
   title: "Ressources gratuites IA",
@@ -50,6 +51,8 @@ export default function RessourcesPage() {
           <ResourcesGrid />
         </div>
       </section>
+
+      <NewsletterSignup placement="ressources" />
 
       {/* INFO */}
       <section className="py-12 px-4 bg-[#2D2A2E]/30">

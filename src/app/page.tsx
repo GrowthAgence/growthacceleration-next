@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Instructor } from "@/components/Instructor";
 import { Testimonials } from "@/components/Testimonials";
 import { FinalCTA } from "@/components/FinalCTA";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
+import { NewBadge } from "@/components/NewBadge";
 
 // Les 6 formations
 const formations = [
@@ -90,12 +92,18 @@ export default function HomePage() {
       {/* HERO + CTA */}
       <section className="pt-20 pb-16 px-4 max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center space-x-2 bg-[#2D2A2E] px-3 py-1 rounded-full border border-[#FAFAFA]/10 mb-6">
-            <span className="w-2 h-2 rounded-full bg-[#E07A5F] animate-pulse" />
-            <span className="text-[#A9A9A9] text-xs font-mono uppercase tracking-wider">
-              Formations IA - Paris
+          {/* Annonce newsletter : premier element lu, renvoie au formulaire plus bas */}
+          <Link
+            href="#newsletter"
+            className="group inline-flex items-center gap-2 bg-[#2D2A2E] pl-1.5 pr-3 py-1.5 rounded-full border border-[#98C379]/30 hover:border-[#98C379]/70 mb-6 transition-colors"
+          >
+            <NewBadge />
+            <span className="text-[#F4F1DE] text-xs md:text-sm font-mono">
+              <span className="sm:hidden">Newsletter : un guide IA par email</span>
+              <span className="hidden sm:inline">La newsletter : un guide IA pratique par email</span>
             </span>
-          </div>
+            <ArrowRight className="w-3.5 h-3.5 text-[#98C379] group-hover:translate-x-0.5 transition-transform" />
+          </Link>
 
           <h1 className="text-4xl md:text-6xl font-mono font-bold leading-tight text-[#FAFAFA] mb-6">
             Formation Intelligence Artificielle<br />
@@ -260,6 +268,11 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* NEWSLETTER (cible de l annonce du hero) */}
+      <div id="newsletter" className="scroll-mt-24 pt-8">
+        <NewsletterSignup placement="home" />
+      </div>
 
       {/* FINAL CTA */}
       <FinalCTA

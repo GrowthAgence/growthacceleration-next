@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { NewBadge } from "./NewBadge";
 
 export function Footer() {
   return (
@@ -40,6 +41,11 @@ export function Footer() {
               <li><Link href="/formation-intelligence-artificielle" className="hover:text-[#E07A5F] block py-2">Toutes les formations</Link></li>
               <li><Link href="/blog" className="hover:text-[#E07A5F] block py-2">Blog</Link></li>
               <li><Link href="/fiches" className="hover:text-[#E07A5F] block py-2">Fiches pratiques</Link></li>
+              <li>
+                <Link href="/newsletter" className="hover:text-[#E07A5F] flex items-center gap-2 py-2">
+                  Newsletter <NewBadge />
+                </Link>
+              </li>
             </ul>
           </div>
 
