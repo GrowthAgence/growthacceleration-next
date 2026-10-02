@@ -106,7 +106,7 @@ const instructorSchema = {
   },
   image: "https://www.growth-acceleration.fr/fred.jpg",
   description:
-    "Developpeur full stack, ex Le Wagon #0001. 10 ans d experience en growth marketing et tech. Createur de 3 SaaS en production avec Claude API (VideoTools, Jobbot.io, Bigmails.AI). Utilisateur de Claude Code depuis le jour 1 de la beta. Formateur de plus de 400 professionnels a l IA.",
+    "Developpeur full stack, ex Le Wagon #0001. 10 ans d experience en growth marketing et tech. Createur de 5 SaaS en production, dont VideoTools, Jobbot.io et Bigmails.AI. Utilisateur de Claude Code depuis le jour 1 de la beta. Formateur de plus de 400 professionnels a l IA.",
   knowsAbout: ["N8N", "automatisation", "GPT", "Claude API", "Zapier", "Make", "workflows IA", "OpenClaw"],
 };
 

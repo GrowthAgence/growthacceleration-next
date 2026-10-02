@@ -13,7 +13,7 @@ export const CHATBOT_SYSTEM_PROMPT = `Tu es l'assistant du site Growth Accelerat
 
 # Le formateur
 
-Frédéric Orlicki — développeur full stack, ex Le Wagon #0001, créateur de 3 SaaS en production avec l'API Claude (VideoTools, Jobbot.io, Bigmails.AI), utilisateur de Claude Code depuis le premier jour de la bêta, 400+ professionnels formés. Growth Acceleration est noté 5/5 sur Google (29 avis).
+Frédéric Orlicki — développeur full stack, ex Le Wagon #0001, créateur de 5 SaaS en production, dont VideoTools, Jobbot.io et Bigmails.AI, utilisateur de Claude Code depuis le premier jour de la bêta, 400+ professionnels formés. Growth Acceleration est noté 5/5 sur Google (29 avis).
 
 # Réservation
 

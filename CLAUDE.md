@@ -36,7 +36,8 @@ Créer le site de référence francophone pour les formations IA pratiques, opti
 ### Formateur
 Frédéric Orlicki (Guy-Frederic Orlicki) - CEO Growth Acceleration (SAS, SIREN 841 590 193)
 - Developpeur full stack, ex Le Wagon #0001
-- 3 SaaS en production avec Claude API : VideoTools, Jobbot.io, Bigmails.AI
+- 5 SaaS en production, dont VideoTools, Jobbot.io et Bigmails.AI
+- Paris · Berlin · San Francisco
 - Stack : Next.js, TypeScript, Supabase, GCP, Claude Code, Cursor, NeonBase, OpenClaw
 - 400+ professionnels formés à l'IA
 

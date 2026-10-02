@@ -3,6 +3,12 @@
 import { motion } from "motion/react";
 import Image from "next/image";
 
+const STATS = [
+  { value: "5", label: "SaaS en prod" },
+  { value: "400+", label: "Alumni" },
+  { value: "10 ans", label: "Growth et tech" },
+];
+
 interface InstructorProps {
   accentColor?: string;
 }
@@ -26,7 +32,7 @@ export function Instructor({ accentColor = "#E07A5F" }: InstructorProps) {
             >
               <Image
                 src="/fred.jpg"
-                alt="Frederic - Formateur Growth Acceleration, CEO de La Growth Agence"
+                alt="Frederic Orlicki - Formateur Growth Acceleration, developpeur full stack"
                 width={400}
                 height={500}
                 className="w-full h-auto object-cover"
@@ -53,10 +59,8 @@ export function Instructor({ accentColor = "#E07A5F" }: InstructorProps) {
               <p className="font-mono mb-2" style={{ color: accentColor }}>
                 &gt; whoami
               </p>
-              <h2 className="text-3xl font-mono font-bold text-[#FAFAFA]">Frederic</h2>
-              <p className="font-mono text-sm" style={{ color: accentColor }}>
-                CEO @ La Growth Agence
-              </p>
+              <h2 className="text-3xl font-mono font-bold text-[#FAFAFA]">Frederic Orlicki</h2>
+              <p className="font-mono text-sm text-[#A9A9A9]">Paris · Berlin · San Francisco</p>
             </div>
 
             <div className="space-y-4 text-[#F4F1DE]">
@@ -64,10 +68,6 @@ export function Instructor({ accentColor = "#E07A5F" }: InstructorProps) {
                 Developpeur full stack, ex{" "}
                 <span className="font-mono" style={{ color: accentColor }}>Le Wagon #0001</span>.
                 10 ans d experience en growth marketing et tech.
-                J ai construit 3 SaaS en production avec Claude API :{" "}
-                <span className="font-mono" style={{ color: accentColor }}>VideoTools</span>,{" "}
-                <span className="font-mono" style={{ color: accentColor }}>Jobbot.io</span>,{" "}
-                <span className="font-mono" style={{ color: accentColor }}>Bigmails.AI</span>.
               </p>
               <p>
                 Stack quotidien :{" "}
@@ -88,27 +88,22 @@ export function Instructor({ accentColor = "#E07A5F" }: InstructorProps) {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-2 gap-4 pt-4">
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ type: "spring", stiffness: 200, delay: 0.4 }}
-                className="bg-[#2D2A2E] p-4 rounded-lg border border-[#FAFAFA]/10 text-center"
-              >
-                <p className="text-3xl font-mono font-bold" style={{ color: accentColor }}>3</p>
-                <p className="text-[#A9A9A9] text-xs font-mono uppercase tracking-wider">SaaS shippes</p>
-              </motion.div>
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ type: "spring", stiffness: 200, delay: 0.5 }}
-                className="bg-[#2D2A2E] p-4 rounded-lg border border-[#FAFAFA]/10 text-center"
-              >
-                <p className="text-3xl font-mono font-bold" style={{ color: accentColor }}>400+</p>
-                <p className="text-[#A9A9A9] text-xs font-mono uppercase tracking-wider">Alumni</p>
-              </motion.div>
+            <div className="grid grid-cols-3 gap-3 pt-4">
+              {STATS.map((stat, i) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ type: "spring", stiffness: 200, delay: 0.4 + i * 0.1 }}
+                  className="bg-[#2D2A2E] px-2 py-4 sm:p-4 rounded-lg border border-[#FAFAFA]/10 text-center"
+                >
+                  <p className="text-2xl sm:text-3xl font-mono font-bold whitespace-nowrap" style={{ color: accentColor }}>
+                    {stat.value}
+                  </p>
+                  <p className="text-[#A9A9A9] text-xs font-mono uppercase tracking-wider">{stat.label}</p>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         </div>
