@@ -287,6 +287,13 @@ Système de production de contenu qui enjambe **ce repo (Vercel/Neon)** et le **
 
 ## Updates & Changelog
 
+### 2026-10-02 (ter) : Onglet Newsletter dans /admin
+- `GET /api/admin/newsletter` (garde `x-admin-password`) lit Mautic : `email_stats` + `page_hits` (clics) + contacts + nom des emails ; calcul pur dans `src/lib/newsletter-stats.ts`
+- Par envoi : date, nombre d'envois, taux d'ouverture « réel », clics ; par contact : ouvert / non ouvert / robot / a cliqué / échec
+- ⚠️ Brevo (relais SMTP) charge le pixel de chaque mail quelques secondes après l'envoi (UA `Brevo/1.0 redirection-images`) : ces ouvertures et celles des antispams sont écartées. Le taux « Mautic brut » reste affiché pour comparaison
+- Contacts tagués `test` dans Mautic exclus des stats (ne jamais mettre d'adresse en dur : repo public)
+- Le nom de la newsletter exige la permission Emails « Voir » sur le rôle Mautic « API Site GA » ; sans elle, affichage « Newsletter n°X »
+
 ### 2026-10-02 (bis) : Inscription newsletter sur le blog
 - `src/components/NewsletterSignup.tsx` (client) en bas des 9 articles (avant le FinalCTA) et sur le hub /blog : prénom facultatif + email, champ piège anti-robots, events GA4 `form_start` et `generate_lead` (`lead_type: newsletter`, `placement`)
 - `POST /api/newsletter` : validation (`src/lib/newsletter.ts`), rate limit 5 req / 10 min / IP, insert Neon `leads` (source `newsletter-blog`, sans téléphone) puis push Mautic (tag `site-ga` → segment « Leads site GA », celui de la newsletter)

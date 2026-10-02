@@ -22,6 +22,41 @@ function getMauticConfig() {
   return { url: url.replace(/\/$/, ""), user, password };
 }
 
+function basicAuth(config: { user: string; password: string }): string {
+  return `Basic ${Buffer.from(`${config.user}:${config.password}`).toString("base64")}`;
+}
+
+export class MauticRequestError extends Error {
+  constructor(
+    message: string,
+    readonly status: number,
+  ) {
+    super(message);
+  }
+}
+
+/**
+ * Lecture de l'API Mautic (admin du site). Contrairement a pushLeadToMautic,
+ * lance une MauticRequestError : l'appelant decide quoi afficher.
+ */
+export async function mauticGet<T>(path: string, timeoutMs = MAUTIC_TIMEOUT_MS): Promise<T> {
+  const config = getMauticConfig();
+  if (!config) {
+    throw new MauticRequestError("Mautic non configure (MAUTIC_URL/MAUTIC_API_USER/MAUTIC_API_PASSWORD)", 500);
+  }
+
+  const response = await fetch(`${config.url}/api${path}`, {
+    headers: { Authorization: basicAuth(config) },
+    signal: AbortSignal.timeout(timeoutMs),
+    cache: "no-store",
+  });
+  if (!response.ok) {
+    const body = await response.text();
+    throw new MauticRequestError(`Mautic GET ${path} (${response.status}): ${body.slice(0, 200)}`, response.status);
+  }
+  return (await response.json()) as T;
+}
+
 /**
  * Pousse un lead vers Mautic (contact taggé site-ga, alimenté dans le
  * segment "Leads site GA"). Ne lance jamais d'exception : Mautic est une
@@ -36,12 +71,11 @@ export async function pushLeadToMautic(lead: MauticLead): Promise<boolean> {
   }
 
   try {
-    const auth = Buffer.from(`${config.user}:${config.password}`).toString("base64");
     const response = await fetch(`${config.url}/api/contacts/new`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Basic ${auth}`,
+        Authorization: basicAuth(config),
       },
       body: JSON.stringify({
         email: lead.email,

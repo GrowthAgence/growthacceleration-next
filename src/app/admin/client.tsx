@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { Lock, Loader2, Users, Download, RefreshCw, Trash2, Mail, Phone, MessageSquare, ChevronDown, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import type { NewsletterCampaign } from "@/lib/newsletter-stats";
+import { NewsletterPanel } from "./newsletter-panel";
 
 interface Lead {
   id: number;
@@ -29,6 +31,12 @@ interface Conversation {
   updated_at: string;
 }
 
+const TAB_TITLES = {
+  leads: { title: "Leads", subtitle: "Gestion des contacts" },
+  chats: { title: "Conversations", subtitle: "Historique du chatbot" },
+  newsletter: { title: "Newsletter", subtitle: "Envois et ouvertures, depuis Mautic" },
+} as const;
+
 // Une meme personne peut telecharger plusieurs ressources : on compte les emails distincts.
 function countUniqueContacts(leads: Lead[]): number {
   return new Set(leads.map((l) => l.email.trim().toLowerCase())).size;
@@ -41,7 +49,10 @@ export function AdminDashboard() {
   const [leads, setLeads] = useState<Lead[]>([]);
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [expandedConversation, setExpandedConversation] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<"leads" | "chats">("leads");
+  const [campaigns, setCampaigns] = useState<NewsletterCampaign[]>([]);
+  const [newsletterError, setNewsletterError] = useState("");
+  const [isNewsletterLoading, setIsNewsletterLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState<"leads" | "chats" | "newsletter">("leads");
   const [isLoading, setIsLoading] = useState(false);
   const [stats, setStats] = useState({ total: 0, requests: 0, today: 0, thisWeek: 0 });
 
@@ -67,8 +78,7 @@ export function AdminDashboard() {
     if (response.ok) {
       sessionStorage.setItem("admin_pw", password);
       setIsAuthenticated(true);
-      fetchLeads();
-      fetchConversations();
+      refreshAll();
     } else {
       setError("Mot de passe incorrect");
     }
@@ -82,6 +92,31 @@ export function AdminDashboard() {
     } catch (err) {
       console.error("Error fetching conversations:", err);
     }
+  };
+
+  const fetchNewsletter = async () => {
+    setIsNewsletterLoading(true);
+    setNewsletterError("");
+    try {
+      const response = await fetch("/api/admin/newsletter", { headers: authHeaders() });
+      const data = await response.json();
+      if (!response.ok) {
+        setNewsletterError(data.error ?? "Stats newsletter indisponibles.");
+        return;
+      }
+      setCampaigns(data.campaigns || []);
+    } catch (err) {
+      console.error("Error fetching newsletter stats:", err);
+      setNewsletterError("Connexion impossible, reessayez.");
+    } finally {
+      setIsNewsletterLoading(false);
+    }
+  };
+
+  const refreshAll = () => {
+    fetchLeads();
+    fetchConversations();
+    fetchNewsletter();
   };
 
   const fetchLeads = async () => {
@@ -143,8 +178,7 @@ export function AdminDashboard() {
     localStorage.removeItem("admin_auth");
     if (sessionStorage.getItem("admin_pw")) {
       setIsAuthenticated(true);
-      fetchLeads();
-      fetchConversations();
+      refreshAll();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -191,23 +225,20 @@ export function AdminDashboard() {
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-3xl font-mono font-bold text-[#FAFAFA]">
-              {activeTab === "leads" ? "Leads" : "Conversations"}
+              {TAB_TITLES[activeTab].title}
             </h1>
-            <p className="text-[#A9A9A9]">
-              {activeTab === "leads" ? "Gestion des contacts" : "Historique du chatbot"}
-            </p>
+            <p className="text-[#A9A9A9]">{TAB_TITLES[activeTab].subtitle}</p>
           </div>
           <div className="flex gap-2">
             <Button
               variant="outline"
               size="sm"
-              onClick={() => {
-                fetchLeads();
-                fetchConversations();
-              }}
-              disabled={isLoading}
+              onClick={refreshAll}
+              disabled={isLoading || isNewsletterLoading}
             >
-              <RefreshCw className={`w-4 h-4 mr-2 ${isLoading ? "animate-spin" : ""}`} />
+              <RefreshCw
+                className={`w-4 h-4 mr-2 ${isLoading || isNewsletterLoading ? "animate-spin" : ""}`}
+              />
               Actualiser
             </Button>
             {activeTab === "leads" && (
@@ -220,7 +251,7 @@ export function AdminDashboard() {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-2 mb-8">
+        <div className="flex flex-wrap gap-2 mb-8">
           <button
             onClick={() => setActiveTab("leads")}
             className={`flex items-center gap-2 px-4 py-2 rounded font-mono text-sm cursor-pointer transition-colors ${
@@ -243,9 +274,26 @@ export function AdminDashboard() {
             <MessageSquare className="w-4 h-4" />
             Conversations ({conversations.length})
           </button>
+          <button
+            onClick={() => setActiveTab("newsletter")}
+            className={`flex items-center gap-2 px-4 py-2 rounded font-mono text-sm cursor-pointer transition-colors ${
+              activeTab === "newsletter"
+                ? "bg-[#E07A5F] text-[#1E1E1E]"
+                : "bg-[#2D2A2E] text-[#A9A9A9] hover:text-[#F4F1DE]"
+            }`}
+          >
+            <Mail className="w-4 h-4" />
+            Newsletter ({campaigns.length})
+          </button>
         </div>
 
-        {activeTab === "chats" ? (
+        {activeTab === "newsletter" ? (
+          <NewsletterPanel
+            campaigns={campaigns}
+            isLoading={isNewsletterLoading}
+            error={newsletterError}
+          />
+        ) : activeTab === "chats" ? (
           conversations.length === 0 ? (
             <div className="text-center py-12 bg-[#2D2A2E]/50 rounded-lg border border-[#FAFAFA]/10">
               <MessageSquare className="w-12 h-12 text-[#A9A9A9] mx-auto mb-4" />
