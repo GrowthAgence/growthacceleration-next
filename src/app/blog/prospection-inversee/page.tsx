@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Calendar, Clock } from "lucide-react";
 import { FinalCTA } from "@/components/FinalCTA";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 
 export const metadata: Metadata = {
   title: "Prospection inversee : creez le site de votre client avant de lui vendre",
@@ -649,6 +650,8 @@ export default function ProspectionInverseePage() {
       </article>
 
       {/* FINAL CTA */}
+      <NewsletterSignup placement="article-prospection-inversee" />
+
       <FinalCTA
         title="Envie de construire votre propre systeme ?"
         price="900"

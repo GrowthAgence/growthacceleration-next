@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { FinalCTA } from "@/components/FinalCTA";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 
 export const metadata: Metadata = {
   title: "Claude Code vs Cursor vs Copilot : comparatif 2026",
@@ -865,6 +866,8 @@ export default function ArticlePage() {
       </section>
 
       {/* FINAL CTA */}
+      <NewsletterSignup placement="article-claude-code-vs-cursor" />
+
       <FinalCTA
         title="Envie de maitriser Claude Code ?"
         price="900"

@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Calendar, Clock } from "lucide-react";
 import { FinalCTA } from "@/components/FinalCTA";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 
 export const metadata: Metadata = {
   title: "N8N vs Make vs Zapier : quel outil d automatisation en 2026",
@@ -866,6 +867,8 @@ export default function N8nVsMakeVsZapierPage() {
       </article>
 
       {/* FINAL CTA */}
+      <NewsletterSignup placement="article-n8n-vs-make-vs-zapier" />
+
       <FinalCTA
         title="Envie de maitriser N8N ?"
         price="900"

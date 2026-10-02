@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 
 export const metadata: Metadata = {
   title: "Blog IA - Articles et guides pratiques",
@@ -245,6 +246,8 @@ export default function BlogPage() {
           ))}
         </div>
       </section>
+
+      <NewsletterSignup placement="blog-hub" />
 
       {/* CTA FORMATIONS */}
       <section className="py-16 px-4 bg-[#2D2A2E]/30">

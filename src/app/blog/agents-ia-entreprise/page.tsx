@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Calendar, Clock } from "lucide-react";
 import { FinalCTA } from "@/components/FinalCTA";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 
 export const metadata: Metadata = {
   title: "Agents IA en entreprise : cas d usage et deploiement",
@@ -956,6 +957,8 @@ export default function AgentsIAEntreprisePage() {
       </section>
 
       {/* FINAL CTA */}
+      <NewsletterSignup placement="article-agents-ia-entreprise" />
+
       <FinalCTA
         title="Envie de deployer des agents IA ?"
         price="900"

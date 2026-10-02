@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Calendar, Clock } from "lucide-react";
 import { FinalCTA } from "@/components/FinalCTA";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 
 const SLUG = "jarvis-claude-code-fish-audio";
 const URL = `https://www.growth-acceleration.fr/blog/${SLUG}`;
@@ -585,6 +586,8 @@ export default function JarvisPage() {
           </div>
         </section>
       </article>
+
+      <NewsletterSignup placement="article-jarvis-claude-code-fish-audio" />
 
       <FinalCTA title="Envie de construire vos propres assistants ?" price="900" accentColor="#E07A5F" />
     </>

@@ -287,6 +287,11 @@ Système de production de contenu qui enjambe **ce repo (Vercel/Neon)** et le **
 
 ## Updates & Changelog
 
+### 2026-10-02 (bis) : Inscription newsletter sur le blog
+- `src/components/NewsletterSignup.tsx` (client) en bas des 9 articles (avant le FinalCTA) et sur le hub /blog : prénom facultatif + email, champ piège anti-robots, events GA4 `form_start` et `generate_lead` (`lead_type: newsletter`, `placement`)
+- `POST /api/newsletter` : validation (`src/lib/newsletter.ts`), rate limit 5 req / 10 min / IP, insert Neon `leads` (source `newsletter-blog`, sans téléphone) puis push Mautic (tag `site-ga` → segment « Leads site GA », celui de la newsletter)
+- Envoi des newsletters : Mautic → relais SMTP Brevo (domaine growth-acceleration.fr authentifié, expéditeur frederic@growth-acceleration.fr)
+
 ### 2026-10-02 : Article « Jarvis + Fish Audio »
 - `/blog/jarvis-claude-code-fish-audio` : manuel anonymisé (aucun lien affilié) pour installer Jarvis (assistant vocal, cerveau Claude Code) et remplacer sa voix par Fish Audio (`s2.1-pro-free`, vérifié sur docs.fish.audio) en un prompt
 - 4 illustrations animées Remotion (WebM + MP4 + affiche) dans `public/blog/jarvis/` ; sources du projet Remotion : `~/contenu/blog-growth-acceleration/jarvis-remotion/`

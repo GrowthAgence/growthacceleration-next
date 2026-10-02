@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Calendar, Clock } from "lucide-react";
 import { FinalCTA } from "@/components/FinalCTA";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 import {
   DiagramAvantApres,
   DiagramBoucle,
@@ -531,6 +532,8 @@ export default function EtreCiteParChatgptPage() {
       </article>
 
       {/* FINAL CTA */}
+      <NewsletterSignup placement="article-etre-cite-par-chatgpt" />
+
       <FinalCTA
         title="Envie que les IA citent votre entreprise ?"
         price="900"

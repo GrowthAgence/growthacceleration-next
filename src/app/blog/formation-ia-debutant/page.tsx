@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Calendar, Clock } from "lucide-react";
 import { FinalCTA } from "@/components/FinalCTA";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 
 export const metadata: Metadata = {
   title: "Formation IA debutant : par ou commencer en 2026",
@@ -1089,6 +1090,8 @@ export default function FormationIADebutantPage() {
       </article>
 
       {/* CTA FINAL */}
+      <NewsletterSignup placement="article-formation-ia-debutant" />
+
       <FinalCTA
         title="Pret a vous former a l IA ?"
         price="900"

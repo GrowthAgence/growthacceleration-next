@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Calendar, Clock } from "lucide-react";
 import { FinalCTA } from "@/components/FinalCTA";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 
 export const metadata: Metadata = {
   title: "GEO : le guide complet du Generative Engine Optimization",
@@ -973,6 +974,8 @@ export default function GuideGeoPage() {
       </article>
 
       {/* FINAL CTA */}
+      <NewsletterSignup placement="article-guide-geo-2026" />
+
       <FinalCTA
         title="Envie de maitriser le GEO ?"
         price="900"

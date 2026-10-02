@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Calendar, Clock } from "lucide-react";
 import { FinalCTA } from "@/components/FinalCTA";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { PromptBlock } from "./client";
 
 export const metadata: Metadata = {
@@ -479,6 +480,8 @@ export default function PromptsCvPage() {
       </article>
 
       {/* FINAL CTA */}
+      <NewsletterSignup placement="article-prompts-cv-ia" />
+
       <FinalCTA
         title="Envie d aller plus loin avec Claude ?"
         price="900"
