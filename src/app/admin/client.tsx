@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 interface Lead {
   id: number;
   email: string;
-  phone: string;
+  phone: string | null;
   first_name: string | null;
   last_name: string | null;
   company: string | null;
@@ -29,6 +29,11 @@ interface Conversation {
   updated_at: string;
 }
 
+// Une meme personne peut telecharger plusieurs ressources : on compte les emails distincts.
+function countUniqueContacts(leads: Lead[]): number {
+  return new Set(leads.map((l) => l.email.trim().toLowerCase())).size;
+}
+
 export function AdminDashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
@@ -38,7 +43,7 @@ export function AdminDashboard() {
   const [expandedConversation, setExpandedConversation] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<"leads" | "chats">("leads");
   const [isLoading, setIsLoading] = useState(false);
-  const [stats, setStats] = useState({ total: 0, today: 0, thisWeek: 0 });
+  const [stats, setStats] = useState({ total: 0, requests: 0, today: 0, thisWeek: 0 });
 
   // Le mot de passe est conserve en sessionStorage et envoye en header
   // sur chaque requete admin (les endpoints le verifient cote serveur).
@@ -91,17 +96,12 @@ export function AdminDashboard() {
       const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
       const weekAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
 
-      const todayCount = data.leads.filter(
-        (l: Lead) => new Date(l.created_at) >= today
-      ).length;
-      const weekCount = data.leads.filter(
-        (l: Lead) => new Date(l.created_at) >= weekAgo
-      ).length;
-
+      const allLeads: Lead[] = data.leads || [];
       setStats({
-        total: data.leads.length,
-        today: todayCount,
-        thisWeek: weekCount,
+        total: countUniqueContacts(allLeads),
+        requests: allLeads.length,
+        today: countUniqueContacts(allLeads.filter((l) => new Date(l.created_at) >= today)),
+        thisWeek: countUniqueContacts(allLeads.filter((l) => new Date(l.created_at) >= weekAgo)),
       });
     } catch (err) {
       console.error("Error fetching leads:", err);
@@ -121,7 +121,7 @@ export function AdminDashboard() {
     const headers = ["Email", "Telephone", "Prenom", "Ressource", "Source", "Date"];
     const rows = leads.map((l) => [
       l.email,
-      l.phone,
+      l.phone || "",
       l.first_name || "",
       l.resource_requested || "",
       l.source,
@@ -230,7 +230,7 @@ export function AdminDashboard() {
             }`}
           >
             <Users className="w-4 h-4" />
-            Leads ({leads.length})
+            Leads ({stats.total})
           </button>
           <button
             onClick={() => setActiveTab("chats")}
@@ -317,8 +317,9 @@ export function AdminDashboard() {
         {/* Stats */}
         <div className="grid grid-cols-3 gap-4 mb-8">
           <div className="bg-[#2D2A2E] border border-[#FAFAFA]/10 rounded-lg p-4">
-            <p className="text-[#A9A9A9] text-sm">Total</p>
+            <p className="text-[#A9A9A9] text-sm">Contacts uniques</p>
             <p className="text-3xl font-mono font-bold text-[#FAFAFA]">{stats.total}</p>
+            <p className="text-[#A9A9A9] text-xs mt-1">{stats.requests} demandes au total</p>
           </div>
           <div className="bg-[#2D2A2E] border border-[#FAFAFA]/10 rounded-lg p-4">
             <p className="text-[#A9A9A9] text-sm">Aujourd hui</p>
@@ -381,10 +382,12 @@ export function AdminDashboard() {
                             <Mail className="w-3 h-3" />
                             {lead.email}
                           </span>
-                          <span className="flex items-center gap-1">
-                            <Phone className="w-3 h-3" />
-                            {lead.phone}
-                          </span>
+                          {lead.phone && (
+                            <span className="flex items-center gap-1">
+                              <Phone className="w-3 h-3" />
+                              {lead.phone}
+                            </span>
+                          )}
                         </div>
                       </div>
                     </td>
