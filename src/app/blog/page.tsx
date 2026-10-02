@@ -181,7 +181,7 @@ export default function BlogPage() {
 
       {/* HERO */}
       <section className="pt-20 pb-12 px-4 max-w-7xl mx-auto">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="inline-flex items-center space-x-2 bg-[#2D2A2E] px-3 py-1 rounded-full border border-[#FAFAFA]/10 mb-6">
             <span className="w-2 h-2 rounded-full bg-[#E07A5F] animate-pulse" />
             <span className="text-[#A9A9A9] text-xs font-mono uppercase tracking-wider">
@@ -203,15 +203,18 @@ export default function BlogPage() {
 
       {/* ARTICLES */}
       <section className="pb-16 px-4">
-        <div className="max-w-4xl mx-auto space-y-6">
-          {articles.map((article) => (
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {articles.map((article, index) => (
             <Link
               key={article.slug}
               href={`/blog/${article.slug}`}
               className="block group"
             >
-              <article className="bg-[#2D2A2E]/50 border border-[#FAFAFA]/10 rounded-lg p-6 md:p-8 hover:border-[#E07A5F]/50 transition-all">
-                <div className="flex items-center gap-3 mb-3">
+              <article className="h-full md:aspect-square flex flex-col bg-[#2D2A2E]/50 border border-[#FAFAFA]/10 rounded-lg p-6 hover:border-[#E07A5F]/50 group-hover:-translate-y-1 transition-all duration-200">
+                <span className="font-mono text-sm text-[#E07A5F]/60 mb-4">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div className="flex flex-wrap items-center gap-3 mb-3">
                   <span className="px-2 py-0.5 bg-[#E07A5F]/20 text-[#E07A5F] text-xs font-mono rounded">
                     {article.tag}
                   </span>
@@ -225,15 +228,15 @@ export default function BlogPage() {
                   </div>
                 </div>
 
-                <h2 className="text-xl md:text-2xl font-mono font-bold text-[#FAFAFA] mb-3 group-hover:text-[#E07A5F] transition-colors">
+                <h2 className="text-lg font-mono font-bold leading-snug text-[#FAFAFA] mb-3 group-hover:text-[#E07A5F] transition-colors">
                   {article.title}
                 </h2>
 
-                <p className="text-[#A9A9A9] leading-relaxed mb-4">
+                <p className="text-[#A9A9A9] text-sm leading-relaxed mb-4 md:line-clamp-4">
                   {article.excerpt}
                 </p>
 
-                <div className="flex items-center gap-2 text-[#E07A5F] text-sm font-mono">
+                <div className="mt-auto pt-4 border-t border-dashed border-[#FAFAFA]/10 flex items-center gap-2 text-[#E07A5F] text-sm font-mono">
                   <span>Lire l article</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </div>
